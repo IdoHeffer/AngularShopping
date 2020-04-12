@@ -47,8 +47,8 @@
                         <tr *ngFor="let currentcartItem of CartData">
                             <td><img id="ProdImgCart" src="{{currentcartItem.img}}" alt="Product Image">1</td>
                             <td>{{currentcartItem.ProductName}}</td>
+                            <td>{{currentcartItem.Amount}}</td> 
                             <td>{{ currentcartItem.Price }}₪</td>
-                            <td>{{currentcartItem.img}}</td>
                             <td>{{currentcartItem.TotalItemPrice}}</td>
                         </tr>
                     </tbody>
@@ -74,8 +74,8 @@
         </div>
         <div class="container">
 
-            <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog">
+            <div class="modal fade" id="myModal" role="dialog" data-backdrop="static" >
+                <div class="modal-dialog modal-dialog-centered">
 
 
                     <div class="modal-content">
