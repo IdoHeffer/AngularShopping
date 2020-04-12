@@ -1,0 +1,123 @@
+<section>
+    <header>
+        <nav>
+            <div id="categoriesHeaderDivPanel">
+                <h1><b>Categories Panel</b></h1><br>
+                <ul>
+                    <li id="first"><a (click)="getAllProducts()"  routerLinkActive="the-chosen-one"
+                            style="font-size:20px" class="fa"> All Products </a></li>
+                    <li id="first"><a value=6 (click)="categoryProducts(6)" routerLinkActive="the-chosen-one"
+                            style="font-size:20px" class="fa"> Bakery </a></li>
+                    <li id="first"><a (click)="categoryProducts(1)" routerLinkActive="the-chosen-one"
+                            style="font-size:20px" class="fa"> Dairy </a></li>
+                    <li id="first"><a (click)="categoryProducts(10)" routerLinkActive="the-chosen-one"
+                            style="font-size:20px" class="fa"> Fruits </a></li>
+                    <li id="first"><a (click)="categoryProducts(5)" routerLinkActive="the-chosen-one"
+                            style="font-size:20px" class="fa"> Meat </a></li>
+                    <li id="first"><a (click)="categoryProducts(11)" routerLinkActive="the-chosen-one"
+                            style="font-size:20px" class="fa"> Vegitables </a></li>
+                    <li id="first"><a (click)="categoryProducts(8)" routerLinkActive="the-chosen-one"
+                            style="font-size:20px" class="fa"> Wines & Beers </a></li>
+                </ul>
+
+            </div><br><br>
+            <b>Search By Name: </b><input type="text" [(ngModel)]="byName">
+        </nav>
+    </header>
+
+    <aside *ngIf="isProductsRoute()">
+        <header>
+            <h2>My Cart <i class="fa fa-shopping-cart" style="font-size:35px;"></i></h2>
+            <!-- <h4>Cart ID: # {{CartData.CartID}}</h4> -->
+        </header>
+        <div id="cartItemsContainer" class="container">
+            <p>These are the items that you choose </p>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>ProductName</th>
+                            <th>Amount</th>
+                            <th>Price</th>
+                            <th>TotalItemPrice</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let currentcartItem of CartData">
+                            <td><img id="ProdImgCart" src="{{currentcartItem.img}}" alt="Product Image">1</td>
+                            <td>{{currentcartItem.ProductName}}</td>
+                            <td>{{ currentcartItem.Price }}₪</td>
+                            <td>{{currentcartItem.img}}</td>
+                            <td>{{currentcartItem.TotalItemPrice}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <h3>Total : ₪</h3>
+        <button class="btn btn-success">CheckOut</button>
+        <button class="btn btn-danger">Clear</button>   
+    </aside>
+    <main>
+        <div id="cardsContainer" *ngIf="isShowAllProduct">
+            <div class="card col-xs-10 col-sm-5 col-md-5 col-lg-2"
+                *ngFor="let currentProduct of products|ByNamePipe :byName" (click)=[(showProduct(currentProduct))]
+                data-toggle="modal" data-target="#myModal">
+                <img class="card-img-top" src="{{currentProduct.img}}" alt="Card image cap">
+                <h3>{{currentProduct.ProductName}}</h3>
+                <p class="category">Category: {{currentProduct.CategoryID}}</p>
+                <p class="price">{{ currentProduct.Price }}₪</p>
+                <p>Some text about the jeans.jeansum.</p>
+                <p><button (click)=[(purchaseProduct(currentProduct))] style="bottom:0">Add to Cart</button></p>
+            </div>
+        </div>
+        <div class="container">
+
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+
+
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"
+                                (click)=[(showProducts())]>&times;</button>
+                            <h1 class="modal-title">{{displayedProduct.ProductName}}</h1>
+                        </div>
+                        <div class="modal-body">
+                            <img class="card-img-top" src="{{displayedProduct.img}}" alt="Card image cap"
+                                style="height:200px; width: 250px;">
+                        </div>
+                        <div class="modal-footer">
+                            <div style="text-align: left;">
+                                <h3>Choose Amount : </h3><br>
+                                <div class="amountdiv">
+                                    <button type="button" (click)="minus()"><i class="fa fa-minus"></i></button>
+                                    <input type="text" [value]="quantity">
+                                    <button type="button" (click)="plus()"><i class="fa fa-plus"></i></button>
+                                </div>
+                                <!-- <div class="form-group">
+                            <label for="exampleFormControlSelect1">Example select</label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                        </div> -->
+                        <!-- (click)=[(purchaseProduct())] -->
+                            </div>
+                            <button type="button"  class="btn btn-default"
+                                data-dismiss="modal" style="background-color:#f90;color:white;">Purchase</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"
+                                style="background-color:#3681d6;color:white;" (click)=[(showProducts())]>Cancel</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+</section>

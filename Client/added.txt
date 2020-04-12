@@ -1,0 +1,7 @@
+Round corners to login button css
+box-shadow
+placeholder
+ margin-top: 10%;
+ החלטה לסגור את הלוגין ב div 
+ ולייצר לו עיצוב ייחודי
+ resize 

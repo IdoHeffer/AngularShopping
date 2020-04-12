@@ -1,0 +1,119 @@
+p{
+    background-color: white;
+}
+ 
+h1{
+    font-size: 5rem;
+}
+
+label{
+    color: #f90;
+}
+
+input[type=text], select {
+    width: 65%;
+    padding: 12px 20px;
+    margin: 5px 0;
+    display: inline-block;
+    box-sizing: border-box;
+    font-size:18px;
+    padding:10px 10px 10px 5px;
+    border:none;
+    border-bottom:1px solid #232f3e;
+    background-color: white;
+}
+
+input[type=password], select {
+    width: 65%;
+    padding: 12px 20px;
+    margin: 5px 0;
+    display: inline-block;
+    box-sizing: border-box;
+    font-size:18px;
+    padding:10px 10px 10px 5px;
+    border:none;
+    border-bottom:1px solid #232f3e;
+    background-color: white;
+}
+input[type=password]:focus{
+    border-bottom:1px solid #f90;
+    color: #232f3e; 
+}
+input[type=text]:focus{
+    border-bottom:1px solid #f90;
+    color: #232f3e;
+}
+  
+#signUpBtn {
+   margin-top: 2%;
+  background-color:rgba(40, 108, 168, 0.856);
+  color:  white;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  width: 65%;
+  opacity: 0.8;
+}
+
+#signUpBtn:hover{
+    opacity: 1;
+    background-color: #286DA8;
+    
+}
+#registerForm{
+    margin-top: 6%;
+}
+
+
+
+#backBtn{
+    
+    float: left;
+    background-color: rgba(255, 153, 0, 0.712);
+    color: white;
+    padding: 14px 20px;
+    margin-top: 2%;
+    margin-left: 3%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+}
+
+#backBtn:hover{
+    background-color:  #f90;
+}
+#signUpHeader{
+    text-align: center;
+
+}
+.left-div{
+    float: left;
+    width: 60%;
+}
+.right-div{
+    float: right;
+    width: 40%;
+}
+.left{
+    float: left;
+    width: 50%;
+}
+.right{
+    float: right;
+    width: 50%;
+}
+  
+div {
+    border-radius: 5px;
+    background-color: white;
+    padding: 20px;
+}
+
+
+#logo{   
+    margin-top: 50px;
+    width: 80%;
+    height: 80%;
+}

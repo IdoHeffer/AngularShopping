@@ -1,0 +1,118 @@
+div {
+    height: 100%;
+}
+
+a{
+    color: white;
+
+}
+h1 {
+    margin: 0;
+    position: relative;
+    top: 50%;
+    font-size: 40px;
+    transform: translateY(-50%);
+}
+#Brand{
+    font-size: 180%;
+    color: white;
+   
+}
+#navbar{
+   background-color:#286DA8;
+   width: 100%;
+   color: white;
+}
+#navbardiv{
+    height: 100%;
+}
+#cartArea{
+    float: right;
+}
+
+.navbar-default {
+    background-color: #286DA8;
+    color: white;
+    border-color: #E7E7E7;
+}
+/* Title */
+.navbar-default .navbar-brand {
+    color: white;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: white;
+}
+/* Link */
+.navbar-default .navbar-nav > li > a {
+    color: white;
+}
+.navbar-default .navbar-nav > li > a:hover{
+    color: white;
+    background-color: #f90;
+}
+.navbar-default .navbar-nav > li > a:focus {
+    background-color: #f90;
+    color: white;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: white;
+    background-color: #f90;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+    color: white;
+    background-color: #D5D5D5;
+}
+/* Caret */
+.navbar-default .navbar-nav > .dropdown > a .caret {
+    border-top-color: white;
+    border-bottom-color: white;
+}
+.navbar-default .navbar-nav > .dropdown > a:hover .caret,
+.navbar-default .navbar-nav > .dropdown > a:focus .caret {
+    border-top-color: white;
+    border-bottom-color: white;
+}
+.navbar-default .navbar-nav > .open > a .caret,
+.navbar-default .navbar-nav > .open > a:hover .caret,
+.navbar-default .navbar-nav > .open > a:focus .caret {
+    border-top-color: #F90;
+    border-bottom-color: #F90;
+}
+/* Mobile version */
+.navbar-default .navbar-toggle {
+    border-color: #DDD;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color: #DDD;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #CCC;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: black;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover{
+    background-color: #f90;
+    color:black;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: black;
+}
+
+
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: white;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: white;
+    }
+}

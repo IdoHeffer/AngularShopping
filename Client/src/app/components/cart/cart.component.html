@@ -1,0 +1,57 @@
+<!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_close_list_items option to add to cart X CLOSE  -->
+
+
+
+
+<section *ngIf="isProductsRoute()">
+
+    <header>
+       <h2>My Cart <i class="fa fa-shopping-cart" style="font-size:35px;"></i></h2>
+       <h4>Cart ID: # {{cart.CartID}}</h4>
+    </header>
+    <main>
+        <div id="cartItemsContainer" class="container">
+            <p>These are the items that you choose </p>                                                                                      
+            <div class="table-responsive">          
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>ProductName</th>
+                  <th>Amount</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let currentcartItem of cartItems">
+                  <td><img id="ProdImgCart" src="{{currentcartItem.img}}" alt="Product Image">1</td>
+                  <td>{{currentcartItem.ProductName}}</td>
+                  <td>{{ currentcartItem.Price }}₪</td>
+                  <td>{{currentcartItem.img}}</td>
+                  <td>USA</td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+          
+        <!-- <div id="cartItemsContainer">
+            <div class="card" *ngFor="let currentcartItem of cartItems"
+                 data-toggle="modal" data-target="#myModal">
+                <img class="card-img-top" src="{{currentcartItem.img}}" alt="Card image cap">
+                <h3>{{currentcartItem.ProductName}}</h3>
+                <p class="category">Category: {{currentcartItem.CategoryID}}</p>
+                <p class="price">{{ currentcartItem.Price }}₪</p>
+                <p>Some text about the jeans.jeansum.</p>
+                <p><button style="bottom:0">Add to Cart</button></p>
+            </div>
+        </div> -->
+    </main>
+    <footer>
+       <h3>Total : ₪</h3> 
+       <button  class="btn btn-success">CheckOut</button>
+       <button  class="btn btn-danger">Clear</button>
+    </footer>
+
+
+</section> 

@@ -1,0 +1,34 @@
+<!-- לזכור להוסיף [(ngModel)]="AdminCreateUserDetails.gender" -->
+
+<div>
+    <form action="/action_page.php">
+      <label for="firstname">First Name</label><br>
+      <input type="text" id="firstname" name="firstname" placeholder="First Name.."  [(ngModel)]="adminCreateUserDetails.FirstName"><br><br>
+
+      <label for="Lastname">Last Name</label><br>
+      <input type="text" id="Lastname" name="Lastname" placeholder="Last Name.."  [(ngModel)]="adminCreateUserDetails.LastName"><br><br>
+
+      <label for="UserName">User Name</label><br>
+      <input type="text" id="UserName" name="UserName" placeholder="User Name.."  [(ngModel)]="adminCreateUserDetails.UserName"><br><br>
+  
+      <label for="password">Password</label><br>
+      <input type="password" id="password" name="password" placeholder="Password.."  [(ngModel)]="adminCreateUserDetails.password"><br><br>
+      
+      <label for="Role">User Role</label><br>
+      <select id="Role" name="Role"  [(ngModel)]="adminCreateUserDetails.Role">
+        <option value="CUSTOMER">CUSTOMER</option>
+        <option value="ADMIN">ADMIN</option>
+        <option value="COMPANY">COMPANY</option>
+      </select><br>
+
+      <label for="City">City</label><br>
+      <input type="text" id="City" name="City" placeholder="City.."  [(ngModel)]="adminCreateUserDetails.City"><br><br>
+  
+      <label for="Street">Street</label><br>
+      <input type="text" id="Street" name="Street" placeholder="Street.."  [(ngModel)]="adminCreateUserDetails.Street"><br><br>
+
+    
+    
+      <button type="button" (click)="register()" class="btn" value="register" style="font-size:15px">Create User</button>
+    </form>
+  </div>

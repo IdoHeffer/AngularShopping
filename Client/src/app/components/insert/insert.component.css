@@ -1,0 +1,62 @@
+p{
+    background-color: greenyellow;
+}
+
+
+input[type=text], select {
+    width: 40%;
+    padding: 12px 20px;
+    margin: 5px 0;
+    display: inline-block;
+    box-sizing: border-box;
+    font-size:18px;
+    padding:10px 10px 10px 5px;
+    border:none;
+    border-bottom:1px solid #232f3e;
+    background-color: whitesmoke;
+}
+
+input[type=password], select {
+    width: 40%;
+    padding: 12px 20px;
+    margin: 5px 0;
+    display: inline-block;
+    box-sizing: border-box;
+    font-size:18px;
+    padding:10px 10px 10px 5px;
+    border:none;
+    border-bottom:1px solid #232f3e;
+    background-color: whitesmoke;
+}
+input[type=password]:focus{
+    border-bottom:1px solid #f90;
+    color: #232f3e; 
+}
+input[type=text]:focus{
+    border-bottom:1px solid #f90;
+    color: #232f3e;
+}
+  
+  
+.btn {
+    margin-top: 2%;
+    background-color: #f90;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    width: 45%;
+    opacity: 0.9;
+    box-shadow: grey 5px 5px;
+}
+  
+button :hover {
+    background-color: #45a049;
+}
+  
+div {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
