@@ -31,7 +31,16 @@
             <!-- <h4>Cart ID: # {{CartData.CartID}}</h4> -->
         </header>
         <div id="cartItemsContainer" class="container">
-            <p>These are the items that you choose </p>
+            <!-- <p>These are the items that you choose </p>
+            <div class="cartitem col-xs-2 col-sm-2 col-md-2 col-lg-6"
+            *ngFor="let currentcartItem of CartData">
+            <img class="card-img-top" src="{{currentcartItem.img}}" alt="Card image cap">
+            <h4>{{currentcartItem.ProductName}}</h4>
+            <p class="category">Category: {{currentcartItem.Amount}}</p>
+            <p class="price">{{ currentcartItem.Price }}₪</p>
+            <p ng-model="a">{{ currentcartItem.TotalItemPrice }}₪</p>
+            <p>Some text about the jeans.jeansum.</p>
+        </div> -->
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -45,11 +54,11 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let currentcartItem of CartData">
-                            <td><img id="ProdImgCart" src="{{currentcartItem.img}}" alt="Product Image">1</td>
+                            <td><img id="ProdImgCart" src="{{currentcartItem.img}}" alt="Product Image"></td>
                             <td>{{currentcartItem.ProductName}}</td>
                             <td>{{currentcartItem.Amount}}</td> 
                             <td>{{ currentcartItem.Price }}₪</td>
-                            <td>{{currentcartItem.TotalItemPrice}}</td>
+                            <td ng-model="a" >{{currentcartItem.TotalItemPrice}}₪</td>
                         </tr>
                     </tbody>
                 </table>

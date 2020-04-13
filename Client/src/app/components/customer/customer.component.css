@@ -13,6 +13,27 @@ h2{
     height: 10%;
     display: inline-block;
 }
+.cartitem{
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    margin: 3%;
+    background-color: white;
+    border: 3px solid #286DA8;
+    transition: all .2s ease-in-out;
+    width: 50%;
+}
+
+.cartitem>img{
+    width: 80%;
+    height: 80%px; 
+    float: left;
+
+}
+
+/* .cartitem:hover{
+    transform: scale(1.1);
+} */
 
 .card {
     box-shadow: 0 7px 10px 0 rgba(0, 0, 0, 0.466);

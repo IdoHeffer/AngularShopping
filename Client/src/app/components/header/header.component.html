@@ -42,9 +42,9 @@
         <li><a routerLink="/Admin" *ngIf="userService.userType =='ADMIN'"><i class="fa fa-user-secret"
               style="font-size:18px"></i> Admin</a></li>
         <li><a href="#">Link</a></li>
-        <li class="dropdown">
+        <li class="dropdown"  *ngIf="isUserLoggedIn()">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-            aria-expanded="false">Dropdown <span class="caret"></span></a>
+            aria-expanded="false">Hellow {{userName}}<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">My Cart</a></li>
             <li><a href="#">My Account</a></li>

@@ -14,6 +14,7 @@ import { UserForgotPasswordDetails } from '../models/UserForgotPasswordDetails';
 export class UserService {
  
     public userType : string;
+    public userName : string;
 
     // HttpClient injection (a class variable will be automatically created)
     constructor(private http: HttpClient) {
@@ -23,6 +24,10 @@ export class UserService {
 
         //  The http request will be sent after the subscribe() method will be called
         //return this.http.post<SuccessfulLoginServerResponse>("http://localhost:8080/users/login", userLoginDetails);
+        this.http.post<SuccessfulLoginServerResponse>("/api/Users/login", userLoginDetails);
+        this.userName= userLoginDetails.userName;
+        console.log(this.userName);
+
         return this.http.post<SuccessfulLoginServerResponse>("/api/Users/login", userLoginDetails);
     }
 
@@ -33,5 +38,13 @@ export class UserService {
 
     public changePassword(userForgotPasswordDetails: UserForgotPasswordDetails ): Observable<void> {
         return this.http.post<void>("/api/Users/changePassword", userForgotPasswordDetails);
+    }
+
+    public setUserName(newuserName : string){
+        this.userName = newuserName;
+    }
+    
+    public getUserName() {
+        return this.userName;
     }
 }

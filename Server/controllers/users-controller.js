@@ -79,6 +79,7 @@ router.post("/login",  async (request,response) => {
         let loginResponse = {
             userType: usersLoginResult.Role,
             userID: usersLoginResult.UserID,
+            userName: usersLoginResult.userName,
             token: token,
         };
         console.log("Welcome Back Succesfull Login"+JSON.stringify(loginResponse.userType));

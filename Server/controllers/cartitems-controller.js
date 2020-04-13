@@ -39,9 +39,9 @@ router.put("/", async (request, response) => {
 })
 
 router.post("/", async (request, response) => {
-    let item = request.body;
+    let itemtoAdd = request.body;
     try {
-        await cartItemsLogic.addCartItem(item)
+        await cartItemsLogic.addCartItem(itemtoAdd)
         response.status(200).send("item was added")
 
     } catch (error) {

@@ -43,6 +43,7 @@ export class MainComponent implements OnInit {
             sessionStorage.setItem("userType", JSON.stringify(successfulServerRequestData.userType));
             sessionStorage.setItem("isLoggedIn", "true")
             this.usersService.userType = JSON.stringify(successfulServerRequestData.userType);
+            this.usersService.setUserName(successfulServerRequestData.userName);
             
             if (this.usersService.userType == "CUSTOMER") {
                 this.router.navigate(["/Products"]);

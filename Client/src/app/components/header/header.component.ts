@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/UserService';
 import { Router } from '@angular/router';
+import { SuccessfulLoginServerResponse } from 'src/app/models/SuccessfulLoginServerResponse';
 
 @Component({
   selector: 'app-header',
@@ -8,8 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  
+  public userName: string;
 
-  constructor( public userService :UserService,private router: Router) { }
+  constructor( public userService :UserService,private router: Router) {
+    this.userName = userService.userName;
+  }
+   
 
   ngOnInit() {
   }
@@ -25,6 +31,15 @@ export class HeaderComponent implements OnInit {
   isShowProductsRoute() {
     let token = sessionStorage.getItem("token");
     if(token){
+      return true;
+    }
+    return false;
+  }
+
+  isUserLoggedIn() {
+    let token = sessionStorage.getItem("token");
+    if(token){
+      this.userName = this.userService.getUserName();
       return true;
     }
     return false;
