@@ -41,9 +41,9 @@ async function updateCartItem(cartItem) {
     await cartItemsDao.updateCartItem(cartItem)
 }
 
-function validateCartItem(item) {
+function validateCartItem(cartItem) {
     // Validate the category to add:
-    const errorDetails = CartItem.validate(item);
+    const errorDetails = CartItem.validate(cartItem);
     if (errorDetails) {
         throw new Error("invalid item")
     }

@@ -25,12 +25,13 @@
         </nav>
     </header>
 
-    <aside *ngIf="isProductsRoute()">
-        <header>
-            <h2>My Cart <i class="fa fa-shopping-cart" style="font-size:35px;"></i></h2>
-            <!-- <h4>Cart ID: # {{CartData.CartID}}</h4> -->
-        </header>
+    <aside  *ngIf="isProductsRoute()">
+       
         <div id="cartItemsContainer" class="container">
+            <header>
+                <h2>My Cart <i class="fa fa-shopping-cart" style="font-size:35px;"></i></h2>
+                <h4>Cart ID: # {{CartData[0].CartID}}</h4>
+            </header>
             <!-- <p>These are the items that you choose </p>
             <div class="cartitem col-xs-2 col-sm-2 col-md-2 col-lg-6"
             *ngFor="let currentcartItem of CartData">
@@ -63,10 +64,11 @@
                     </tbody>
                 </table>
             </div>
+            <h3>Total : ₪</h3>
+            <button class="btn btn-success">CheckOut</button>
+            <button class="btn btn-danger">Clear</button>   
         </div>
-        <h3>Total : ₪</h3>
-        <button class="btn btn-success">CheckOut</button>
-        <button class="btn btn-danger">Clear</button>   
+       
     </aside>
     <main>
         <div id="cardsContainer" *ngIf="isShowAllProduct">

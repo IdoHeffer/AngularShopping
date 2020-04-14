@@ -1,7 +1,7 @@
 let connection = require("./connection")
 
 async function getCart(id) {
-    var sql = ("SELECT p.ProductName, p.img, ci.Amount, p.Price, ci.TotalItemPrice, c.CartCreationDate FROM products p  JOIN cartitems ci ON ci.ProductID=p.ProductID JOIN carts c ON ci.CartID=c.CartID WHERE UserID =?") 
+    var sql = ("SELECT p.ProductName, p.img, ci.Amount, p.Price, ci.TotalItemPrice, c.CartCreationDate,  c.CartID FROM products p  JOIN cartitems ci ON ci.ProductID=p.ProductID JOIN carts c ON ci.CartID=c.CartID WHERE UserID =?") 
     let parameters = [id];
     let cartData = connection.executeWithParameters(sql,parameters);
     console.log(id)

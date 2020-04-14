@@ -181,8 +181,12 @@ h2{
 }
 #cartItemsContainer{
     /* height: 30%; */
-    margin-top: 2%;
+    margin-top: 20%;
+    padding-top: 8%;
     width: 100%;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
 }
 
 #ProdImgCart{
