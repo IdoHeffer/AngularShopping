@@ -51,6 +51,7 @@
                             <th>Amount</th>
                             <th>Price</th>
                             <th>TotalItemPrice</th>
+                            <th>Remove</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,6 +61,7 @@
                             <td>{{currentcartItem.Amount}}</td> 
                             <td>{{ currentcartItem.Price }}₪</td>
                             <td ng-model="a" >{{currentcartItem.TotalItemPrice}}₪</td>
+                            <td><button class="btn btn-danger">X</button></td>
                         </tr>
                     </tbody>
                 </table>

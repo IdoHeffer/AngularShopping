@@ -88,7 +88,7 @@ export class CustomerComponent implements OnInit {
     }
 
     public purchaseProduct(product:Product){
-        this.cartItem = new CartItem (this.cartData[0].CartID,product.ProductID,this.quantity, this.ToalItemPrice);
+        this.cartItem = new CartItem (this.cartData[0].CartID,product.ProductID,this.quantity || 1, this.ToalItemPrice || product.Price);
         console.log(this.cartItem);
         this.isShowAllProduct = true;
         const observableCartItem = this.cartsService.purchaseProduct(this.cartItem);
