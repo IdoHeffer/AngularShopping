@@ -196,6 +196,18 @@ h2{
     height: 60px;
 }
 
+#quantityINt{
+    height:34px;
+    width: 100px;
+    text-align: center;
+    font-size: 26px;
+    border:1px solid #ddd;
+    border-radius:4px;
+    display: inline-block;
+    vertical-align: middle;
+          
+}
+
 ul {
     list-style-type: none;
     margin: 0;

@@ -113,19 +113,20 @@ export class CustomerComponent implements OnInit {
       this.products = productsList;
       console.log(1)
       console.log(productsList)
-    }, error => {
-      alert('Failed to get products ' + JSON.stringify(error));
-    });
+      }, error => {
+        alert('Failed to get products ' + JSON.stringify(error));
+      });
     }
+
     public getAllProducts(){
         let observable = this.productsService.getAllProducts();
         observable.subscribe(productsList => {
         this.products = productsList;
         console.log(1)
         console.log(productsList)
-    }, error => {
-      alert('Failed to get products ' + JSON.stringify(error));
-    });
+        }, error => {
+          alert('Failed to get products ' + JSON.stringify(error));
+        });
 
     }
 

@@ -101,13 +101,14 @@
                         </div>
                         <div class="modal-footer">
                             <div style="text-align: left;">
-                                <h3 style="text-align: right;">Price : {{this.ToalItemPrice}}₪</h3>
-                                <h3>Choose Amount : </h3><br>
-                                <div class="amountdiv">
-                                    <button type="button" (click)="minus(displayedProduct.Price)"><i class="fa fa-minus"></i></button>
-                                    <input type="text" [value]="quantity">
-                                    <button type="button" (click)="plus(displayedProduct.Price)"><i class="fa fa-plus"></i></button>
-                                </div>
+                                <p style="font-size: 2rem; display: inline">Choose Amount :   </p>
+                                <div class="amountdiv" style="display: inline">
+                                    <button type="button" class="btn btn-danger" (click)="minus(displayedProduct.Price)"><i class="fa fa-minus"></i></button>
+                                    <input type="text" id="quantityINt" [value]="quantity">
+                                    <button type="button" class="btn btn-success" (click)="plus(displayedProduct.Price)"><i class="fa fa-plus"></i></button>
+                                </div><br><br>
+                                <p style="text-align: right; display: inline; font-size:2rem;"><b>Price : {{this.ToalItemPrice}}₪</b></p>
+                               
                                 <!-- <div class="form-group">
                             <label for="exampleFormControlSelect1">Example select</label>
                             <select class="form-control" id="exampleFormControlSelect1">
