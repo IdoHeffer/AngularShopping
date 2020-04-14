@@ -188,7 +188,9 @@ h2{
     position: sticky;
     top: 0;
 }
-
+#cartItemsTable{
+    height: 550px;
+}
 #ProdImgCart{
     width: 70px;
     height: 60px;
