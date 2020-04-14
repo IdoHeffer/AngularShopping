@@ -31,7 +31,7 @@ router.put("/", async (request, response) => {
     let item = request.body;
     try {
         await cartItemsLogic.updateCartItem(item)
-        response.status(200).send("updat succesful")
+        response.status(200).send("updat succesful");
 
     } catch (error) {
         response.status(404).send("No item in database  "+error);
@@ -42,7 +42,7 @@ router.post("/", async (request, response) => {
     let itemtoAdd = request.body;
     try {
         await cartItemsLogic.addCartItem(itemtoAdd)
-        response.status(200).send("item was added")
+        response.status(200).send("item was added");
 
     } catch (error) {
         response.status(404).send("cant add item" +error);
