@@ -4,14 +4,14 @@ import { Observable } from 'rxjs';
 import { Cart } from '../models/Cart';
 import { CartData } from '../models/CartData';
 import { Product } from '../models/Product';
-
+import { CartItem } from 'src/app/models/CartItem';
 
 @Injectable({
     // One object for the entire website
     providedIn: 'root'
 })
 export class CartsService {
-    
+    public cartItem : CartItem;
     public userCart : Cart[];
     public CartData: CartData[];
 
@@ -23,6 +23,10 @@ export class CartsService {
 
     public getAllCartItems(id): Observable<Product[]> {
         return this.http.get<Product[]>("/api/CartItems/"+id);
+    }
+
+    public purchaseProduct(cartItem : CartItem,) : Observable<void> {
+        return this.http.post<void>("/api/CartItems", cartItem);
     }
     
 }

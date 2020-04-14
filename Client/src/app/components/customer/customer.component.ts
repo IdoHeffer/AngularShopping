@@ -7,6 +7,7 @@ import { CartsService } from 'src/app/services/CartsService';
 import { Cart } from 'src/app/models/Cart';
 import { CartData } from 'src/app/models/CartData';
 import { Router } from '@angular/router';
+import { CartItem } from 'src/app/models/CartItem';
 
 
 @Component({
@@ -15,7 +16,8 @@ import { Router } from '@angular/router';
     styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
-    public CartData: CartData[];
+    public cartData: CartData[];
+    public cartItem:CartItem;
     public products: Product[];
     public isShowAllProduct: boolean;
     public byName:string;
@@ -29,7 +31,7 @@ export class CustomerComponent implements OnInit {
         this.categories = [];
         this.byName = "";
         this.displayedProduct;
-        this.CartData = this.cartsService.CartData;
+        this.cartData = this.cartsService.CartData;
         this.cartsService = cartsService;
     }
 
@@ -56,8 +58,8 @@ export class CustomerComponent implements OnInit {
 
         const observableCart = this.cartsService.getUserCart();
         observableCart.subscribe(userCartFromServer => {
-        this.CartData = userCartFromServer;
-        console.log(this.CartData)
+        this.cartData = userCartFromServer;
+        console.log(this.cartData)
         console.log(userCartFromServer);
         })
 
@@ -71,23 +73,40 @@ export class CustomerComponent implements OnInit {
     }
 
     public showProduct(product: Product) {
-        // Debugging using printing the object value in the browser's console
-        console.log(product);
-        this.isShowAllProduct = false;
-        this.displayedProduct = product;
-        this.displayedImg = product;
+      // Debugging using printing the object value in the browser's console
+      console.log(product);
+      this.isShowAllProduct = false;
+      this.displayedProduct = product;
+      this.displayedImg = product;
+      this.calcToalItemPrice(this.quantity,this.displayedProduct.Price);
     }
 
     public showProducts(){
         this.isShowAllProduct = true;
+        this.quantity = 1;
+       
     }
 
-    public purchaseProduct(product){
-        alert("Product been purchesed")
+    public purchaseProduct(product:Product){
+        this.cartItem = new CartItem (this.cartData[0].CartID,product.ProductID,product.Amount,product.Price*product.Amount);
+        console.log(this.cartItem);
         this.isShowAllProduct = true;
-        // this.cartItems.push(product);
-        // console.log(this.cartItems);
-        // this.cartItems = this.cartItems;
+        const observableCartItem = this.cartsService.purchaseProduct(this.cartItem);
+        observableCartItem.subscribe(successfulCartItemAdd => {
+          console.log(successfulCartItemAdd); 
+
+          alert("Product been purchesed")     
+          const observableCart = this.cartsService.getUserCart();
+          observableCart.subscribe(userCartFromServer => {
+          this.cartData = userCartFromServer;
+          console.log(this.cartData)
+          console.log(userCartFromServer);
+        })           
+        this.quantity = 1;
+
+        }, serverErrorResponse => {
+            alert("Error! Status: " + serverErrorResponse.status + ", Message: " + serverErrorResponse.message);            
+        }); 
     }
 
     public categoryProducts(value){
@@ -111,19 +130,28 @@ export class CustomerComponent implements OnInit {
     });
 
     }
-    
+
+    public calcToalItemPrice(num1:number,num2:number){
+      this.ToalItemPrice = num1*num2;
+      console.log(num1,num2);
+      return this.ToalItemPrice;
+    }
+
+    public ToalItemPrice :number;
     quantity:number=1;
     i=1
-    plus(){
+    plus(num:number){
       if(this.i !=10){
         this.i++;
         this.quantity=this.i;
+        this.calcToalItemPrice(this.quantity,num);
       }
     }
-    minus(){
+    minus(num:number){
       if(this.i !=1){
         this.i--;
         this.quantity=this.i;
+        this.calcToalItemPrice(this.quantity,num);
       }
     }
 
