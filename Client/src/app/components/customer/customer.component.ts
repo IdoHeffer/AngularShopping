@@ -95,12 +95,12 @@ export class CustomerComponent implements OnInit {
         observableCartItem.subscribe(successfulCartItemAdd => {
           console.log(successfulCartItemAdd); 
 
-          alert("Product been purchesed")     
-          const observableCart = this.cartsService.getUserCart();
-          observableCart.subscribe(userCartFromServer => {
-          this.cartData = userCartFromServer;
-          console.log(this.cartData)
-          console.log(userCartFromServer);
+        alert("Product been purchesed")     
+        const observableCart = this.cartsService.getUserCart();
+        observableCart.subscribe(userCartFromServer => {
+        this.cartData = userCartFromServer;
+        console.log(this.cartData)
+        console.log(userCartFromServer);
         })           
         this.quantity = 1;
 
