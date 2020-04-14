@@ -93,22 +93,34 @@ export class CustomerComponent implements OnInit {
         this.isShowAllProduct = true;
         const observableCartItem = this.cartsService.purchaseProduct(this.cartItem);
         observableCartItem.subscribe(successfulCartItemAdd => {
-        console.log(successfulCartItemAdd); 
+          console.log(successfulCartItemAdd); 
+          const observableCart = this.cartsService.getUserCart();
+            observableCart.subscribe(userCartFromServer => {
+            this.cartData = userCartFromServer;
+            console.log(this.cartData)
+            console.log(userCartFromServer);
+          });       
+          this.quantity = 1;
+          this.router.navigate(["/Products"]);
+
+        }, serverErrorResponse => {
+            alert("Error! Status: " + serverErrorResponse.status + ", Message: " + serverErrorResponse.message);            
+        });
+      
+
+    }
+
+    public removeCartItem(itemID:number){
+      const observableCart = this.cartsService.deleteCartItem(itemID);
+        observableCart.subscribe(userCartFromServer => {
         const observableCart = this.cartsService.getUserCart();
         observableCart.subscribe(userCartFromServer => {
         this.cartData = userCartFromServer;
         console.log(this.cartData)
         console.log(userCartFromServer);
-        })           
-        this.quantity = 1;
-
-        }, serverErrorResponse => {
-            alert("Error! Status: " + serverErrorResponse.status + ", Message: " + serverErrorResponse.message);            
-        }); 
-    }
-
-    public removeCartItem(cartItem:CartItem){
-
+      });       
+        console.log(userCartFromServer);
+      })
     }
 
     public categoryProducts(value){

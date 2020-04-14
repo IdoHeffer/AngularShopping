@@ -28,5 +28,9 @@ export class CartsService {
     public purchaseProduct(cartItem : CartItem,) : Observable<void> {
         return this.http.post<void>("/api/CartItems", cartItem);
     }
+
+    public deleteCartItem(itemID : number): Observable<void> {
+        return this.http.delete<void>("/api/CartItems/"+itemID);
+    }
     
 }

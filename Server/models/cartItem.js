@@ -15,6 +15,7 @@ class CartItem {
             Amount: Joi.number().required(),
             TotalItemPrice: Joi.number(),
             CartID: Joi.number().required(),
+            CartItemID:Joi.number().optional()
         };
 
         const error = Joi.validate(

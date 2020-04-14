@@ -3,7 +3,7 @@ const CartItem = require("../models/cartitem")
 const validation = require("../validation/validation")
 
 async function deleteCartItem(id) {
-    validation.validatId(id)
+    // validation.validatId(id)
     let deleteResponce = await cartItemsDao.deleteCartItem(id)
     if (deleteResponce.affectedRows == 0) {
         throw new Error("no rows was delete");

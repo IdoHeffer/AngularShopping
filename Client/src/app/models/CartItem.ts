@@ -4,6 +4,7 @@ export class CartItem{
         public ProductID:number,
         public Amount:number,
         public TotalItemPrice:number,
+        public CartItemID?:number
     ){}
 
 }
