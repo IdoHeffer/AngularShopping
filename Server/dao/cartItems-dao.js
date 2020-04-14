@@ -18,7 +18,8 @@ async function getAllCartItems(CartID) {
 
 async function addCartItem(cartItem) {
    var sql = ("INSERT INTO `marketproject`.`cartitems` (`ProductID`, `Amount`, `TotalItemPrice`, `CartID`)  VALUES (?,?,?,?)")
-   let parameters = [cartItem.ProductID,cartItem.Amount,cartItem.TotalItemPrice,,cartItem.CartID]
+   let parameters = [cartItem.ProductID,cartItem.Amount,cartItem.TotalItemPrice,cartItem.CartID]
+   console.log(parameters);
    let addeCartItem = await connection.executeWithParameters(sql,parameters);
    console.log("Cart Created in the DB :"+addeCartItem);
 }
