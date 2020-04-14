@@ -107,6 +107,10 @@ export class CustomerComponent implements OnInit {
         }); 
     }
 
+    public removeCartItem(cartItem:CartItem){
+
+    }
+
     public categoryProducts(value){
       let observable = this.productsService.getAllCategoriesProducts(value);
       observable.subscribe(productsList => {

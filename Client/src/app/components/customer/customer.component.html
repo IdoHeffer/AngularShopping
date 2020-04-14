@@ -46,22 +46,16 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Image</th>
-                            <th>ProductName</th>
-                            <th>Amount</th>
-                            <th>Price</th>
-                            <th>TotalItemPrice</th>
+                            <th>Product</th>
+                            <th>Description</th>
                             <th>Remove</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let currentcartItem of cartData">
                             <td><img id="ProdImgCart" src="{{currentcartItem.img}}" alt="Product Image"></td>
-                            <td>{{currentcartItem.ProductName}}</td>
-                            <td>{{currentcartItem.Amount}}</td> 
-                            <td>{{ currentcartItem.Price }}₪</td>
-                            <td ng-model="a" >{{currentcartItem.TotalItemPrice}}₪</td>
-                            <td><button class="btn btn-danger">X</button></td>
+                            <td><b>{{currentcartItem.ProductName}}</b><br><br>Amount: <b>{{currentcartItem.Amount}}</b><br><br>Price:<b>{{ currentcartItem.Price }}₪</b><br><br>Total:<b>{{currentcartItem.TotalItemPrice}}₪</b></td>
+                            <td><button class="btn btn-danger" (click)=[(removeCartItem(currentcartItem))]>X</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -75,13 +69,16 @@
     <main>
         <div id="cardsContainer" *ngIf="isShowAllProduct">
             <div class="card col-xs-10 col-sm-5 col-md-5 col-lg-2"
-                *ngFor="let currentProduct of products|ByNamePipe :byName" (click)=[(showProduct(currentProduct))]
-                data-toggle="modal" data-target="#myModal">
+                *ngFor="let currentProduct of products|ByNamePipe :byName">
+                <div class="card-body" (click)=[(showProduct(currentProduct))] data-toggle="modal" data-target="#myModal">
                 <img class="card-img-top" src="{{currentProduct.img}}" alt="Card image cap">
-                <h3>{{currentProduct.ProductName}}</h3>
+                <h3 (click)=[(showProduct(currentProduct))]
+                data-toggle="modal" data-target="#myModal">{{currentProduct.ProductName}}</h3>
                 <p class="category">Category: {{currentProduct.CategoryID}}</p>
                 <p class="price">{{ currentProduct.Price }}₪</p>
                 <p>Some text about the jeans.jeansum.</p>
+                </div>
+                
                 <p><button (click)=[(purchaseProduct(currentProduct))] style="bottom:0">Add to Cart</button></p>
             </div>
         </div>
