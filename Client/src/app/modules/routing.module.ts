@@ -8,6 +8,7 @@ import { ForgotpasswordComponent } from '../components/forgotpassword/forgotpass
 import { LoginGuardService } from '../login.guard';
 import { ProductsModule } from 'src/app/modules/products.module'
 import { CustomerComponent } from '../components/customer/customer.component';
+import { RefreshComponent } from '../components/refresh/refresh.component';
 
 const routes: Routes = [
     { path: "Home", component: MainComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
     { path: "ForgotPassword", component: ForgotpasswordComponent },
     { path: "Admin", canActivate: [LoginGuardService] ,loadChildren: "./admin.module" },
     { path: "Register", component: RegisterComponent },
-    { path: "Login", component: MainComponent },
+    { path: "Refresh", component: RefreshComponent },
+    { path: "Login", component: RefreshComponent },
     { path: "", redirectTo: "Home", pathMatch: "full" },
     // { path: "**", component: Page404Component } // Page not Found (Must be the last one!!!)
 ];
