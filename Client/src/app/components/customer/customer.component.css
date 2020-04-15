@@ -185,7 +185,7 @@ h2{
     color: black;
 }
 #cartItemsContainer{
-    /* height: 30%; */
+    height: 100%;
     margin-top: 20%;
     padding-top: 10%;
     width: 100%;

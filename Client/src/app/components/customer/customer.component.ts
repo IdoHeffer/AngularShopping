@@ -82,8 +82,8 @@ export class CustomerComponent implements OnInit {
     }
 
     public showProducts(){
-        this.isShowAllProduct = true;
-        this.quantity = 1;
+      this.isShowAllProduct = true;
+      this.quantity = 1;
        
     }
 
@@ -93,21 +93,29 @@ export class CustomerComponent implements OnInit {
         this.isShowAllProduct = true;
         const observableCartItem = this.cartsService.purchaseProduct(this.cartItem);
         observableCartItem.subscribe(successfulCartItemAdd => {
-          console.log(successfulCartItemAdd); 
-          const observableCart = this.cartsService.getUserCart();
-            observableCart.subscribe(userCartFromServer => {
-            this.cartData = userCartFromServer;
-            console.log(this.cartData)
-            console.log(userCartFromServer);
-          });       
+        console.log(successfulCartItemAdd); 
+        this.showProducts();
+          // const observableCart = this.cartsService.getUserCart();
+          //   observableCart.subscribe(userCartFromServer => {
+          //   this.cartData = userCartFromServer;
+          //   console.log(this.cartData)
+          //   console.log(userCartFromServer);
+          // });       
           this.quantity = 1;
           this.router.navigate(["/Products"]);
 
         }, serverErrorResponse => {
             alert("Error! Status: " + serverErrorResponse.status + ", Message: " + serverErrorResponse.message);            
         });
-      
+    }
 
+    public refreshCart(){
+      const observableCart = this.cartsService.getUserCart();
+        observableCart.subscribe(userCartFromServer => {
+        this.cartData = userCartFromServer;
+        console.log(this.cartData)
+        console.log(userCartFromServer);
+        });       
     }
 
     public removeCartItem(itemID:number){

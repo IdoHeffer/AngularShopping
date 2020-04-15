@@ -42,7 +42,7 @@ router.post("/", async (request, response) => {
     let itemtoAdd = request.body;
     try {
         await cartItemsLogic.addCartItem(itemtoAdd)
-        response.status(200).send("item was added");
+        response.status(200);
 
     } catch (error) {
         response.status(404).send("cant add item" +error);

@@ -4,9 +4,17 @@ async function getCart(id) {
     var sql = ("SELECT p.ProductName, p.img, ci.Amount, p.Price, ci.CartItemID, ci.TotalItemPrice, c.CartCreationDate,  c.CartID FROM products p  JOIN cartitems ci ON ci.ProductID=p.ProductID JOIN carts c ON ci.CartID=c.CartID WHERE UserID =?") 
     let parameters = [id];
     let cartData = connection.executeWithParameters(sql,parameters);
-    console.log(id)
-    console.log("Cart From DB"+cartData)
-    return cartData;
+    console.log(cartData)
+    if (cartData.length==0) {
+       let newUserCart = await addCart(id);
+       console.log(newUserCart)
+       return newUserCart;
+    }else{
+        console.log(id)
+        console.log(cartData);
+        return cartData;
+    }
+    
 }
 
 
