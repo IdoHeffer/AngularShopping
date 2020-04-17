@@ -60,9 +60,17 @@ export class CustomerComponent implements OnInit {
     const observableCart = this.cartsService.getUserCart();
     observableCart.subscribe(userCartFromServer => {
       this.cartData = userCartFromServer;
+      if (this.cartData ==[]){
+
+      }
       console.log(this.cartData)
       console.log(userCartFromServer);
-    })
+    }, error => {
+      const observableNewCart = this.cartsService.createNewCart();
+      observableCart.subscribe(userCartFromServer => {
+
+      });
+    });
   }
 
   public showProduct(product: Product) {
