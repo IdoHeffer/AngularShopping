@@ -9,11 +9,12 @@ import { LoginGuardService } from '../login.guard';
 import { ProductsModule } from 'src/app/modules/products.module'
 import { CustomerComponent } from '../components/customer/customer.component';
 import { RefreshComponent } from '../components/refresh/refresh.component';
+import { CheckoutComponent } from '../components/checkout/checkout.component';
 
 const routes: Routes = [
     { path: "Home", component: MainComponent },
     // { path: "products", canActivate: [LoginGuardService], component: ProductsComponent },
-    { path: "Friends",component: FriendsComponent },
+    { path: "CheckOut",component: CheckoutComponent },
     { path: "Products", canActivate: [LoginGuardService] ,component: CustomerComponent},
     { path: "ForgotPassword", component: ForgotpasswordComponent },
     { path: "Admin", canActivate: [LoginGuardService] ,loadChildren: "./admin.module" },

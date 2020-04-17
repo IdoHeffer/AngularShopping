@@ -25,6 +25,7 @@ export class CustomerComponent implements OnInit {
   public displayedProduct: Product;
   public displayedImg: Product;
   public categories: Category[];
+  public cart : Cart;
 
   //   constructor(private userService:UserService) { }
   constructor(private productsService: ProductsService, private categoriesService: CategoriesService, private router: Router, private cartsService: CartsService, public location: Location) {

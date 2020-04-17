@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   public userName: string;
 
   constructor( public userService :UserService,private router: Router) {
-    this.userName = userService.userName;
+    this.userName = this.userService.userName;
   }
    
 

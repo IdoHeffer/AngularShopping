@@ -26,6 +26,7 @@ import { ProductsModule } from './products.module';
 import { ConfirmEqualValidator } from '../ValidationsFiles/confirm-equal-validatorts';
 import { CartComponent } from '../components/cart/cart.component';
 import { RefreshComponent } from '../components/refresh/refresh.component';
+import { CheckoutComponent } from '../components/checkout/checkout.component';
 
 
 
@@ -44,6 +45,7 @@ import { RefreshComponent } from '../components/refresh/refresh.component';
   ConfirmEqualValidator,
   CartComponent,
   RefreshComponent,
+  CheckoutComponent,
 
  ],
   imports: [
