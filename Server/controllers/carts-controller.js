@@ -40,9 +40,10 @@ router.get("/:id", async (request, response) => {
 });
 
 router.post("/", async (request, response) => {
-    let cart = request.body;
+    let token = request.headers.authorization;
+    let id = mapUser.checkMapForUserId(token);
     try {
-        await cartsLogic.addCart(cart)
+        await cartsLogic.addCart(id)
         response.status(200).send("cart was added")
 
     } catch (error) {

@@ -28,7 +28,7 @@ async function deleteCart(id) {
 
 async function addCart(id) {
     validateCart(id);
-    await cartsDao.addCart(id)
+    await cartsDao.addCart(id);
 }
 
 function validateCart(cart) {

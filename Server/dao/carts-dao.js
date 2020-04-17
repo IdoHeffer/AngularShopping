@@ -3,12 +3,16 @@ let connection = require("./connection")
 async function getCart(id) {
     var sql = ("SELECT p.ProductName, p.img, ci.Amount, p.Price, ci.CartItemID, ci.TotalItemPrice, c.CartCreationDate,  c.CartID FROM products p  JOIN cartitems ci ON ci.ProductID=p.ProductID JOIN carts c ON ci.CartID=c.CartID WHERE UserID =?") 
     let parameters = [id];
-    let cartData = connection.executeWithParameters(sql,parameters);
+    let cartData = await connection.isCartForUSer(sql,parameters);
     console.log(cartData)
     if (cartData.length==0) {
-       let newUserCart = await addCart(id);
-       console.log(newUserCart)
-       return newUserCart;
+        console.log("no carts for user but we will create one")
+        var sql1 = ("INSERT INTO marketproject.carts (UserID) VALUES (?)")
+        let parameters1 = [id]
+        let addeCart = await connection.executeWithParameters(sql1,parameters1);
+        console.log(addeCart);
+        let newUserCart = await connection.isCartForUSer(sql,parameters);
+        return addeCart;
     }else{
         console.log(id)
         console.log(cartData);
@@ -16,11 +20,6 @@ async function getCart(id) {
     }
     
 }
-
-
-
-"select p.product_name, c.amount, p.price, c.total_price , ca.creation_date from products p join cart_item c on c.product_id=p.id join cart ca on c.cart_id=ca.id where user_id=?"
-
 
 async function addCart(UserID) {
    var sql = ("INSERT INTO marketproject.carts (UserID) VALUES (?)")

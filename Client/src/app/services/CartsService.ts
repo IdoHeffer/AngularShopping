@@ -14,6 +14,7 @@ export class CartsService {
     public cartItem : CartItem;
     public userCart : Cart[];
     public CartData: CartData[];
+    public cart : Cart
 
     constructor(private http: HttpClient) {}
 
@@ -25,7 +26,7 @@ export class CartsService {
         return this.http.get<Product[]>("/api/CartItems/"+id);
     }
 
-    public purchaseProduct(cartItem : CartItem,) : Observable<void> {
+    public purchaseProduct(cartItem : CartItem) : Observable<void> {
         return this.http.post<void>("/api/CartItems", cartItem);
     }
 
@@ -33,4 +34,7 @@ export class CartsService {
         return this.http.delete<void>("/api/CartItems/"+itemID);
     }
     
+    public createNewCart() : Observable<Cart> {
+        return this.http.post<Cart>("/api/Carts", "");
+    }
 }

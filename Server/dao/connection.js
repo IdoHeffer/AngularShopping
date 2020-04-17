@@ -49,6 +49,20 @@ function executeWithParameters(sql,parameters) {
  }
 
 
+function isCartForUSer(sql,parameters) {
+   return new Promise ((resolve,reject) => {
+       connection.query(sql,parameters, (err,result) => {
+           if (err) {
+               console.log("Error" + err);
+               return;
+            };
+           // console.log(result);
+           resolve(result);
+       });
+   });
+}
+
+
 // connection.query('SELECT * FROM users WHERE user_name = ? AND password = ?', [username, password], function (err, result, fields) {
 //     if (err) throw err;
 //     console.log(result);
@@ -59,4 +73,5 @@ function executeWithParameters(sql,parameters) {
 module.exports = {
     execute,
     executeWithParameters,
+    isCartForUSer
 }
