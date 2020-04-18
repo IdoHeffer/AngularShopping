@@ -27,10 +27,10 @@ async function isCart(id) {
         validation.validateResponse(userCart)
         console.log("DOWN HERE IS THE Cart =>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         console.log(userCart);
-        return userCart
+        return userCart;
     }catch{
         await cartsDao.addCart(id);
-        return  this.isCart();
+        return  this.isCart(id);
     }
     
 }
