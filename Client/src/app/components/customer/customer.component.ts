@@ -180,6 +180,10 @@ export class CustomerComponent implements OnInit {
       return this.router.url === '/Products/Allproducts';
     }
 
+    if (this.router.url === '/Products') {
+      return this.router.url === '/Products';
+    }
+
     if (this.router.url === '/Products/Bakery') {
       return this.router.url === '/Products/Bakery';
     }

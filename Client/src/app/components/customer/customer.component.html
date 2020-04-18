@@ -30,7 +30,7 @@
         <div id="cartItemsContainer" class="container">
             <header>
                 <h2>My Cart <i class="fa fa-shopping-cart" style="font-size:35px;"></i></h2>
-                <h4>Cart ID: # {{cartData[0].CartID || cart.CartID}}</h4>
+                <h4>Cart ID: # {{cartData[i].CartID || cart.CartID}}</h4>
             </header>
             <!-- <p>These are the items that you choose </p>
             <div class="cartitem col-xs-2 col-sm-2 col-md-2 col-lg-6"
@@ -54,7 +54,7 @@
                     <tbody>
                         <tr *ngFor="let currentcartItem of cartData">
                             <td><img id="ProdImgCart" src="{{currentcartItem.img}}" alt="Product Image"></td>
-                            <td><b>{{currentcartItem.ProductName}}</b><br><br>Amount: <b>{{currentcartItem.Amount}}</b><br><br>Price:<b>{{ currentcartItem.Price }}₪</b><br><br>Total:<b>{{currentcartItem.TotalItemPrice}}₪</b></td>
+                            <td><b>{{currentcartItem.ProductName}}</b><br>Amount: <b>{{currentcartItem.Amount}}</b><br>Price:<b>{{ currentcartItem.Price }}₪</b><br>Total:<b>{{currentcartItem.TotalItemPrice}}₪</b></td>
                             <td><button class="btn btn-danger" (click)=[(removeCartItem(currentcartItem.CartItemID))]>X</button></td>
                         </tr>
                     </tbody>

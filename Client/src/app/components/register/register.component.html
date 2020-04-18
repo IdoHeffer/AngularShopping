@@ -40,9 +40,9 @@
         [(ngModel)]="userRegisterDetails.password"><br><br>
       <span *ngIf="passwordInput.errors?.required && passwordInput.touched">Missing - password</span><br>
 
-      <label for="Confirmpassword" style="font-size:20px">Confirm Password</label><br>
+      <!-- <label for="Confirmpassword" style="font-size:20px">Confirm Password</label><br>
       <input #ConfirmpasswordInput="ngModel"  type="password" appConfirmEqualValidator="password" required id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password.."  [(ngModel)]="userRegisterDetails.confirmpassword"><br><br>
-      <span *ngIf="ConfirmpasswordInput.errors?.notEqual && ConfirmpasswordInput.touched">Password and ConfirmPassword does not match !</span><br>
+      <span *ngIf="ConfirmpasswordInput.errors?.notEqual && ConfirmpasswordInput.touched">Password and ConfirmPassword does not match !</span><br> -->
     </span>
     
     <button type="button" class="btn" [disabled]="registerForm.form.invalid" (click)="register()" value="Register"

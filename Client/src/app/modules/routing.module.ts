@@ -6,7 +6,7 @@ import { FriendsComponent } from '../components/friends/friends.component';
 import { RegisterComponent } from '../components/register/register.component';
 import { ForgotpasswordComponent } from '../components/forgotpassword/forgotpassword.component';
 import { LoginGuardService } from '../login.guard';
-import { ProductsModule } from 'src/app/modules/products.module'
+// import { ProductsModule } from 'src/app/modules/products.module'
 import { CustomerComponent } from '../components/customer/customer.component';
 import { RefreshComponent } from '../components/refresh/refresh.component';
 import { CheckoutComponent } from '../components/checkout/checkout.component';
@@ -29,7 +29,6 @@ const routes: Routes = [
     declarations: [],
     imports: [
       CommonModule,
-      ProductsModule,
       RouterModule.forRoot(routes) // Importing the above routes
   ],
   exports: [RouterModule]
