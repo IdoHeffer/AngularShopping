@@ -5,10 +5,24 @@ const config = require("../config.json")
 const mapUser = require("../middleware/map")
 const router = express.Router();
 
-router.get("/:id", async (request,response) => {
-    const id = +request.params.id;
+router.get("/forAdmin", async (request,response) => {
+    let token = request.headers.authorization;
+    let id = mapUser.checkMapForUserId(token);
     try {
         const user = await usersLogic.getUser(id);
+        console.log(user);
+        response.json(user);
+    }catch (error){
+        console.log(error);
+        response.status(404).send("Error,No existing User" +error);
+    }
+})
+
+router.get("/forClient", async (request,response) => {
+    let token = request.headers.authorization;
+    let id = mapUser.checkMapForUserId(token);
+    try {
+        const user = await usersLogic.getUserForClient(id);
         console.log(user);
         response.json(user);
     }catch (error){

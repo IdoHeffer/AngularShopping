@@ -49,4 +49,9 @@ export class UserService {
     public getUserName() {
         return this.userName;
     }
+
+
+    public getUserInfo(): Observable<UserRegisterDetails> {
+        return this.http.get<UserRegisterDetails>("/api/Users/forClient");
+    }
 }

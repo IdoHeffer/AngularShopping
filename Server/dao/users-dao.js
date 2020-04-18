@@ -8,6 +8,14 @@ async function getUser(id) {
     return userById;
 }
 
+async function getUserForClient(id) {
+    var sql = ("SELECT FirstName, LastName, UserName, City, Street  FROM users WHERE UserID =?");
+    let parameters = [id] 
+    let userById = await connection.executeWithParameters(sql,parameters);
+    console.log("User Returned FROM DB :"+userById);
+    return userById;
+}
+
 async function addUser(user) {
     var sql = ("INSERT INTO marketproject.users (FirstName,LastName,UserName,password,Role,City,Street) VALUES (?,?,?,?,'CUSTOMER',?,?)");
     let parameters = [user.FirstName,user.LastName,user.UserName, user.password,user.City,user.Street]
@@ -79,5 +87,6 @@ module.exports = {
     deleteUser,
     login,
     getAllUsers,
-    changePassword
+    changePassword,
+    getUserForClient
 }

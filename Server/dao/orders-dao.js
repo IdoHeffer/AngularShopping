@@ -17,8 +17,8 @@ async function getOrdersByUserID(id){
 }
 
 async function addOrder(order) {
-   var sql = ("INSERT INTO marketproject.orders (UserID,CartID,FinalPrice,DeliveryCityAddress,DeliveryStreetAddress,DeliveryDate,LastFourCreditCardDigits) VALUES (?,?,?,?,?,?,?)")
-   let parameters = [order.UserID,order.CartID,order.FinalPrice, order.DeliveryCityAddress,order.DeliveryStreetAddress,order.DeliveryDate,order.LastFourCreditCardDigits]
+   var sql = ("INSERT INTO marketproject.orders (UserID,CartID,FinalPrice,DeliveryCityAddress,DeliveryStreetAddress,DeliveryDate,CreditCardDigits) VALUES (?,?,?,?,?,?,?)")
+   let parameters = [order.UserID,order.CartID,order.FinalPrice, order.DeliveryCityAddress,order.DeliveryStreetAddress,order.DeliveryDate,order.CreditCardDigits]
    let addeOrder = await connection.executeWithParameters(sql,parameters);
    console.log("Order Created in the DB :"+addeOrder);
    return addeOrder;
@@ -26,7 +26,7 @@ async function addOrder(order) {
 
 async function updateOrder(order) {
     var sql = ("UPDATE `marketproject`.`orders` SET UserID=? ,CartID=?,FinalPrice=?,DeliveryCityAddress=?,DeliveryStreetAddress=?,DeliveryDate=?, LastFourCreditCardDigits=? WHERE OrderID = ?");
-    let parameters = [order.UserID,order.CartID,order.FinalPrice, order.DeliveryCityAddress,order.DeliveryStreetAddress,order.DeliveryDate,order.LastFourCreditCardDigits,order.OrderID]
+    let parameters = [order.UserID,order.CartID,order.FinalPrice, order.DeliveryCityAddress,order.DeliveryStreetAddress,order.DeliveryDate,order.CreditCardDigits,order.OrderID]
     let updatedOrder = await connection.executeWithParameters(sql,parameters);
     console.log("Order Updated in the DB :"+updatedOrder)
     return updatedOrder;

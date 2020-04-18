@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/Product';
-import { ProductsService } from 'src/app/services/ProductsService';
+import { UserService } from 'src/app/services/UserService';
 import { CartsService } from 'src/app/services/CartsService';
 import { Cart } from 'src/app/models/Cart';
 import { CartData } from 'src/app/models/CartData';
 import { Router } from '@angular/router';
 import { CartItem } from 'src/app/models/CartItem';
 import { Location } from '@angular/common'
+import { CheckOutDetails } from 'src/app/models/CheckOutDetails';
 
 @Component({
   selector: 'app-checkout',
@@ -14,23 +15,27 @@ import { Location } from '@angular/common'
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
-
+  public checkOutDetails: CheckOutDetails;
   public cartData: CartData[];
   public cartItem: CartItem;
   public products: Product[];
   public isShowAllProduct: boolean;
-  public displayedProduct: Product;
-  public displayedImg: Product;
   public cart : Cart;
   public CartPrice : number;
   public perItemPrice: number;
+  private usersService: UserService;
+  public firstName : string;
+  public lastName : string;
+  public userName : string;
 
-  constructor(private router: Router, private cartsService: CartsService, public location: Location) { 
+
+  constructor(private router: Router, private cartsService: CartsService, public location: Location,usersService : UserService) { 
     this.products = [];
-    this.displayedProduct;
     this.cartData = this.cartsService.CartData;
     this.cartsService = cartsService;
     this.CartPrice =0;
+    this.checkOutDetails= new CheckOutDetails ();
+    this.usersService = usersService;
   }
 
   ngOnInit() {
@@ -64,5 +69,22 @@ export class CheckoutComponent implements OnInit {
     this.perItemPrice = num1 * num2;
     console.log(num1, num2);
     return this.perItemPrice;
+  }
+
+  public fillUserInfo(){
+    
+    let observable = this.usersService.getUserInfo();
+    observable.subscribe(userInfofromserver => {
+      this.checkOutDetails.DeliveryCityAddress = userInfofromserver.City;
+      this.checkOutDetails.DeliveryStreetAddress = userInfofromserver.Street;
+      this.firstName = userInfofromserver.FirstName;
+      this.lastName = userInfofromserver.LastName ;
+      this.userName = userInfofromserver.UserName;
+      console.log(1)
+      console.log(userInfofromserver);
+    }, error => {
+      alert('Failed to get products ' + JSON.stringify(error));
+    });
+
   }
 }

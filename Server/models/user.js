@@ -18,7 +18,8 @@ class User {
             LastName: Joi.string().required(),
             UserID: Joi.number().optional(),
             City: Joi.string().optional(),
-            Street: Joi.string().optional()
+            Street: Joi.string().optional(),
+            Role: Joi.string().optional()
             // regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/),
         };
 

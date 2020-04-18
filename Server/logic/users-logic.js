@@ -16,6 +16,12 @@ async function getUser(id) {
     return user;
 }
 
+async function getUserForClient(id) {
+    validation.validateId(id);
+    let user = await usersDao.getUser(id);
+    return user;
+}
+
 async function addUser(user) {
     validateUser(user);
     console.log("User Is valid");
@@ -69,5 +75,6 @@ module.exports = {
     deleteUser,
     login,
     changePassword,
-    getAllUsers
+    getAllUsers,
+    getUserForClient
 }

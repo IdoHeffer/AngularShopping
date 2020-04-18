@@ -1,12 +1,15 @@
-<h1>We are almost Done !</h1>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div></div>
+<button type="button" id="backToProd" class="btn btn-warning" routerLink="/Products" >Back</button><br>
+<h1>We are almost Done !</h1>
 <p>Resize the browser window to see the effect. When the screen is less than 800px wide, make the two columns stack on
     top of each other instead of next to each other.</p>
 
 <div class="col-25">
     <div class="container" style="float: right;">
         <h3>My Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i><b>  {{cartData.length}}</b></span></h3>
-        <p *ngFor="let currentcartItem of cartData"><a href="#"># {{currentcartItem.ProductName}}</a> <span class="price">{{currentcartItem.TotalItemPrice}}₪</span></p>
+        <hr>
+        <p *ngFor="let currentcartItem of cartData">{{currentcartItem.ProductName}} X {{currentcartItem.Amount}}<span class="price">{{currentcartItem.TotalItemPrice}}₪</span></p>
         <hr>
         <p><b>Total : </b><span class="price" style="color:black"><b>{{CartPrice}}₪</b></span></p>
     </div>
@@ -20,22 +23,25 @@
                 <div class="row">
                     <div class="col-50">
                         <h3>Billing Address</h3>
-                        <div class="row" style="margin-top: 20%;">
+                        <div class="row">
                             <div class="col-50">
                                 <label for="firstname">First Name</label>
-                                <input type="text" id="firstname" name="firstname" placeholder="First Name...">
+                                <input type="text" id="firstname" name="firstname" placeholder="First Name..." [(ngModel)]="firstName">
                             </div>
                             <div class="col-50">
                                 <label for="lastname">Last Name</label>
-                                <input type="text" id="lastname" name="lastname" placeholder="Last Name...">
+                                <input type="text" id="lastname" name="lastname" placeholder="Last Name..." [(ngModel)]="lastName">
                             </div>
                         </div>
-                        <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                        <input type="text" id="email" name="email" placeholder="john@example.com">
-                        <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-                        <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
-                        <label for="city"><i class="fa fa-institution"></i> City</label>
+                        <label for="email"><i class="fa fa-envelope"></i> UserName / Email</label>
+                        <input type="text" id="email" name="email" placeholder="john@example.com" [(ngModel)]="userName">
+                        <label for="adr"><i class="fa fa-address-card-o"></i>Delivery Address</label>
+                        <input #checkoutstreetInput="ngModel" type="text" id="adr" name="address" placeholder="542 W. 15th Street"  required [(ngModel)]="checkOutDetails.DeliveryStreetAddress">
+                        <span *ngIf="checkoutstreetInput.errors?.required && checkoutstreetInput.touched">Missing - Street</span>
+                        <label for="city"><i class="fa fa-institution"></i>Delivery City</label>
                         <input type="text" id="city" name="city" placeholder="New York">
+                        <label for="DeliveryDate"><i class="fa fa-calendar"></i> DeliveryDate</label>
+                        <input type="date" id="city" name="DeliveryDate" placeholder="Date">
                     </div>
 
                     <div class="col-50">
@@ -50,7 +56,7 @@
                         <label for="cname">Name on Card</label>
                         <input type="text" id="cname" name="cardname" placeholder="John More Doe">
                         <label for="ccnum">Credit card number</label>
-                        <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+                        <input #creditCardInput="ngModel" type="text" id="ccnum" name="cardnumber" required="(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$" [(ngModel)]="checkOutDetails.CreditCardDigits" placeholder="1111-2222-3333-4444">
                         <label for="expmonth">Exp Month</label>
                         <input type="text" id="expmonth" name="expmonth" placeholder="September">
                         <div class="row">
@@ -67,7 +73,7 @@
 
                 </div>
                 <label>
-                    <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+                    <input type="checkbox" checked="checked" name="sameadr" ng-model="checkboxModel.value2"  ng-true-value="fillUserInfo()" ng-false-value="Form.reset()"> Shipping address same as billing
                 </label>
                 <input type="submit" value="Continue to checkout" class="btn">
                 <p style="font-size: 13px;"><i class="fa fa-lock" style="font-size:18px"></i> This website is Not Sercured with SSL standart<br>So...mayby someone is stiling your Info<br>We deeply sorry but didnt learned Https yet. </p>

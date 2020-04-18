@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 class Order {
-    constructor(UserID, CartID, FinalPrice, DeliveryCityAddress, DeliveryStreetAddress, DeliveryDate, OrderDate, LastFourCreditCardDigits) {
+    constructor(UserID, CartID, FinalPrice, DeliveryCityAddress, DeliveryStreetAddress, DeliveryDate, OrderDate, CreditCardDigits) {
         this.UserID = UserID;
         this.CartID = CartID;
         this.FinalPrice = FinalPrice;
@@ -9,7 +9,7 @@ class Order {
         this.DeliveryStreetAddress = DeliveryStreetAddress;
         this.DeliveryDate = DeliveryDate;
         this.OrderDate = OrderDate;
-        this.LastFourCreditCardDigits = LastFourCreditCardDigits;
+        this.CreditCardDigits = CreditCardDigits;
     }
 
     static validate(orderToValidate) {
@@ -22,7 +22,7 @@ class Order {
             DeliveryStreetAddress: Joi.string().required(),
             DeliveryDate: Joi.date(),
             // OrderDate: Joi.date().optional(),
-            LastFourCreditCardDigits: Joi.string().max(4).min(4).required(),
+            CreditCardDigits: Joi.number().required(),
             OrderID: Joi.number().optional()
 
         };
