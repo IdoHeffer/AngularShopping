@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { WebsiteDetails } from '../models/WebsiteDetails';
+import { CheckOutDetails } from '../models/CheckOutDetails';
+
 
 
 @Injectable({
@@ -18,5 +20,9 @@ export class OrdersService {
     }
     public getNumberOfAllOrders(): Observable<WebsiteDetails> {
         return this.http.get<WebsiteDetails>("/api/Orders/numberoforders");
+    }
+
+    public placeOrder(checkOutDetails : CheckOutDetails): Observable<void> {
+        return this.http.post<void>("/api/Orders", checkOutDetails);
     }
 }

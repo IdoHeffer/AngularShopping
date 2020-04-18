@@ -25,7 +25,7 @@ async function deleteOrder(id) {
 }
 
 async function addOrder(order) {
-    validateOrder(order);
+    // validateOrder(order);
     await ordersDao.addOrder(order)
 }
 

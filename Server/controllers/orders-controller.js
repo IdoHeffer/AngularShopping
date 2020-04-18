@@ -37,7 +37,16 @@ router.put("/", async (request, response) => {
 })
 
 router.post("/", async (request, response) => {
-    let order = request.body;
+    let token = request.headers.authorization;
+    let id = mapUser.checkMapForUserId(token);
+    let order ={
+       UserID : id,
+       CartID : request.body.CartID,
+       FinalPrice : request.body.FinalPrice,
+       DeliveryCityAddress : request.body.DeliveryCityAddress,
+       DeliveryStreetAddress : request.body.DeliveryStreetAddress,
+       CreditCardDigits : request.body.CreditCardDigits
+    } 
     try {
         await ordersLogic.addOrder(order)
         response.status(200).send("order was added")

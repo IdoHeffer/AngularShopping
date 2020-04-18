@@ -18,7 +18,7 @@
 <div class="row">
     <div class="col-75">
         <div class="container" style="float: left;">
-            <form action="/action_page.php">
+            <form #chekoutForm="ngForm" action="/action_page.php">
 
                 <div class="row">
                     <div class="col-50">
@@ -26,22 +26,24 @@
                         <div class="row">
                             <div class="col-50">
                                 <label for="firstname">First Name</label>
-                                <input type="text" id="firstname" name="firstname" placeholder="First Name..." [(ngModel)]="firstName">
+                                <input #checkoutFirstNameInput="ngModel" type="text" id="firstname" name="firstname" required placeholder="First Name..." [(ngModel)]="firstName">
+                                <span *ngIf="checkoutFirstNameInput.errors?.required && checkoutFirstNameInput.touched">Missing - First Name</span><br>
                             </div>
                             <div class="col-50">
                                 <label for="lastname">Last Name</label>
-                                <input type="text" id="lastname" name="lastname" placeholder="Last Name..." [(ngModel)]="lastName">
+                                <input #checkoutLastNameInput="ngModel" type="text" id="lastname" name="lastname" required placeholder="Last Name..." [(ngModel)]="lastName">
+                                <span *ngIf="checkoutLastNameInput.errors?.required && checkoutLastNameInput.touched">Missing - Last Name</span><br>
                             </div>
                         </div>
                         <label for="email"><i class="fa fa-envelope"></i> UserName / Email</label>
-                        <input type="text" id="email" name="email" placeholder="john@example.com" [(ngModel)]="userName">
+                        <input  #checkoutUserNameInput="ngModel" type="text" id="email" name="email" required placeholder="john@example.com" [(ngModel)]="userName">
+                        <span *ngIf="checkoutUserNameInput.errors?.required && checkoutUserNameInput.touched">Missing - UserName / Email</span><br>
                         <label for="adr"><i class="fa fa-address-card-o"></i>Delivery Address</label>
-                        <input #checkoutstreetInput="ngModel" type="text" id="adr" name="address" placeholder="542 W. 15th Street"  required [(ngModel)]="checkOutDetails.DeliveryStreetAddress">
-                        <span *ngIf="checkoutstreetInput.errors?.required && checkoutstreetInput.touched">Missing - Street</span>
+                        <input #checkoutstreetInput="ngModel" type="text" id="adr" name="address" required placeholder="542 W. 15th Street"  required [(ngModel)]="checkOutDetails.DeliveryStreetAddress">
+                        <span *ngIf="checkoutstreetInput.errors?.required && checkoutstreetInput.touched">Missing - Street</span><br>
                         <label for="city"><i class="fa fa-institution"></i>Delivery City</label>
-                        <input type="text" id="city" name="city" placeholder="New York">
-                        <label for="DeliveryDate"><i class="fa fa-calendar"></i> DeliveryDate</label>
-                        <input type="date" id="city" name="DeliveryDate" placeholder="Date">
+                        <input #checkoutCityInput="ngModel" required type="text" id="city" name="city" required placeholder="New York" [(ngModel)]="checkOutDetails.DeliveryCityAddress">
+                        <span *ngIf="checkoutCityInput.errors?.required && checkoutCityInput.touched">Missing - City</span><br>
                     </div>
 
                     <div class="col-50">
@@ -54,28 +56,21 @@
                             <i class="fa fa-cc-discover" style="color:orange;"></i>
                         </div>
                         <label for="cname">Name on Card</label>
-                        <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+                        <input #checkoutCardNameInput required  type="text" id="cname" name="cardname" placeholder="John More Doe">
+                        <span *ngIf="checkoutCardNameInput.errors?.required && checkoutCardNameInput.touched">Missing - Card Holder Name</span><br>
                         <label for="ccnum">Credit card number</label>
-                        <input #creditCardInput="ngModel" type="text" id="ccnum" name="cardnumber" required="(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$" [(ngModel)]="checkOutDetails.CreditCardDigits" placeholder="1111-2222-3333-4444">
-                        <label for="expmonth">Exp Month</label>
-                        <input type="text" id="expmonth" name="expmonth" placeholder="September">
-                        <div class="row">
-                            <div class="col-50">
-                                <label for="expyear">Exp Year</label>
-                                <input type="text" id="expyear" name="expyear" placeholder="2018">
-                            </div>
-                            <div class="col-50">
-                                <label for="cvv">CVV</label>
-                                <input type="text" id="cvv" name="cvv" placeholder="352">
-                            </div>
-                        </div>
+                        <input #creditCardInput required type="text" id="ccnum" name="cardnumber" required="(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$" [(ngModel)]="checkOutDetails.CreditCardDigits" placeholder="1111-2222-3333-4444">
+                        <span *ngIf="creditCardInput.errors?.required && creditCardInput.touched">Missing - Credit Card Number</span><br>
+                        <label for="DeliveryDate"><i class="fa fa-calendar"></i> DeliveryDate</label>
+                        <input #checkoutDateInput="ngModel" type="date" id="city" name="DeliveryDate" placeholder="Date" required [(ngModel)]="checkOutDetails.DeliveryDate">
+                        <span *ngIf="checkoutDateInput.errors?.required && checkoutDateInput.touched">Missing - Delivery Date</span><br>
                     </div>
 
                 </div>
                 <label>
                     <input type="checkbox" checked="checked" name="sameadr" ng-model="checkboxModel.value2"  ng-true-value="fillUserInfo()" ng-false-value="Form.reset()"> Shipping address same as billing
                 </label>
-                <input type="submit" value="Continue to checkout" class="btn">
+                <input type="submit" value="Continue to checkout" class="btn" [disabled]="chekoutForm.form.invalid">
                 <p style="font-size: 13px;"><i class="fa fa-lock" style="font-size:18px"></i> This website is Not Sercured with SSL standart<br>So...mayby someone is stiling your Info<br>We deeply sorry but didnt learned Https yet. </p>
             </form>
         </div>

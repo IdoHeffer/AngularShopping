@@ -20,7 +20,10 @@ async function addOrder(order) {
    var sql = ("INSERT INTO marketproject.orders (UserID,CartID,FinalPrice,DeliveryCityAddress,DeliveryStreetAddress,DeliveryDate,CreditCardDigits) VALUES (?,?,?,?,?,?,?)")
    let parameters = [order.UserID,order.CartID,order.FinalPrice, order.DeliveryCityAddress,order.DeliveryStreetAddress,order.DeliveryDate,order.CreditCardDigits]
    let addeOrder = await connection.executeWithParameters(sql,parameters);
-   console.log("Order Created in the DB :"+addeOrder);
+   let sql2 =  ("UPDATE `marketproject`.`carts` SET `Status` = 'CLOSED' WHERE `CartID` = '?'");
+   let parameters2 = [order.CartID];
+   await connection.executeWithParameters(sql2,parameters2);
+   console.log(addeOrder);
    return addeOrder;
 }
 

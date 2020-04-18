@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { CartItem } from 'src/app/models/CartItem';
 import { Location } from '@angular/common'
 import { CheckOutDetails } from 'src/app/models/CheckOutDetails';
+import { OrdersService } from 'src/app/services/OrdersService';
 
 @Component({
   selector: 'app-checkout',
@@ -29,7 +30,7 @@ export class CheckoutComponent implements OnInit {
   public userName : string;
 
 
-  constructor(private router: Router, private cartsService: CartsService, public location: Location,usersService : UserService) { 
+  constructor(private router: Router, private cartsService: CartsService, public location: Location,usersService : UserService, private ordersService : OrdersService) { 
     this.products = [];
     this.cartData = this.cartsService.CartData;
     this.cartsService = cartsService;
@@ -38,8 +39,7 @@ export class CheckoutComponent implements OnInit {
     this.usersService = usersService;
   }
 
-  ngOnInit() {
-
+  ngOnInit() {  
     const observableCart = this.cartsService.getUserCart();
     observableCart.subscribe(userCartFromServer => {
       this.cartData = userCartFromServer;
@@ -55,6 +55,8 @@ export class CheckoutComponent implements OnInit {
 
       });
     });
+
+    this.checkOutDetails.FinalPrice = this.CartPrice;
   }
 
   public totalItemsPrice(){
@@ -87,4 +89,18 @@ export class CheckoutComponent implements OnInit {
     });
 
   }
+
+  public closeOrder (checkoutDetails) : void {
+    const observable = this.ordersService.placeOrder(this.checkOutDetails);
+
+        // The method subscribe() ussues an http request to the server
+        // successfulServerRequestData
+        observable.subscribe(successfulServerRequestData => {
+          console.log(successfulServerRequestData)
+          this.router.navigate["/Products"];
+        }, serverErrorResponse => {
+          alert("Error! Status: " + serverErrorResponse.status + ", Message: " + serverErrorResponse.message);
+      });
+  }
+
 }
