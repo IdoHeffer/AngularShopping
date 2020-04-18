@@ -26,6 +26,7 @@ export class CustomerComponent implements OnInit {
   public displayedImg: Product;
   public categories: Category[];
   public cart : Cart;
+  public CartPrice : number;
 
   //   constructor(private userService:UserService) { }
   constructor(private productsService: ProductsService, private categoriesService: CategoriesService, private router: Router, private cartsService: CartsService, public location: Location) {
@@ -35,6 +36,7 @@ export class CustomerComponent implements OnInit {
     this.displayedProduct;
     this.cartData = this.cartsService.CartData;
     this.cartsService = cartsService;
+    this.CartPrice =0;
   }
 
   ngOnInit() {
@@ -64,7 +66,8 @@ export class CustomerComponent implements OnInit {
       if (this.cartData ==[]){
 
       }
-      console.log(this.cartData)
+      console.log(this.cartData);
+      this.totalItemsPrice();
       console.log(userCartFromServer);
     }, error => {
       const observableNewCart = this.cartsService.createNewCart();
@@ -171,6 +174,13 @@ export class CustomerComponent implements OnInit {
       this.quantity = this.i;
       this.calcToalItemPrice(this.quantity, num);
     }
+  }
+
+  public totalItemsPrice(){
+    for (let i = 0; i < this.cartData.length; i++) {
+      this.CartPrice = this.CartPrice + this.cartData[i].TotalItemPrice;
+    }
+    return this.CartPrice;
   }
 
 
