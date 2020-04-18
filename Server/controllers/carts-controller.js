@@ -10,10 +10,26 @@ router.get("/usercart", async (request, response) => {
     console.log(id);
     try {
         let userCart = await cartsLogic.getCart(id);
-        console.log("User Cart========"+userCart);
+        console.log(userCart);
         response.json(userCart);
 
     } catch (error) {
+        response.status(404).send("No cart for user in database" + error);
+    }
+});
+
+router.get("/iscart", async (request, response) => {
+    let token = request.headers.authorization;
+    let id = mapUser.checkMapForUserId(token)
+    console.log(id);
+    try {
+        let userCart = await cartsLogic.isCart(id);
+        console.log(userCart);
+        response.json(userCart);
+
+    } catch (error) {
+        let userCart = await cartsLogic.isCart(id);
+        console.log(userCart);
         response.status(404).send("No cart for user in database" + error);
     }
 });

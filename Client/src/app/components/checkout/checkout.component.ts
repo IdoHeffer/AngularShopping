@@ -50,10 +50,7 @@ export class CheckoutComponent implements OnInit {
       console.log(userCartFromServer);
       this.totalItemsPrice();
     }, error => {
-      const observableNewCart = this.cartsService.createNewCart();
-      observableCart.subscribe(userCartFromServer => {
-
-      });
+      console.log(error);
     });
 
     this.checkOutDetails.FinalPrice = this.CartPrice;

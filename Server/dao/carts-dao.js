@@ -1,25 +1,30 @@
 let connection = require("./connection")
 
 async function getCart(id) {
-    var sql = ("SELECT p.ProductName, p.img, ci.Amount, p.Price, ci.CartItemID, ci.TotalItemPrice, c.CartCreationDate,  c.CartID FROM products p  JOIN cartitems ci ON ci.ProductID=p.ProductID JOIN carts c ON ci.CartID=c.CartID WHERE UserID =?") 
-    let parameters = [id];
-    let cartData = await connection.isCartForUSer(sql,parameters);
-    console.log(cartData)
-    if (cartData.length==0) {
-        console.log("no carts for user but we will create one")
-        var sql1 = ("INSERT INTO marketproject.carts (UserID) VALUES (?)")
-        let parameters1 = [id]
-        let addeCart = await connection.executeWithParameters(sql1,parameters1);
-        console.log(addeCart);
-        let newUserCart = await connection.isCartForUSer(sql,parameters);
-        return addeCart;
-    }else{
-        console.log(id)
+
+    try{
+        var sql = ("SELECT p.ProductName, p.img, ci.Amount, p.Price, ci.CartItemID, ci.TotalItemPrice, c.CartCreationDate,  c.CartID FROM products p  JOIN cartitems ci ON ci.ProductID=p.ProductID JOIN carts c ON ci.CartID=c.CartID WHERE UserID =?") 
+        let parameters = [id];
+        let cartData = await connection.executeWithParameters(sql,parameters);
         console.log(cartData);
+        console.log(id);
+        return cartData;
+    }catch{
+        cartData = [];
         return cartData;
     }
     
 }
+
+async function isCart(id) {
+    var sql = ("SELECT * From carts WHERE UserID=?") 
+    let parameters = [id];
+    let cartData = await connection.isCartForUSer(sql,parameters);
+    console.log(cartData)
+    return cartData;
+}
+
+
 
 async function addCart(UserID) {
    var sql = ("INSERT INTO marketproject.carts (UserID) VALUES (?)")
@@ -86,5 +91,6 @@ module.exports = {
     updateCart,
     deleteCart,
     getAllCarts,
-    getAllUserCart
+    getAllUserCart,
+    isCart
 }

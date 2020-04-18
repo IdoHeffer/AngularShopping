@@ -34,7 +34,7 @@ export class CartsService {
         return this.http.delete<void>("/api/CartItems/"+itemID);
     }
     
-    public createNewCart() : Observable<Cart> {
-        return this.http.post<Cart>("/api/Carts", "");
+    public isCart() : Observable<Cart> {
+        return this.http.get<Cart>("/api/Carts/iscart");
     }
 }

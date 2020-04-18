@@ -13,9 +13,26 @@ async function getCart(id) {
     let userCart = await cartsDao.getCart(id);
     validation.validateResponse(userCart)
     if (userCart[0].status=="CLOSED"){
-        addCart(id)
+        let addedCart =  await addCart(id);
+        return addedCart
     }
     return userCart;
+}
+
+async function isCart(id) {
+
+    try{
+        validation.validateId(id)
+        let userCart = await cartsDao.isCart(id);
+        validation.validateResponse(userCart)
+        console.log("DOWN HERE IS THE Cart =>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        console.log(userCart);
+        return userCart
+    }catch{
+        await cartsDao.addCart(id);
+        return  this.isCart();
+    }
+    
 }
 
 async function deleteCart(id) {
@@ -28,7 +45,8 @@ async function deleteCart(id) {
 
 async function addCart(id) {
     validateCart(id);
-    await cartsDao.addCart(id);
+    let addedCart = await cartsDao.addCart(id);
+    return addedCart;
 }
 
 function validateCart(cart) {
@@ -51,7 +69,8 @@ module.exports = {
     getAllCarts,
     getCart,
     addCart,
-    deleteCart
+    deleteCart,
+    isCart
 
 
 }

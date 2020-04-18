@@ -60,22 +60,25 @@ export class CustomerComponent implements OnInit {
       alert('Failed to get products ' + JSON.stringify(error));
     });
 
-    const observableCart = this.cartsService.getUserCart();
-    observableCart.subscribe(userCartFromServer => {
-      this.cartData = userCartFromServer;
-      if (this.cartData ==[]){
-
-      }
-      console.log(this.cartData);
-      this.totalItemsPrice();
-      console.log(userCartFromServer);
-    }, error => {
-      const observableNewCart = this.cartsService.createNewCart();
-      observableCart.subscribe(userCartFromServer => {
-
+    const observableidCart = this.cartsService.isCart();
+    observableidCart.subscribe(userCartDetailServer => {
+      this.cart = userCartDetailServer[0];
+      const observableCart = this.cartsService.getUserCart();
+      observableCart.subscribe(userCartItemsFromServer => {
+        this.cartData = userCartItemsFromServer;
+        if (this.cartData ==[]){
+            this.cartData =[];
+        }
+        console.log(this.cartData);
+        this.totalItemsPrice();
+       console.log(userCartItemsFromServer);
+      }, error => {
+        console.log(error);
+    
       });
-    });
-  }
+      },error => {
+        console.log(error);
+  });}
 
   public showProduct(product: Product) {
     // Debugging using printing the object value in the browser's console
@@ -93,7 +96,7 @@ export class CustomerComponent implements OnInit {
   }
 
   public purchaseProduct(product: Product) {
-    this.cartItem = new CartItem(this.cartData[0].CartID, product.ProductID, this.quantity || 1, this.ToalItemPrice || product.Price);
+    this.cartItem = new CartItem(this.cart.CartID, product.ProductID, this.quantity || 1, this.ToalItemPrice || product.Price);
     console.log(this.cartItem);
     this.isShowAllProduct = true;
     const observableCartItem = this.cartsService.purchaseProduct(this.cartItem);
