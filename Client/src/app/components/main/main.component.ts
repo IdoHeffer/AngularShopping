@@ -40,7 +40,6 @@ export class MainComponent implements OnInit {
             console.log(successfulServerRequestData);
 
             sessionStorage.setItem("token", JSON.stringify(successfulServerRequestData.token));
-            sessionStorage.setItem("userType", JSON.stringify(successfulServerRequestData.userType));
             sessionStorage.setItem("isLoggedIn", "true")
             this.usersService.userType = JSON.stringify(successfulServerRequestData.userType);
             this.usersService.setUserName(successfulServerRequestData.userName);
