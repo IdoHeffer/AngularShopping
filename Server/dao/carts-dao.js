@@ -3,7 +3,7 @@ let connection = require("./connection")
 async function getCart(id) {
 
     try{
-        var sql = ("SELECT p.ProductName, p.img, ci.Amount, p.Price, ci.CartItemID, ci.TotalItemPrice, c.CartCreationDate,  c.CartID FROM products p  JOIN cartitems ci ON ci.ProductID=p.ProductID JOIN carts c ON ci.CartID=c.CartID WHERE UserID =?") 
+        var sql = ("SELECT p.ProductName, p.img, ci.Amount, p.Price, ci.CartItemID, ci.TotalItemPrice, c.CartCreationDate,  c.CartID FROM products p  JOIN cartitems ci ON ci.ProductID=p.ProductID JOIN carts c ON ci.CartID=c.CartID WHERE UserID =? AND Status='OPEN'") 
         let parameters = [id];
         let cartData = await connection.executeWithParameters(sql,parameters);
         console.log(cartData);
@@ -17,11 +17,34 @@ async function getCart(id) {
 }
 
 async function isCart(id) {
-    var sql = ("SELECT * From carts WHERE UserID=?") 
-    let parameters = [id];
-    let cartData = await connection.isCartForUSer(sql,parameters);
-    console.log(cartData)
-    return cartData;
+
+
+    try{
+        var sql = ("SELECT * From carts WHERE UserID=? AND Status='OPEN'");
+        let parameters = [id];
+        let cartData = await connection.isCartForUSer(sql,parameters);
+        if (cartData.length==0) {
+            await this.addCart(id);
+            console.log("We Are IN Dao Catch");
+            this.isCart(id);
+        }else{
+            console.log("This down here is the cart Data from Dao =>");
+            console.log(cartData);
+            return cartData;
+
+        }
+        
+    }catch{
+        await this.addCart(id);
+        console.log("We Are IN Dao Catch");
+        this.isCart(id);
+        // let sql1 = ("SELECT * From carts WHERE UserID=? );
+        // let parameters1 = [id];
+        // let cartData1 = await connection.isCartForUSer(sql1,parameters1);
+        // Console.log("This down here is the cart Data from Dao =>");
+        // console.log(cartData1.Status);
+        // return cartData1
+    }
 }
 
 

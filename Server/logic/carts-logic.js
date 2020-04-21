@@ -29,8 +29,9 @@ async function isCart(id) {
         console.log(userCart);
         return userCart;
     }catch{
-        await cartsDao.addCart(id);
-        return  this.isCart(id);
+       console.log("Error !!!!!!!");
+       console.log(err);
+       this.isCart(id);
     }
     
 }

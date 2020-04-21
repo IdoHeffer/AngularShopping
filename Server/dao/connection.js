@@ -39,7 +39,7 @@ function executeWithParameters(sql,parameters) {
         connection.query(sql,parameters, (err,result) => {
             if (err) {
                 console.log("Error" + err);
-                // reject(err);
+                reject(err);
                 return;
              };
             // console.log(result);

@@ -23,6 +23,7 @@ async function addOrder(order) {
    let sql2 =  ("UPDATE `marketproject`.`carts` SET `Status` = 'CLOSED' WHERE `CartID` = '?'");
    let parameters2 = [order.CartID];
    await connection.executeWithParameters(sql2,parameters2);
+   console.log("Order is placed, the cart is closed.");
    console.log(addeOrder);
    return addeOrder;
 }

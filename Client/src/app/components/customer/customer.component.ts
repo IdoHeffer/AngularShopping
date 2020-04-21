@@ -63,22 +63,24 @@ export class CustomerComponent implements OnInit {
     const observableidCart = this.cartsService.isCart();
     observableidCart.subscribe(userCartDetailServer => {
       this.cart = userCartDetailServer[0];
+
       const observableCart = this.cartsService.getUserCart();
       observableCart.subscribe(userCartItemsFromServer => {
         this.cartData = userCartItemsFromServer;
         if (this.cartData ==[]){
-            this.cartData =[];
+          this.cartData =[];
         }
         console.log(this.cartData);
         this.totalItemsPrice();
        console.log(userCartItemsFromServer);
       }, error => {
-        console.log(error);
-    
+        return console.log(error);
       });
       },error => {
         console.log(error);
+        this.refreshCart()
   });}
+  
 
   public showProduct(product: Product) {
     // Debugging using printing the object value in the browser's console
@@ -92,6 +94,7 @@ export class CustomerComponent implements OnInit {
   public showProducts() {
     this.isShowAllProduct = true;
     this.quantity = 1;
+    this.displayedProduct=null;
 
   }
 

@@ -1,4 +1,25 @@
 
+header{
+    grid-column: span 9;
+}
+
+footer {
+    grid-column: span 12;
+}
+
+navbar {
+    grid-column: span 12;
+}
+
+aside {
+    grid-column: span 3;
+}
+
+main {
+    grid-column: span 9;  
+}
+
+
 h2{
     color: black;
 }
@@ -144,23 +165,6 @@ section {
 /* section > * {
     border: 2px solid black;
 } */
-
-header, footer {
-    grid-column: span 12;
-}
-
-navbar {
-    grid-column: span 12;
-}
-
-aside {
-    grid-column: span 2;
-}
-
-main {
-    grid-column: span 10;  
-}
-
 @media screen and (max-width: 600px) {
     .card {
         max-width:100%;
