@@ -17,6 +17,7 @@ import { Location } from '@angular/common'
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
+  public isShowCartView: boolean
   public cartData: CartData[];
   public cartItem: CartItem;
   public products: Product[];
@@ -40,6 +41,7 @@ export class CustomerComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isShowCartView = true;
     this.isShowAllProduct = true;
     let observable = this.productsService.getAllProducts();
     observable.subscribe(productsList => {
@@ -80,7 +82,6 @@ export class CustomerComponent implements OnInit {
         console.log(error);
         this.refreshCart()
   });}
-  
 
   public showProduct(product: Product) {
     // Debugging using printing the object value in the browser's console
@@ -189,41 +190,15 @@ export class CustomerComponent implements OnInit {
     return this.CartPrice;
   }
 
-
-  isProductsRoute() {
-
-    if (this.router.url === '/Products/Allproducts') {
-      return this.router.url === '/Products/Allproducts';
+  public showCartSideBar() {
+    if(this.isShowCartView == true){
+      
     }
+    // this.isShowCartView = true
+  }
 
-    if (this.router.url === '/Products') {
-      return this.router.url === '/Products';
-    }
+  public hideCartSideBar() {
+    this.isShowCartView = false
 
-    if (this.router.url === '/Products/Bakery') {
-      return this.router.url === '/Products/Bakery';
-    }
-
-    if (this.router.url === '/Products/Dairy') {
-      return this.router.url === '/Products/Dairy';
-    }
-
-    if (this.router.url === '/Products/Meat') {
-      return this.router.url === '/Products/Meat';
-    }
-
-    if (this.router.url === '/Products/Wines & Beers') {
-      return this.router.url === '/Products/Wines & Beers';
-    }
-
-    if (this.router.url === '/Products/Vegitables') {
-      return this.router.url === '/Products/Vegitables';
-    }
-
-    if (this.router.url === '/Products/Fruits') {
-      return this.router.url === '/Products/Fruits';
-    }
-
-    // return this.router.url === '/Products';
   }
 }

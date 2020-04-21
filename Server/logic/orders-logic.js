@@ -26,7 +26,8 @@ async function deleteOrder(id) {
 
 async function addOrder(order) {
     // validateOrder(order);
-    await ordersDao.addOrder(order)
+    let addResponse = await ordersDao.addOrder(order);
+    return addResponse;
 }
 
 async function updateOrder(order) {

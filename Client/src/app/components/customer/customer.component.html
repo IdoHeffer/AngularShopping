@@ -2,6 +2,7 @@
     <header>
         <nav>
             <div id="categoriesHeaderDivPanel">
+                <button type="button" class="btn btn-warning" style="top:0; float:right;">+</button>
                 <h1><b>Categories Panel</b></h1><br>
                 <ul>
                     <li id="first"><a (click)="getAllProducts()"  routerLinkActive="the-chosen-one"
@@ -25,7 +26,7 @@
         </nav>
     </header>
 
-    <aside  *ngIf="isProductsRoute()">
+    <aside ng-style="cartSideNav">
        
         <div id="cartItemsContainer" class="container">
             <header>

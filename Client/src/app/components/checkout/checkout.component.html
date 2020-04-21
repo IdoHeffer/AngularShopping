@@ -70,7 +70,7 @@
                 <label>
                     <input type="checkbox" checked="checked" name="sameadr" ng-model="checkboxModel.value2"  ng-true-value="fillUserInfo()" ng-false-value="Form.reset()"> Shipping address same as billing
                 </label>
-                <input type="submit" value="Continue to checkout" class="btn" [disabled]="chekoutForm.form.invalid">
+                <input type="submit" value="Continue to checkout" class="btn" [disabled]="chekoutForm.form.invalid" (click)="placeOrder()">
                 <p style="font-size: 13px;"><i class="fa fa-lock" style="font-size:18px"></i> This website is Not Sercured with SSL standart<br>So...mayby someone is stiling your Info<br>We deeply sorry but didnt learned Https yet. </p>
             </form>
         </div>

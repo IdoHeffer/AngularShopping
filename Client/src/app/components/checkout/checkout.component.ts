@@ -54,6 +54,7 @@ export class CheckoutComponent implements OnInit {
     });
 
     this.checkOutDetails.FinalPrice = this.CartPrice;
+    this.checkOutDetails.CartID = this.cart.CartID;
   }
 
   public totalItemsPrice(){
@@ -87,7 +88,7 @@ export class CheckoutComponent implements OnInit {
 
   }
 
-  public placeOrder (checkoutDetails) : void {
+  public placeOrder (){
     const observable = this.ordersService.placeOrder(this.checkOutDetails);
     observable.subscribe(successfulServerRequestData => {
       console.log(successfulServerRequestData)

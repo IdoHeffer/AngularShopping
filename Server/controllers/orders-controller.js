@@ -1,7 +1,7 @@
 const ordersLogic = require("../logic/orders-logic")
 const express = require("express")
 const router = express.Router();
-
+const mapUser = require("../middleware/map")
 
 router.get("/", async (request, response) => {
     try {
