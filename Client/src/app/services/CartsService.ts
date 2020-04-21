@@ -34,6 +34,10 @@ export class CartsService {
         return this.http.delete<void>("/api/CartItems/"+itemID);
     }
     
+    public deleteAllCartItems(cartID : number): Observable<void> {
+        return this.http.delete<void>("/api/CartItems/deleteAll/"+cartID);
+    }
+
     public isCart() : Observable<Cart> {
         return this.http.get<Cart>("/api/Carts/iscart");
     }

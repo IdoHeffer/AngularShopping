@@ -136,6 +136,21 @@ export class CustomerComponent implements OnInit {
     this.refreshCart();
   }
 
+
+  public deleteAllCartItems(cartID:number){
+    const observableCart = this.cartsService.deleteAllCartItems(cartID);
+    observableCart.subscribe(userCartFromServer => {
+      const observableCart = this.cartsService.getUserCart();
+      observableCart.subscribe(userCartFromServer => {
+        this.cartData = userCartFromServer;
+        console.log(this.cartData)
+        console.log(userCartFromServer);
+      });
+      console.log(userCartFromServer);
+    })
+    this.refreshCart();
+  }
+
   public categoryProducts(value) {
     let observable = this.productsService.getAllCategoriesProducts(value);
     observable.subscribe(productsList => {
@@ -190,15 +205,18 @@ export class CustomerComponent implements OnInit {
     return this.CartPrice;
   }
 
-  public showCartSideBar() {
-    if(this.isShowCartView == true){
-      
+  public isShowCartSideBar() {
+    if (this.isShowCartView == true) {
+      return this.isShowCartView = false
     }
-    // this.isShowCartView = true
+    if (this.isShowCartView == false) {
+      
+      return this.isShowCartView = true
+    }
   }
 
   public hideCartSideBar() {
     this.isShowCartView = false
-
+    
   }
 }

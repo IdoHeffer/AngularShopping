@@ -44,7 +44,7 @@ async function deleteCartItem(id) {
     console.log("Cart Returned FROM DB :"+deletedCart);
 }
 
-async function deleteAllSpecificCartItems(id) {
+async function deleteAllCartItems(id) {
     var sql = ("DELETE FROM cartitems WHERE CartID =?");
     let parameters = [id] 
     let deletedCart = await connection.executeWithParameters(sql,parameters);
@@ -100,7 +100,7 @@ module.exports = {
     updateCartItem,
     deleteCartItem,
     getAllCartItems,
-    deleteAllSpecificCartItems,
+    deleteAllCartItems,
     getAllCartItems
     
 }

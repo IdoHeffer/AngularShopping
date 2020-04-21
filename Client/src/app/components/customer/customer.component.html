@@ -2,7 +2,7 @@
     <header>
         <nav>
             <div id="categoriesHeaderDivPanel">
-                <button type="button" class="btn btn-warning" style="top:0; float:right;">+</button>
+                <button type="button" class="btn btn-warning" (click)="isShowCartSideBar()" style="top:0; float:right;">+</button>
                 <h1><b>Categories Panel</b></h1><br>
                 <ul>
                     <li id="first"><a (click)="getAllProducts()"  routerLinkActive="the-chosen-one"
@@ -26,7 +26,7 @@
         </nav>
     </header>
 
-    <aside ng-style="cartSideNav">
+    <aside *ngIf="isShowCartView">
        
         <div id="cartItemsContainer" class="container">
             <header>
@@ -55,11 +55,11 @@
             <h3><b>Total : </b>{{CartPrice}} ₪</h3>
             <hr>
             <button class="btn btn-success" routerLink="/CheckOut" >CheckOut</button>
-            <button class="btn btn-danger">Clear</button>   
+            <button class="btn btn-danger" (click)=[(deleteAllCartItems(cart.CartID))] >Clear</button>   
         </div>
        
     </aside>
-    <main>
+    <main >
         <div id="cardsContainer" *ngIf="isShowAllProduct">
             <div class="card col-xs-10 col-sm-5 col-md-5 col-lg-2"
                 *ngFor="let currentProduct of products|ByNamePipe :byName">

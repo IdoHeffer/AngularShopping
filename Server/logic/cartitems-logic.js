@@ -6,11 +6,21 @@ let ErrorType = require("../errors/error-type");
 
 async function deleteCartItem(id) {
     // validation.validatId(id)
-    let deleteResponce = await cartItemsDao.deleteCartItem(id)
-    if (deleteResponce.affectedRows == 0) {
+    let deleteResponse = await cartItemsDao.deleteCartItem(id)
+    if (deleteResponse.affectedRows == 0) {
         throw new Error("no rows was delete");
     }
 }
+
+
+async function deleteAllCartItems(id) {
+    // validation.validatId(id)
+    let deleteResponse = await cartItemsDao.deleteAllCartItems(id)
+    if (deleteResponse.affectedRows == 0) {
+        throw new Error("no rows was delete");
+    }
+}
+
 
 async function getAllCartItems(CartID){
     validation.validateId(CartID)
@@ -59,5 +69,6 @@ module.exports = {
     updateCartItem,
     getAllCartItems,
     getOneCartItem,
-    getAllCartItems
+    getAllCartItems,
+    deleteAllCartItems
 }

@@ -61,5 +61,15 @@ router.delete("/:id", async (request, response) => {
     }
 });
 
+router.delete("/deleteAll/:id", async (request, response) => {
+    let id = +request.params.id;
+    try {
+        await cartItemsLogic.deleteAllCartItems(id);
+        response.status(200).send("item was deleted from database");
+    } catch (error) {
+        response.status(404).send("cant delete item" +error);
+    }
+});
+
 
 module.exports = router;
