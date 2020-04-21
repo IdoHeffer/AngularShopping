@@ -1,4 +1,6 @@
 let connection = require("./connection")
+let ServerError = require("../errors/server-error");
+let ErrorType = require("../errors/error-type");
 
 async function getUser(id) {
     var sql = ("SELECT * FROM users WHERE id =?");

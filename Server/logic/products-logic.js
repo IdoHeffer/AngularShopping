@@ -1,6 +1,8 @@
 const productsDao = require("../dao/products-dao");
 const Product = require("../models/product")
 const validation = require("../validation/validation")
+let ServerError = require("../errors/server-error");
+let ErrorType = require("../errors/error-type");
 
 async function getProduct(id) {
     validation.validateId(id)

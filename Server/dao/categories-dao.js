@@ -1,4 +1,6 @@
 const connection = require("./connection")
+let ServerError = require("../errors/server-error");
+let ErrorType = require("../errors/error-type");
 
 //get all the categories
 async function getAllCategories() {

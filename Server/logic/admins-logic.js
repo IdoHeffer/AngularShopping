@@ -1,4 +1,6 @@
 const userDao = require("../dao/admins-dao");
+let ServerError = require("../errors/server-error");
+let ErrorType = require("../errors/error-type");
 
 async function getUser(id) {
     let user = await userDao.getUser(id);

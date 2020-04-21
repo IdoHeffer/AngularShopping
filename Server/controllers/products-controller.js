@@ -1,6 +1,8 @@
 const express = require("express")
 const productLogic = require("../logic/products-logic")
 const router = express.Router();
+let ServerError = require("../errors/server-error");
+let ErrorType = require("../errors/error-type");
 
 
 

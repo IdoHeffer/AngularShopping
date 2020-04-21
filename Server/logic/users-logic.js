@@ -1,6 +1,8 @@
 const usersDao = require("../dao/users-dao");
 const validation = require("../validation/validation")
 const User = require("../models/user")
+let ServerError = require("../errors/server-error");
+let ErrorType = require("../errors/error-type");
 
 
 async function getAllUsers() {

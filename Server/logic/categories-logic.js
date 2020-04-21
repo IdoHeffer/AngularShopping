@@ -1,6 +1,8 @@
 const categoriesDao = require("../dao/categories-dao")
 const Category = require("../models/category.js")
 const validation = require("../validation/validation")
+let ServerError = require("../errors/server-error");
+let ErrorType = require("../errors/error-type");
 
 
 async function getAllCategories() {

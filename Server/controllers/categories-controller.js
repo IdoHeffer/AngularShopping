@@ -1,7 +1,8 @@
 const categoriesLogic = require("../logic/categories-logic")
 const express = require("express")
 const router = express.Router();
-
+let ServerError = require("../errors/server-error");
+let ErrorType = require("../errors/error-type");
 
 router.get("/", async (request, response) => {
     try {

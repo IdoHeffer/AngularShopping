@@ -4,6 +4,8 @@ const jwt = require('jsonwebtoken');
 const config = require("../config.json")
 const mapUser = require("../middleware/map")
 const router = express.Router();
+let ServerError = require("../errors/server-error");
+let ErrorType = require("../errors/error-type");
 
 router.get("/forAdmin", async (request,response) => {
     let token = request.headers.authorization;
@@ -80,7 +82,7 @@ router.delete("/:id", async (request,response) => {
     
 })
 
-router.post("/login",  async (request,response) => {
+router.post("/login",  async (request,response, next) => {
     const user = request.body;
      // After a successful login, add the following header to each request
     // Authorization: The word Bearer, space (" ") and then - the token.
@@ -101,8 +103,7 @@ router.post("/login",  async (request,response) => {
         response.json(loginResponse);
         mapUser.saveUserInfo(token, usersLoginResult)
     }catch (error){
-        console.log(error);
-        response.status(401).send("Error, Username or password Invalid" +error);
+        return next(error);
     }
     
 });

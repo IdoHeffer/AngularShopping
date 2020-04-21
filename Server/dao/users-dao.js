@@ -1,4 +1,6 @@
 let connection = require("./connection");
+let ServerError = require("../errors/server-error");
+let ErrorType = require("../errors/error-type");
 
 async function getUser(id) {
     var sql = ("SELECT * FROM users WHERE UserID =?");
@@ -17,11 +19,16 @@ async function getUserForClient(id) {
 }
 
 async function addUser(user) {
-    var sql = ("INSERT INTO marketproject.users (FirstName,LastName,UserName,password,Role,City,Street) VALUES (?,?,?,?,'CUSTOMER',?,?)");
-    let parameters = [user.FirstName,user.LastName,user.UserName, user.password,user.City,user.Street]
-    let addedUser = await connection.executeWithParameters(sql,parameters);
-    console.log("User Created in the DB :"+addedUser)
-    return addedUser;
+    try{
+        var sql = ("INSERT INTO marketproject.users (FirstName,LastName,UserName,password,Role,City,Street) VALUES (?,?,?,?,'CUSTOMER',?,?)");
+        let parameters = [user.FirstName,user.LastName,user.UserName, user.password,user.City,user.Street]
+        let addedUser = await connection.executeWithParameters(sql,parameters);
+        console.log("User Created in the DB :"+addedUser)
+        return addedUser;
+    }catch(e){
+        throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
+    }
+    
 }
 
 async function updateUser(user) {
@@ -39,17 +46,19 @@ async function deleteUser(id) {
     console.log("User Returned FROM DB :"+deleteduser);
 }
 async function login(user) {
-    var sql = "SELECT * FROM users WHERE UserName =? and password = ?";
-    let parameters = [user.userName, user.password];
-    let usersLoginResult = await connection.executeWithParameters(sql,parameters);
-    if (usersLoginResult.length == 0) {
-        throw new Error("Unauthorized");
+    try{
+        var sql = "SELECT * FROM users WHERE UserName =? and password = ?";
+        let parameters = [user.userName, user.password];
+        let usersLoginResult = await connection.executeWithParameters(sql,parameters);
+        if (usersLoginResult.length == 0) {
+            throw new ServerError(ErrorType.UNAUTHORIZED);
+        }
+        return usersLoginResult[0];
+    }catch(e){
+        throw new ServerError(ErrorType.GENERAL_ERROR, JSON.stringify(user), e);
     }
-    // console.log(usersLoginResult);
-    // console.log("We got to the dao Level");
-    // console.log("All good ! ");
-    return usersLoginResult[0]
 }
+    
 async function changePassword(userData) {
     var sql = "UPDATE users set password = ? where UserName = ?";
     let parameters = [ userData.password,userData.userName];

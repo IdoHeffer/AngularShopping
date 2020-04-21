@@ -1,4 +1,6 @@
 let connection = require("./connection")
+let ServerError = require("../errors/server-error");
+let ErrorType = require("../errors/error-type");
 
 async function getProduct(id) {
     var sql = ("SELECT * FROM products WHERE ProductID =?")
