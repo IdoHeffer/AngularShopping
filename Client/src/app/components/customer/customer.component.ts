@@ -34,7 +34,8 @@ export class CustomerComponent implements OnInit {
     this.products = [];
     this.categories = [];
     this.byName = "";
-    this.displayedProduct;
+    this.displayedProduct = this.products[0];
+    this.cart = this.cartsService.cart
     this.cartData = this.cartsService.CartData;
     this.cartsService = cartsService;
     this.CartPrice =0;
@@ -65,7 +66,7 @@ export class CustomerComponent implements OnInit {
     const observableidCart = this.cartsService.isCart();
     observableidCart.subscribe(userCartDetailServer => {
       this.cart = userCartDetailServer[0];
-
+      this.cartsService.cart =userCartDetailServer[0];
       const observableCart = this.cartsService.getUserCart();
       observableCart.subscribe(userCartItemsFromServer => {
         this.cartData = userCartItemsFromServer;

@@ -34,6 +34,7 @@ export class CheckoutComponent implements OnInit {
     this.products = [];
     this.cartData = this.cartsService.CartData;
     this.cartsService = cartsService;
+    this.cart =this.cartsService.cart;
     this.CartPrice =0;
     this.checkOutDetails= new CheckOutDetails ();
     this.usersService = usersService;
@@ -43,6 +44,7 @@ export class CheckoutComponent implements OnInit {
     const observableCart = this.cartsService.getUserCart();
     observableCart.subscribe(userCartFromServer => {
       this.cartData = userCartFromServer;
+      this.cart.CartID = this.cartsService.cart.CartID;
       if (this.cartData ==[]){
 
       }
@@ -54,7 +56,7 @@ export class CheckoutComponent implements OnInit {
     });
 
     this.checkOutDetails.FinalPrice = this.CartPrice;
-    this.checkOutDetails.CartID = this.cart.CartID;
+    this.checkOutDetails.CartID = this.cartsService.cart.CartID;
   }
 
   public totalItemsPrice(){
@@ -89,6 +91,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   public placeOrder (){
+    this.checkOutDetails.CartID = this.cartsService.cart.CartID;
     const observable = this.ordersService.placeOrder(this.checkOutDetails);
     observable.subscribe(successfulServerRequestData => {
       console.log(successfulServerRequestData)

@@ -36,6 +36,16 @@ export class HeaderComponent implements OnInit {
     return false;
   }
 
+  public isUserAdmin() {
+    let userType = sessionStorage.getItem("userType");
+    if(userType=="ADMIN"){
+      console.log(userType);
+      return true;
+    }
+    return false;
+  }
+
+
   isUserLoggedIn() {
     let token = sessionStorage.getItem("token");
     if(token){

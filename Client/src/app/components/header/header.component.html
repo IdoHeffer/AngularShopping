@@ -39,7 +39,7 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a routerLink="/Admin" *ngIf="userService.userType =='ADMIN'"><i class="fa fa-user-secret"
+        <li *ngIf="isUserAdmin()" ><a routerLink="/Admin"><i class="fa fa-user-secret"
               style="font-size:18px"></i> Admin</a></li>
         <li><a href="#">Link</a></li>
         <li class="dropdown"  *ngIf="isUserLoggedIn()">
