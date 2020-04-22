@@ -210,12 +210,16 @@ export class CustomerComponent implements OnInit {
       this.isShowCartView = false
       let main = document.getElementById("main");
       main.className = "flexScreen";
+      let header = document.getElementById("header");
+      header.className = "flexScreen";
       return this.isShowCartView = false
     }
     if (this.isShowCartView == false) {
       this.isShowCartView = true
       let main = document.getElementById("main");
       main.classList.remove("flexScreen");
+      let header = document.getElementById("header");
+      header.classList.remove("flexScreen");
       return this.isShowCartView = true
     }
   }
