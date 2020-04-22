@@ -18,7 +18,9 @@ aside {
 main {
     grid-column: span 9;  
 }
-
+.flexScreen{
+    grid-column: span 12;  
+}
 
 h2{
     color: black;
