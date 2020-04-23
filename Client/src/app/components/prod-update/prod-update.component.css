@@ -204,7 +204,10 @@ li a:hover:not(.active) {
     transition: margin-left .5s;
     padding: 16px;
 }
-  
+form{
+    margin:50px;
+}  
+
 @media screen and (max-height: 450px) {
    .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
