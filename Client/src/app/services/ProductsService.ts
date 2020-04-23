@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../models/Product';
+import { UpdateProductModel } from '../models/UpdateProductModel';
 
 
 @Injectable({
@@ -19,5 +20,9 @@ export class ProductsService {
 
     public getAllCategoriesProducts(id): Observable<Product[]> {
         return this.http.get<Product[]>("/api/Categories/"+id);
+    }
+
+    public updateProduct(updateProductModel: UpdateProductModel){
+        return this.http.put<void>("/api/Products",updateProductModel);
     }
 }

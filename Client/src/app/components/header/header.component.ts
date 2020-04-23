@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
     sessionStorage.setItem("isLoggedIn", "false");
     sessionStorage.removeItem("userType");
     this.router.navigate(["/Home"]);
+    this.isUserAdmin();
     alert("Logged out");
   }
 
@@ -37,11 +38,12 @@ export class HeaderComponent implements OnInit {
   }
 
   public isUserAdmin() {
-    let userType = sessionStorage.getItem("userType");
-    if(userType=="ADMIN"){
-      console.log(userType);
-      return true;
-    }
+    // this.isUserLoggedIn();
+    // let userTypeObj = sessionStorage.getItem("userType");
+    // let userType = JSON.stringify(userTypeObj)
+    // if(userType = "ADMIN"){
+    //   return true;
+    // }
     return false;
   }
 

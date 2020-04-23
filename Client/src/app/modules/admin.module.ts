@@ -7,7 +7,9 @@ import { AdminComponent } from '../components/admin/admin.component';
 import { InsertComponent } from '../components/insert/insert.component';
 import { UpdateComponent } from '../components/update/update.component';
 import { DeleteComponent } from '../components/delete/delete.component';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
+import { ProdUpdateComponent } from '../components/prod-update/prod-update.component'; 
+
 
 const routes: Routes = [
     { 
@@ -15,6 +17,7 @@ const routes: Routes = [
             { path: "insert", component: InsertComponent },
             { path: "update", component: UpdateComponent },
             { path: "delete", component: DeleteComponent },
+            { path: "productsAdmin", component: ProdUpdateComponent },
             { path: "", redirectTo: "insert", pathMatch: "full" }
         ]
     }
@@ -24,7 +27,8 @@ const routes: Routes = [
     declarations: [ AdminComponent,
         InsertComponent,
         UpdateComponent,
-        DeleteComponent],
+        DeleteComponent,
+        ProdUpdateComponent],
     imports: [
       CommonModule,
       FormsModule,

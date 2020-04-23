@@ -1,11 +1,11 @@
 const Joi = require("joi");
 
 class Product {
-    constructor(ProductName, Price, CategoryID, Image) {
+    constructor(ProductName, Price, CategoryID, img) {
         this.ProductName = ProductName
         this.Price = Price
         this.CategoryID = CategoryID
-        this.Image = Image
+        this.img = img
 
     }
 
@@ -15,7 +15,7 @@ class Product {
             ProductName: Joi.string().required(),
             Price: Joi.number().required(),
             CategoryID: Joi.number().required(),
-            Image: Joi.string().optional(),
+            img: Joi.string().optional(),
             ProductID: Joi.number().optional()
 
         };
