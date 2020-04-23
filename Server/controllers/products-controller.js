@@ -12,7 +12,7 @@ router.get("/", async (request, response) => {
         response.json(products);
 
     } catch (error) {
-        response.status(404).send("No products in database" +error);
+        response.status(404).send(error);
     }
 });
 
@@ -34,7 +34,7 @@ router.put("/", async (request, response) => {
         response.status(200).send("updat succesful")
 
     } catch (error) {
-        response.status(404).send("No product in database" +error);
+        response.status(404).send(error);
     }
 })
 

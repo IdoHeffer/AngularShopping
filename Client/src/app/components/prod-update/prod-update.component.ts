@@ -5,6 +5,7 @@ import { CartData } from 'src/app/models/CartData';
 import { Router } from '@angular/router';
 import { CartItem } from 'src/app/models/CartItem';
 import { Location } from '@angular/common'
+import { NgModule } from '@angular/core';
 import { UpdateProductModel } from 'src/app/models/UpdateProductModel'
 
 
@@ -27,7 +28,7 @@ export class ProdUpdateComponent implements OnInit {
   constructor(private productsService: ProductsService, private router: Router, public location: Location) {
     this.products = [];
     this.byName = "";
-    this.displayedProduct = this.products[0];
+    this.displayedProduct;
     this.isShowEditView =true;
     this.updateProductModel = new UpdateProductModel();
    }
@@ -40,7 +41,7 @@ export class ProdUpdateComponent implements OnInit {
       console.log(1)
       console.log(productsList)
     }, error => {
-      alert('Failed to get products ' + JSON.stringify(error));
+      console.log('Failed to get products ' + JSON.stringify(error));
     });
   }
 
@@ -50,6 +51,8 @@ export class ProdUpdateComponent implements OnInit {
 
   public openNav( product? :Product ) {
     this.displayedProduct = product;
+    this.updateProductModel=product
+  
     document.getElementById("mySidenav").style.width = "450px";
     document.getElementById("main").style.marginLeft = "450px";
   }
@@ -60,11 +63,13 @@ export class ProdUpdateComponent implements OnInit {
   }
 
   public updateProduct(){
+
+console.log(this.updateProductModel)
     let observable = this.productsService.updateProduct(this.updateProductModel);
     observable.subscribe(updateResponse => {
       console.log(updateResponse);
     }, error => {
-      alert('Failed to get products ' + JSON.stringify(error));
+     console.log('Failed to get products ' + JSON.stringify(error));
     });
   }
 
