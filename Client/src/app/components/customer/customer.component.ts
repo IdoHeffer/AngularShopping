@@ -216,7 +216,7 @@ export class CustomerComponent implements OnInit {
       return this.isShowCartView = false
     }
     if (this.isShowCartView == false) {
-      this.isShowCartView = true
+      this.isShowCartView = true;
       let main = document.getElementById("main");
       main.classList.remove("flexScreen");
       let header = document.getElementById("header");
@@ -226,7 +226,7 @@ export class CustomerComponent implements OnInit {
   }
 
   public hideCartSideBar() {
-    this.isShowCartView = false
+    this.isShowCartView = false;
     
   }
 }
