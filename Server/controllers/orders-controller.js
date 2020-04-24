@@ -70,15 +70,18 @@ router.delete("/:id", async (request, response) => {
 });
 
 
-router.get("/numberoforders", async (request, response) => {
+router.get("/numberoforders", async (request, response, next) => {
     console.log(1);
+    let requestValue = request.body;
+    console.log(requestValue);
     try {
         let numberOfOrders = await ordersLogic.getNumberAllOrders();
         console.log(numberOfOrders);
         response.json(numberOfOrders);
 
     } catch (error) {
-        response.status(404).send("No orders in database" +error);
+        error = GENERAL_ERROR;
+        return next(error);
     }
 });
 

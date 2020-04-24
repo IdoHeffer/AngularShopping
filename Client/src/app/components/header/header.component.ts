@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
    
 
   ngOnInit() {
+    this.isUserAdmin();
   }
 
   public signOut() {
@@ -38,12 +39,11 @@ export class HeaderComponent implements OnInit {
   }
 
   public isUserAdmin() {
-    // this.isUserLoggedIn();
-    // let userTypeObj = sessionStorage.getItem("userType");
-    // let userType = JSON.stringify(userTypeObj)
-    // if(userType = "ADMIN"){
-    //   return true;
-    // }
+    let userTypeObj = sessionStorage.getItem("userType");
+    let userType = JSON.stringify(userTypeObj)
+    if(userTypeObj){
+      return true;
+    }
     return false;
   }
 

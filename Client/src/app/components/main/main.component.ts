@@ -58,7 +58,7 @@ export class MainComponent implements OnInit {
             // }
         }, serverErrorResponse => { // Reaching here means that the server had failed
             // serverErrorResponse is the object returned from the ExceptionsHandler
-            alert("Error! Status: " + serverErrorResponse.status + ", Message: " + serverErrorResponse.message);
+            alert("Error! Status: " + serverErrorResponse.status + ", Message: " +JSON.stringify(serverErrorResponse.message));
         });
 
     }
@@ -66,11 +66,11 @@ export class MainComponent implements OnInit {
     ngOnInit() {
         let observable = this.ordersService.getNumberOfAllOrders();
         observable.subscribe(ordersNumber => {
-            this.websiteDetails.AmountOfOrders = JSON.stringify(ordersNumber.AmountOfOrders) ;
+            this.websiteDetails.AmountOfOrders = ordersNumber.AmountOfOrders ;
             console.log(1)
             console.log(ordersNumber)
         }, error => {
-            alert('Failed to get Number of Orders ' + JSON.stringify(error));
+            console.log('Failed to get Number of Orders ' + JSON.stringify(error));
         });
 
 

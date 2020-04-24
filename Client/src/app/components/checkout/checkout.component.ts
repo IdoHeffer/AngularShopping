@@ -45,9 +45,6 @@ export class CheckoutComponent implements OnInit {
     observableCart.subscribe(userCartFromServer => {
       this.cartData = userCartFromServer;
       this.cart.CartID = this.cartsService.cart.CartID;
-      if (this.cartData ==[]){
-
-      }
       console.log(this.cartData)
       console.log(userCartFromServer);
       this.totalItemsPrice();

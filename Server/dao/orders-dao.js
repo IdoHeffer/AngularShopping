@@ -3,60 +3,98 @@ let ServerError = require("../errors/server-error");
 let ErrorType = require("../errors/error-type");
 
 async function getOrder(id) {
-    var sql = ("SELECT * FROM orders WHERE OrderID =?") 
-    let parameters = [id];
-    let order = connection.executeWithParameters(sql,parameters);
-    console.log("Order From DB"+order)
-    return order;
+    try {
+        var sql = ("SELECT * FROM orders WHERE OrderID =?") 
+        let parameters = [id];
+        let order = connection.executeWithParameters(sql,parameters);
+        console.log("Order From DB"+order)
+        return order;
+
+    } catch (e) {
+        throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
+    }
+  
 }
 // sending an object includes UserID;
 async function getOrdersByUserID(id){
-    var sql = ("SELECT * FROM orders WHERE UserID =?") 
-    let parameters = [id];
-    let userOrders = await connection.executeWithParameters(sql,parameters);
-    console.log("Order From DB"+userOrders)
-    return userOrders;
+
+    try {
+        var sql = ("SELECT * FROM orders WHERE UserID =?") 
+        let parameters = [id];
+        let userOrders = await connection.executeWithParameters(sql,parameters);
+        console.log("Order From DB"+userOrders)
+        return userOrders;
+
+    } catch (e) {
+        throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
+    }
+  
 }
 
 async function addOrder(order) {
-   var sql = ("INSERT INTO marketproject.orders (UserID,CartID,FinalPrice,DeliveryCityAddress,DeliveryStreetAddress,DeliveryDate,CreditCardDigits) VALUES (?,?,?,?,?,?,?)")
-   let parameters = [order.UserID,order.CartID,order.FinalPrice, order.DeliveryCityAddress,order.DeliveryStreetAddress,order.DeliveryDate,order.CreditCardDigits]
-   let addeOrder = await connection.executeWithParameters(sql,parameters);
-   let sql2 =  ("UPDATE `marketproject`.`carts` SET `Status` = 'CLOSED' WHERE `CartID` = '?'");
-   let parameters2 = [order.CartID];
-   await connection.executeWithParameters(sql2,parameters2);
-   console.log("Order is placed, the cart is closed.");
-   console.log(addeOrder);
-   return addeOrder;
+    try {
+        var sql = ("INSERT INTO marketproject.orders (UserID,CartID,FinalPrice,DeliveryCityAddress,DeliveryStreetAddress,DeliveryDate,CreditCardDigits) VALUES (?,?,?,?,?,?,?)")
+        let parameters = [order.UserID,order.CartID,order.FinalPrice, order.DeliveryCityAddress,order.DeliveryStreetAddress,order.DeliveryDate,order.CreditCardDigits]
+        let addeOrder = await connection.executeWithParameters(sql,parameters);
+        let sql2 =  ("UPDATE `marketproject`.`carts` SET `Status` = 'CLOSED' WHERE `CartID` = '?'");
+        let parameters2 = [order.CartID];
+        await connection.executeWithParameters(sql2,parameters2);
+        console.log("Order is placed, the cart is closed.");
+        console.log(addeOrder);
+        return addeOrder;
+    } catch (e) {
+        throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
+    }
+   
 }
 
 async function updateOrder(order) {
-    var sql = ("UPDATE `marketproject`.`orders` SET UserID=? ,CartID=?,FinalPrice=?,DeliveryCityAddress=?,DeliveryStreetAddress=?,DeliveryDate=?, LastFourCreditCardDigits=? WHERE OrderID = ?");
-    let parameters = [order.UserID,order.CartID,order.FinalPrice, order.DeliveryCityAddress,order.DeliveryStreetAddress,order.DeliveryDate,order.CreditCardDigits,order.OrderID]
-    let updatedOrder = await connection.executeWithParameters(sql,parameters);
-    console.log("Order Updated in the DB :"+updatedOrder)
-    return updatedOrder;
+    try {
+        var sql = ("UPDATE `marketproject`.`orders` SET UserID=? ,CartID=?,FinalPrice=?,DeliveryCityAddress=?,DeliveryStreetAddress=?,DeliveryDate=?, LastFourCreditCardDigits=? WHERE OrderID = ?");
+        let parameters = [order.UserID,order.CartID,order.FinalPrice, order.DeliveryCityAddress,order.DeliveryStreetAddress,order.DeliveryDate,order.CreditCardDigits,order.OrderID]
+        let updatedOrder = await connection.executeWithParameters(sql,parameters);
+        console.log("Order Updated in the DB :"+updatedOrder)
+        return updatedOrder;
+    } catch (e) {
+        throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
+    }
+    
 }
 async function deleteOrder(id) {
-    var sql = ("DELETE FROM orders WHERE OrderID =?");
-    let parameters = [id] 
-    await connection.executeWithParameters(sql,parameters);
-    console.log("Order Deleted FROM DB");
+    try {
+        var sql = ("DELETE FROM orders WHERE OrderID =?");
+        let parameters = [id] 
+        await connection.executeWithParameters(sql,parameters);
+        console.log("Order Deleted FROM DB");
+    } catch (e) {
+        throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
+    }
+    
 }
 
 async function getAllOrders() {
-    var sql = ("SELECT * FROM orders") 
-   let orders = await connection.execute(sql);
-    console.log("All Orders:"+orders);
-    return orders;
+    try{
+        var sql = ("SELECT * FROM orders") 
+        let orders = await connection.execute(sql);
+        console.log("All Orders:"+orders);
+        return orders;
+    }catch(e){
+        throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
+    }
+    
 }
 
 async function getNumberAllOrders(){
-    var sql = ("SELECT COUNT(OrderID) FROM orders")
-    let numberOfOrders = await connection.execute(sql);
-    console.log("Number of orders in Website :"+ numberOfOrders);
-    return numberOfOrders;
+    try{
+        var sql = ("SELECT COUNT(OrderID) FROM orders")
+        let numberOfOrders = await connection.execute(sql);
+        console.log("Number of orders in Website :"+ numberOfOrders);
+        return numberOfOrders;
 
+    }catch(e){
+        throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
+    }
+    
 }
 
 
