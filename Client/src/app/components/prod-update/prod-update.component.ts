@@ -64,7 +64,7 @@ export class ProdUpdateComponent implements OnInit {
 
   public updateProduct(){
 
-console.log(this.updateProductModel)
+    console.log(this.updateProductModel)
     let observable = this.productsService.updateProduct(this.updateProductModel);
     observable.subscribe(updateResponse => {
       console.log(updateResponse);

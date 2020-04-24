@@ -91,6 +91,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   public placeOrder (){
+    this.checkOutDetails.FinalPrice = this.CartPrice;
     this.checkOutDetails.CartID = this.cartsService.cart.CartID;
     const observable = this.ordersService.placeOrder(this.checkOutDetails);
     observable.subscribe(successfulServerRequestData => {

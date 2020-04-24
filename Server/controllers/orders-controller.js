@@ -47,6 +47,7 @@ router.post("/", async (request, response) => {
        FinalPrice : request.body.FinalPrice,
        DeliveryCityAddress : request.body.DeliveryCityAddress,
        DeliveryStreetAddress : request.body.DeliveryStreetAddress,
+       DeliveryDate : request.body.DeliveryDate,
        CreditCardDigits : request.body.CreditCardDigits
     } 
     try {
