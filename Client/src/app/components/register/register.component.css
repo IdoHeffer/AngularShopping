@@ -80,6 +80,9 @@ input[type=text]:focus{
     cursor: pointer;
 
 }
+.validationErr{
+    color:red;
+}
 
 #backBtn:hover{
     background-color:  #f90;
@@ -90,11 +93,11 @@ input[type=text]:focus{
 }
 .left-div{
     float: left;
-    width: 60%;
+    width: 50%;
 }
 .right-div{
     float: right;
-    width: 40%;
+    width: 50%;
 }
 .left{
     float: left;
