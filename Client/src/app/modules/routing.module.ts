@@ -14,7 +14,7 @@ import { CheckoutComponent } from '../components/checkout/checkout.component';
 const routes: Routes = [
     { path: "Home", component: MainComponent },
     // { path: "products", canActivate: [LoginGuardService], component: ProductsComponent },
-    { path: "CheckOut",component: CheckoutComponent },
+    { path: "CheckOut",canActivate: [LoginGuardService] ,component: CheckoutComponent },
     { path: "Products", canActivate: [LoginGuardService] ,component: CustomerComponent},
     { path: "ForgotPassword", component: ForgotpasswordComponent },
     { path: "Admin", canActivate: [LoginGuardService] ,loadChildren: "./admin.module" },

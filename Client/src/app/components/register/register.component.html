@@ -1,56 +1,63 @@
 <header>
   <button class="btn" type="button" id="backBtn" routerLink="/Home" routerLinkActive="the-chosen-one"><i
-    class="fa fa-arrow-circle-left" style="font-size:15px"></i> Back</button><br>
-<div id="headerPanel">
-  <h1 id="signUpHeader"class="display-1">Sign-Up to Our Website</h1>
-</div>
+      class="fa fa-arrow-circle-left" style="font-size:15px"></i> Back</button><br>
+  <div id="headerPanel">
+    <h1 id="signUpHeader" class="display-1">Sign-Up to Our Website</h1>
+  </div>
 </header>
-<div class="col-xs-11 col-sm-6 left-div" >
-  
-  <form #registerForm="ngForm" action="/action_page.php" id="registerForm" >
+<div class="col-xs-11 col-sm-6 left-div">
+
+  <form #registerForm="ngForm" action="/action_page.php" id="registerForm">
     <span class="left">
-      <label for="firstname"  style="font-size:20px">First Name</label><br>
-      <input #firstName="ngModel" type="text" required id="firstname" name="firstname" placeholder="First Name.."
-        [(ngModel)]="userRegisterDetails.FirstName"><br><br>
-      <span *ngIf="firstName.errors?.required && firstName.touched">Missing - firstname</span><br>
-
-      <label for="Lastname" style="font-size:20px">Last Name</label><br>
-      <input #lastName="ngModel" type="text" required id="Lastname" name="Lastname" placeholder="Last Name.."
-        [(ngModel)]="userRegisterDetails.LastName"><br><br>
-      <span *ngIf="lastName.errors?.required && lastName.touched">Missing - lastname</span><br>
-
-      <label for="City" style="font-size:20px">City</label><br>
-      <input  #cityInput="ngModel" type="text" id="City" name="City" required placeholder="City.." [(ngModel)]="userRegisterDetails.City"><br><br>
-      <span *ngIf="cityInput.errors?.required && cityInput.touched">Missing - City</span><br><br>
-
+      <div class="form-group">
+        <label for="firstname" style="font-size:20px">First Name</label><br>
+        <input #firstName="ngModel" class="form-control" type="text" required id="firstname" name="firstname"
+          placeholder="First Name.." [(ngModel)]="userRegisterDetails.FirstName"><br><br>
+        <span *ngIf="firstName.errors?.required && firstName.touched">Missing - firstname</span><br>
+      </div>
+      <div class="form-group">
+        <label for="Lastname" style="font-size:20px">Last Name</label><br>
+        <input #lastName="ngModel" class="form-control" type="text" required id="Lastname" name="Lastname" placeholder="Last Name.."
+          [(ngModel)]="userRegisterDetails.LastName"><br><br>
+        <span *ngIf="lastName.errors?.required && lastName.touched">Missing - lastname</span><br>
+      </div>
+      <div class="form-group">
+        <label for="City" style="font-size:20px">City</label><br>
+        <input #cityInput="ngModel" class="form-control" type="text" id="City" name="City" required placeholder="City.."
+          [(ngModel)]="userRegisterDetails.City"><br><br>
+        <span *ngIf="cityInput.errors?.required && cityInput.touched">Missing - City</span><br><br>
+      </div>
     </span>
     <span class="right">
+    <div class="form-group">
       <label for="Street" style="font-size:20px">Street</label><br>
-      <input #streetInput="ngModel" required type="text" id="Street" name="Street" placeholder="Street.."
+      <input #streetInput="ngModel" class="form-control" required type="text" id="Street" name="Street" placeholder="Street.."
         [(ngModel)]="userRegisterDetails.Street"><br><br>
-        <span *ngIf="streetInput.errors?.required && streetInput.touched">Missing - Street</span><br><br>
-
+      <span *ngIf="streetInput.errors?.required && streetInput.touched">Missing - Street</span><br><br>
+    </div>
+    <div class="form-group">
       <label for="UserName" style="font-size:20px">User Name</label><br>
-      <input #userNameInput="ngModel" type="text" required id="UserName" name="UserName" placeholder="User Name.."
+      <input #userNameInput="ngModel" class="form-control" type="text" required id="UserName" name="UserName" placeholder="User Name.."
         [(ngModel)]="userRegisterDetails.UserName"><br><br>
       <span *ngIf="userNameInput.errors?.required && userNameInput.touched">Missing - username</span><br>
-
+    </div>
+     
+    <div class="form-group">
       <label for="password" style="font-size:20px">Password</label><br>
-      <input #passwordInput="ngModel" type="password" required id="password" name="password" placeholder="Password.."
+      <input #passwordInput="ngModel" class="form-control" type="password" required id="password" name="password" placeholder="Password.."
         [(ngModel)]="userRegisterDetails.password"><br><br>
       <span *ngIf="passwordInput.errors?.required && passwordInput.touched">Missing - password</span><br>
+    </div>
 
-      <!-- <label for="Confirmpassword" style="font-size:20px">Confirm Password</label><br>
-      <input #ConfirmpasswordInput="ngModel"  type="password" appConfirmEqualValidator="password" required id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password.."  [(ngModel)]="userRegisterDetails.confirmpassword"><br><br>
-      <span *ngIf="ConfirmpasswordInput.errors?.notEqual && ConfirmpasswordInput.touched">Password and ConfirmPassword does not match !</span><br> -->
     </span>
-    
-    <button type="button" class="btn" [disabled]="registerForm.form.invalid" (click)="register()" value="Register"
-      id="signUpBtn" style="font-size:15px">Sign-Up</button>
+
+    <button type="button" class="btn btn-info btn-lg"  [disabled]="registerForm.form.invalid" (click)="register()" value="Register"
+      id="signUpBtn" style="background-color:rgba(40, 108, 168, 0.856); color: white; width: 50%;">Sign-Up</button>
   </form>
 </div>
 
 <div class="right-div">
-  <h4><b>We are a new OnlineShop Made just for you !</b><br>So you won't need to come out from your House.<br>We will deliver it all to You in 24/7 Delivery Services System<br>We've reached Over orders !!</h4>
-    <img id="logo" src="../../../assets/OnlinePhoneOrder.jpg" alt="Theme Image">
+  <h4><b>We are a new OnlineShop Made just for you !</b><br>So you won't need to come out from your House.<br>We will
+    deliver it all to You in 24/7 Delivery Services System<br>We've reached Over orders !!</h4>
+  <img id="logo" src="../../../assets/OnlinePhoneOrder.jpg" alt="Theme Image">
 </div>

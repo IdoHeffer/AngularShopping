@@ -10,7 +10,7 @@ label{
     color: #f90;
 }
 
-input[type=text], select {
+/* input[type=text], select {
     width: 65%;
     padding: 12px 20px;
     margin: 5px 0;
@@ -42,8 +42,8 @@ input[type=password]:focus{
 input[type=text]:focus{
     border-bottom:1px solid #f90;
     color: #232f3e;
-}
-  
+} */
+/*   
 #signUpBtn {
    margin-top: 2%;
   background-color:rgba(40, 108, 168, 0.856);
@@ -54,7 +54,7 @@ input[type=text]:focus{
   cursor: pointer;
   width: 65%;
   opacity: 0.8;
-}
+} */
 
 #signUpBtn:hover{
     opacity: 1;
