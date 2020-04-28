@@ -28,7 +28,7 @@
 
     <aside *ngIf="isShowCartView">
        
-        <div id="cartItemsContainer" class="container">
+        <div id="cartItemsContainer" class="container" style="position: sticky;" >
             <header>
                 <h2>My Cart <i class="fa fa-shopping-cart" style="font-size:35px;"></i></h2>
                 <h4>Cart ID: # {{cart.CartID}}</h4>
@@ -54,8 +54,8 @@
             <hr>
             <h3><b>Total : </b>{{CartPrice}} ₪</h3>
             <hr>
-            <button class="btn btn-success" routerLink="/CheckOut" >CheckOut</button>
-            <button class="btn btn-danger" (click)=[(deleteAllCartItems(cart.CartID))] >Clear</button>   
+            <button class="btn btn-success" style="width: 100%;text-align: center;font-size:large;" routerLink="/CheckOut" >CheckOut</button><br><br>
+            <button class="btn btn-danger" style="width: 65%;text-align: center;font-size:large;" (click)=[(deleteAllCartItems(cart.CartID))] >Clear</button>   
         </div>
        
     </aside>

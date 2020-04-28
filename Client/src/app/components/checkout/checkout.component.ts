@@ -93,9 +93,9 @@ export class CheckoutComponent implements OnInit {
     const observable = this.ordersService.placeOrder(this.checkOutDetails);
     observable.subscribe(successfulServerRequestData => {
       console.log(successfulServerRequestData)
-      this.router.navigate["/Products"];
+      this.router.navigate["/Receipt"];
     }, serverErrorResponse => {
-     alert("Error! Status: " + serverErrorResponse.status + ", Message: " + serverErrorResponse.message);
+     console.log("Error! Status: " + serverErrorResponse.status + ", Message: " + serverErrorResponse.message);
     });
   }
 

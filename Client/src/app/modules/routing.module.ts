@@ -10,10 +10,12 @@ import { LoginGuardService } from '../login.guard';
 import { CustomerComponent } from '../components/customer/customer.component';
 import { RefreshComponent } from '../components/refresh/refresh.component';
 import { CheckoutComponent } from '../components/checkout/checkout.component';
+import { ReceiptComponent } from '../components/receipt/receipt.component';
 
 const routes: Routes = [
     { path: "Home", component: MainComponent },
     // { path: "products", canActivate: [LoginGuardService], component: ProductsComponent },
+    { path: "Receipt",canActivate: [LoginGuardService] ,component: ReceiptComponent },
     { path: "CheckOut",canActivate: [LoginGuardService] ,component: CheckoutComponent },
     { path: "Products", canActivate: [LoginGuardService] ,component: CustomerComponent},
     { path: "ForgotPassword", component: ForgotpasswordComponent },
