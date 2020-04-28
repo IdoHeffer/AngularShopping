@@ -17,7 +17,7 @@ body {
   display: -ms-flexbox; 
   display: flex;
   width: 100%;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
 }
 
 .icon {
@@ -30,7 +30,7 @@ body {
 }
 
 
-.input-field {
+/* .input-field {
   width: 100%;
   background-color:white ;
   padding:10px 10px 10px 5px;
@@ -39,7 +39,7 @@ body {
   border:none;
   border-bottom:1px solid #757575;
   margin-bottom: 3%;
-}
+} */
 /* font-size:18px;
 padding:10px 10px 10px 5px;
 display:block;
@@ -47,14 +47,14 @@ width:300px;
 border:none;
 border-bottom:1px solid #757575; */
 
-.input-field:focus {
+/* .input-field:focus {
   border-bottom:1px solid #f90;
   color: #232f3e;
   
-}
+} */
 
 
-.btn {
+/* .btn {
   margin-top: 2%;
   background-color: #f90;
   color: white;
@@ -65,15 +65,15 @@ border-bottom:1px solid #757575; */
   width: 100%;
   opacity: 0.9;
   box-shadow: grey 5px 5px;
-}
+} */
 
-.btn:hover {
+/* .btn:hover {
   opacity: 1;
   color: white;
   box-shadow: grey 5px 5px;
-}
+} */
 
-#RegisterBtn{
+/* #RegisterBtn{
   margin-top: 2%;
   font-size:15px;
   background-color:rgba(40, 108, 168, 0.856);
@@ -81,7 +81,7 @@ border-bottom:1px solid #757575; */
 #RegisterBtn:hover{
   background-color: #3681d6;
   color: white;
-}
+} */
 
 #notRegisterPassword{
   display: inline;
