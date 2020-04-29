@@ -25,11 +25,6 @@ export class UserService {
         //  The http request will be sent after the subscribe() method will be called
         //return this.http.post<SuccessfulLoginServerResponse>("http://localhost:8080/users/login", userLoginDetails);
         this.http.post<SuccessfulLoginServerResponse>("/api/Users/login", userLoginDetails);
-        
-        this.setUserName(userLoginDetails.userName);
-        // this.userName= userLoginDetails.userName;
-        console.log(this.userName);
-
         return this.http.post<SuccessfulLoginServerResponse>("/api/Users/login", userLoginDetails);
     }
 

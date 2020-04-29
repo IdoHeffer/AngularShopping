@@ -9,9 +9,9 @@
 <div id="mySidenav" class="sidenav">
 
     <button style="bottom:0" style="float: right; margin-right: 1.5%;" class="btn btn-danger" (click)="closeNav()">&times;</button><br>
-    <h2>Product name shows on click</h2>
+    <h2>{{displayedProduct.ProductName}}</h2>
     <form #UpdateProd="ngForm" >
-        <img src="{{displayedProduct.img}}" style="height: 180px;width: 180px;" >
+        <img src="{{displayedProduct.img}}" style="height: 180px;width: 180px;" ><br><br>
         <div class="form-group">
             <label for="ProductPicture">Product Picture</label>
             <input type="text" class="form-control" id="ProductPicture"  [(ngModel)]="updateProductModel.img" value="{{displayedProduct.img}}"  placeholder="Product Picture" name="picture">

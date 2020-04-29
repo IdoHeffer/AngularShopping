@@ -1,39 +1,32 @@
 p{
     background-color: greenyellow;
 }
+#adminCreateUserDiv{
+    background-color: white;
+  align-items: center;
+    
+}
 
 
 input[type=text], select {
-    width: 40%;
-    padding: 12px 20px;
-    margin: 5px 0;
-    display: inline-block;
-    box-sizing: border-box;
-    font-size:18px;
-    padding:10px 10px 10px 5px;
-    border:none;
-    border-bottom:1px solid #232f3e;
+    width: 30%;
+    margin-left: 35%;
+    
+}
+.form-group{
     background-color: whitesmoke;
 }
 
 input[type=password], select {
-    width: 40%;
-    padding: 12px 20px;
-    margin: 5px 0;
-    display: inline-block;
-    box-sizing: border-box;
-    font-size:18px;
-    padding:10px 10px 10px 5px;
-    border:none;
-    border-bottom:1px solid #232f3e;
-    background-color: whitesmoke;
+    width: 30%;
+    margin-left: 35%;
 }
 input[type=password]:focus{
-    border-bottom:1px solid #f90;
+   
     color: #232f3e; 
 }
 input[type=text]:focus{
-    border-bottom:1px solid #f90;
+   
     color: #232f3e;
 }
   
