@@ -91,14 +91,15 @@ router.post("/login",  async (request,response, next) => {
     const token = jwt.sign({ sub: user }, config.secret);
     try {
         let usersLoginResult = await usersLogic.login(user);
-        console.log(usersLoginResult);
+        // console.log(usersLoginResult);
         let loginResponse = {
             userType: usersLoginResult.Role,
             userID: usersLoginResult.UserID,
-            userName: usersLoginResult.userName,
+            userName: usersLoginResult.UserName,
             token: token,
         };
-        console.log("Welcome Back Succesfull Login"+JSON.stringify(loginResponse.userType));
+        console.log(loginResponse)
+        // console.log("Welcome Back Succesfull Login"+JSON.stringify(loginResponse.userType));
         // response.send({token:token, userType:usersLoginResult.Role, userID: usersLoginResult.UserID});
         response.json(loginResponse);
         mapUser.saveUserInfo(token, usersLoginResult)

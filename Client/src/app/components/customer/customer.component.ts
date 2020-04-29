@@ -34,14 +34,15 @@ export class CustomerComponent implements OnInit {
     this.products = [];
     this.categories = [];
     this.byName = "";
-    this.displayedProduct = this.products[0];
-    this.cart = this.cartsService.cart
+    this.displayedProduct = new Product();
+this.cart=new Cart()
     this.cartData = this.cartsService.CartData;
     this.cartsService = cartsService;
     this.CartPrice =0;
   }
 
   ngOnInit() {
+  
     this.isShowCartView = true;
     this.isShowAllProduct = true;
     let observable = this.productsService.getAllProducts();
@@ -65,6 +66,7 @@ export class CustomerComponent implements OnInit {
 
     const observableidCart = this.cartsService.isCart();
     observableidCart.subscribe(userCartDetailServer => {
+      console.log(userCartDetailServer)
       this.cart = userCartDetailServer[0];
       this.cartsService.cart =userCartDetailServer[0];
       const observableCart = this.cartsService.getUserCart();
