@@ -9,7 +9,6 @@ let ErrorType = require("../errors/error-type");
 router.get("/usercart", async (request, response) => {
     let token = request.headers.authorization
     let id = mapUser.checkMapForUserId(token)
-    console.log(id);
     try {
         let userCart = await cartsLogic.getCart(id);
         console.log(userCart);
@@ -23,7 +22,6 @@ router.get("/usercart", async (request, response) => {
 router.get("/iscart", async (request, response) => {
     let token = request.headers.authorization;
     let id = mapUser.checkMapForUserId(token)
-    console.log(id);
     try {
         let userCart = await cartsLogic.isCart(id);
         console.log(userCart);

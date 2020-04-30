@@ -6,7 +6,7 @@ async function getOneCartItem(CartItemID) {
     var sql = ("SELECT * FROM cartitems WHERE CartItemID=?") 
     let parameters = [CartItemID];
     let cartitem = connection.executeWithParameters(sql,parameters);
-    console.log("Cart item From DB"+cartitem)
+    // console.log("Cart item From DB"+cartitem)
     return cartitem;
 }
 
@@ -14,7 +14,7 @@ async function getAllCartItems(CartID) {
     var sql = ("SELECT * FROM cartitems WHERE CartID=?") 
     let parameters = [CartID];
     let allcartitems = connection.executeWithParameters(sql,parameters);
-    console.log("Cart item From DB"+allcartitems)
+    // console.log("Cart item From DB"+allcartitems)
     return allcartitems;
 }
 
@@ -25,7 +25,6 @@ async function addCartItem(cartItem) {
     }
    var sql = ("INSERT INTO `marketproject`.`cartitems` (`ProductID`, `Amount`, `TotalItemPrice`, `CartID`)  VALUES (?,?,?,?)")
    let parameters = [cartItem.ProductID,cartItem.Amount,cartItem.TotalItemPrice,cartItem.CartID]
-   console.log(parameters);
    let addeCartItem = await connection.executeWithParameters(sql,parameters);
    console.log("Cart Created in the DB :"+addeCartItem);
 }
@@ -33,7 +32,7 @@ async function updateCartItem(cartItem) {
     var sql = ("UPDATE marketproject.cartitems SET Amount = ?,TotalItemPrice = ?  WHERE CartID= ? and ProductID= ?");
     let parameters = [cartItem.Amount,cartItem.TotalItemPrice,cartItem.CartID,cartItem.ProductID,]
     let updatedCart = await connection.executeWithParameters(sql,parameters);
-    console.log("Cart Created in the DB :"+updatedCart)
+    console.log(updatedCart)
     return updatedCart;
 }
 
@@ -41,14 +40,14 @@ async function deleteCartItem(id) {
     var sql = ("DELETE FROM cartitems WHERE CartItemID =?");
     let parameters = [id] 
     let deletedCart = await connection.executeWithParameters(sql,parameters);
-    console.log("Cart Returned FROM DB :"+deletedCart);
+    console.log(deletedCart);
 }
 
 async function deleteAllCartItems(id) {
     var sql = ("DELETE FROM cartitems WHERE CartID =?");
     let parameters = [id] 
     let deletedCart = await connection.executeWithParameters(sql,parameters);
-    console.log("Cart Returned FROM DB :"+deletedCart);
+    console.log(deletedCart);
 }
 
 async function getAllCartItems(CartID) {

@@ -4,8 +4,6 @@ const jwt = require('jsonwebtoken');
 const config = require("../config.json")
 const mapUser = require("../middleware/map")
 const router = express.Router();
-let ServerError = require("../errors/server-error");
-let ErrorType = require("../errors/error-type");
 
 router.get("/forAdmin", async (request,response) => {
     let token = request.headers.authorization;
@@ -32,23 +30,6 @@ router.get("/forClient", async (request,response) => {
         response.status(404).send("Error,No existing User" +error);
     }
 })
-
-
-// GetAllUsers
-// router.get("/:id", async (request,response) => {
-//     const id = +request.params.id;
-//     try {
-//         const user = await usersLogic.getUser(id);
-//         console.log(user);
-//         response.json(user);
-//     }catch (error){
-//         console.log(error);
-//         response.status(404).send("Error,No existing User" +error);
-//     }
-// })
-
-
-
 
 router.post("/register", async (request,response) => {
     const userToAdd = request.body;
@@ -102,15 +83,14 @@ router.post("/login",  async (request,response, next) => {
         // console.log("Welcome Back Succesfull Login"+JSON.stringify(loginResponse.userType));
         // response.send({token:token, userType:usersLoginResult.Role, userID: usersLoginResult.UserID});
         response.json(loginResponse);
-        mapUser.saveUserInfo(token, usersLoginResult)
+        mapUser.saveUserInfo(token, usersLoginResult);
     }catch (error){
         return next(error);
     }
     
 });
 
-
-router.post("/changePassword",  async (request,response) => {
+router.post("/changePassword",  async (request,response,next) => {
     const updateRequest = request.body;
     try {
         await usersLogic.changePassword(updateRequest);
@@ -118,7 +98,7 @@ router.post("/changePassword",  async (request,response) => {
         response.status(200).send();
     }catch (error){
         console.log(error);
-        response.status(401).send("Error, Username or password Invalid" +error);
+        return next(error);
     }
     
 });

@@ -1,3 +1,215 @@
-p{
-    background-color: blue;
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+ 
+span{
+    color: red;
+}
+
+#cardsContainer{
+    width: 65%;
+    margin-top: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 3%;
+    grid-column: 8;
+}
+
+#categoriesHeaderDivPanel{
+    height: 10%;
+    display: inline-block;
+}
+.cartitem{
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    margin: 3%;
+    background-color: white;
+    border: 3px solid #286DA8;
+    transition: all .2s ease-in-out;
+    width: 50%;
+}
+#productsEditPanel{
+    float: left;
+    border: solid 1px black;
+    grid-column: 2;
+}
+
+.cartitem>img{
+    width: 80%;
+    height: 80%px; 
+    float: left;
+
+}
+
+/* .cartitem:hover{
+    transform: scale(1.1);
+} */
+
+.card {
+    box-shadow: 0 7px 10px 0 rgba(0, 0, 0, 0.466);
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    margin: 3%;
+    background-color: white;
+    border: 3px solid #286DA8;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+}
+
+.the-chosen-one{
+    background-color:#286DA8;
+    color: #F90;
+}
+
+
+.card:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+.card-body{
+    cursor: pointer;
+}
+
+.card-body>img{
+    width: 100%;
+    height: 200px;  
+
+}
+  
+.price {
+    color: grey;
+    font-size: 22px;
+}
+  
+.card button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #f90;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+  
+.card button:hover {
+    opacity: 0.7;
+}
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    color: #286DA8;
+}
+  
+li {
+    display:inline-block;
+    background-color: #f90;
+    color: white;
+}
+  
+li a {
+    display: block;
+    color: #286DA8;
+    text-align: left;
+    padding: 14px 16px;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: Arial;
+    color: white;
+}
+  
+li a:hover:not(.active) {
+    background-color:#286DA8 ;
+    color: white;
+}
+  
+
+
+@media screen and (max-width: 600px) {
+    .card {
+        max-width:100%;
+        height: 20%;
+    }
+    
+} 
+
+@media screen and (max-width: 600px) {
+    .card {
+        max-width:100%;
+        height: 20%;
+    }
+    main {
+        grid-column: span 7; 
+    }
+    aside {
+        grid-column: span 5;
+        height: 50%;
+        margin-top:98%;
+    }
+    #cardsContainer{
+        margin-top:80%;
+        height: 50%;
+    }
+    
+} 
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color:#1b70b6;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    color: white;
+}
+  
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+  
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+  
+.sidenav .closebtn {
+   position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+  
+#main {
+    margin-left: 5%;
+    margin-top: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 3%;
+    grid-column: 8;
+    transition: margin-left .5s;
+    padding: 16px;
+}
+form{
+    margin:50px;
+}  
+
+@media screen and (max-height: 450px) {
+   .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
 }

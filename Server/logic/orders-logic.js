@@ -6,7 +6,6 @@ let ErrorType = require("../errors/error-type");
 
 async function getAllOrders() {
     let orders = await ordersDao.getAllOrders();
-    console.log(orders)
     validation.validateResponse(orders)
     return orders;
 }
@@ -48,17 +47,9 @@ function validateOrder(order) {
 
 async function getNumberAllOrders(){
     let numberOfOrders = await ordersDao.getNumberAllOrders();
-    console.log(numberOfOrders)
     // validation.validateResponse(numberOfOrders)
     return numberOfOrders;
 }
-
-// let order = { OrderID:"13", UserID:"11", CartID:"7", FinalPrice:"1254", DeliveryCityAddress:"Petah-Tikva", DeliveryStreetAddress:"Thereza 4", DeliveryDate:"2020-03-28",LastFourCreditCardDigits:"5555" }
-// addOrder(order);
-// getAllOrders();
-// getOrder(5);
-// deleteOrder(12);
-// updateOrder(order)
 
 
 

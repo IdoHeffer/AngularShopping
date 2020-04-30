@@ -5,16 +5,6 @@ let ServerError = require("../errors/server-error");
 let ErrorType = require("../errors/error-type");
 
 
-// router.get("/:id", async (request, response) => {
-//     try {
-//         let cartitems = await cartItemsLogic.getOneCartItem();
-//         response.json(cartitems);
-
-//     } catch (error) {
-//         response.status(404).send("cant get cart item" +error);
-//     }
-// });
-
 
 router.get("/:id", async (request, response) => {
     let id = +request.params.id;

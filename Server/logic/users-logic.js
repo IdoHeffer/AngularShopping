@@ -3,7 +3,11 @@ const validation = require("../validation/validation")
 const User = require("../models/user")
 let ServerError = require("../errors/server-error");
 let ErrorType = require("../errors/error-type");
+const crypto = require("crypto");
 
+
+const saltRight = "dsayuieqwczxf";
+const saltLeft = "+-sdvcx@fd#g!$";
 
 async function getAllUsers() {
     let users = await usersDao.getAllUsers();
@@ -27,8 +31,9 @@ async function getUserForClient(id) {
 async function addUser(user) {
     validateUser(user);
     console.log("User Is valid");
+    user.password = crypto.createHash("md5").update(saltLeft + user.password + saltRight).digest("hex");
+    console.log("Hashed password : " + user.password);
     let addedUser = await  usersDao.addUser(user)
-    console.log("We got to the logic Level");
     return addedUser;
 }
 
@@ -43,15 +48,19 @@ async function deleteUser(id) {
 }
 async function login(userData){
     // console.log(userData)
+    userData.password = crypto.createHash("md5").update(saltLeft + userData.password + saltRight).digest("hex");
+    console.log("Hashed password : " + userData.password);
     let usersLoginResult = await usersDao.login(userData)
     validation.validateResponse(usersLoginResult)
-    console.log(usersLoginResult)
     // console.log("We got to the logic Level");
     return usersLoginResult;
 };
 async function changePassword(userData) {
     await usersDao.changePassword(userData)
+    user.password = crypto.createHash("md5").update(saltLeft + user.password + saltRight).digest("hex");
+    console.log("Hashed password : " + user.password);
     console.log("We got to the logic Level");
+    return ;
 }
 function validateUser(user) {
     // Validate the user object:
@@ -62,8 +71,19 @@ function validateUser(user) {
 
 }
 
+
 // let user = {UserName: "Liel555@gmail.com",password:"LielB123456", FirstName:"Liel",LastName:"Ben-Ami", City:"Petah-Tikva",Street:"Threza"}
 // let user ={UserName:"IdoH@gmail.com",password:"Ido15011997",FirstName:"Ido",LastName:"Heffer",City:" ",Street:" "};
+
+// function tetsHash(user) {
+//     user.password = crypto.createHash("md5").update(saltLeft + user.password + saltRight).digest("hex");
+//     console.log("Hashed password : " + user.password);
+// }
+// tetsHash(user)
+
+
+
+
 // login(userData);
 // getAllUsers();
 // getUser(5);

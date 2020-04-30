@@ -25,21 +25,18 @@ async function deleteAllCartItems(id) {
 async function getAllCartItems(CartID){
     validation.validateId(CartID)
     let allCartItems = await cartItemsDao.getAllCartItems(CartID)
-    console.log(allCartItems);
     return allCartItems;
 }
 
 async function getOneCartItem(CartItemID){
     validation.validateId(CartItemID)
     let oneCartItem = await cartItemsDao.getOneCartItem(CartItemID)
-    console.log(oneCartItem);
     return oneCartItem;
 }
  
 async function getAllCartItems(CartID){
     validation.validatId(CartID)
     let allCartItems = await cartItemsDao.getAllCartItems(CartID)
-    console.log(allCartItems);
     return allCartItems;
 }
 
@@ -60,8 +57,6 @@ function validateCartItem(cartItem) {
         throw new Error("invalid item")
     }
 }
-
-// getOneCartItem(2)
 
 module.exports = {
     addCartItem,

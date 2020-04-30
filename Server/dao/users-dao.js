@@ -6,7 +6,6 @@ async function getUser(id) {
     var sql = ("SELECT * FROM users WHERE UserID =?");
     let parameters = [id] 
     let userById = await connection.executeWithParameters(sql,parameters);
-    console.log("User Returned FROM DB :"+userById);
     return userById;
 }
 
@@ -14,7 +13,6 @@ async function getUserForClient(id) {
     var sql = ("SELECT FirstName, LastName, UserName, City, Street  FROM users WHERE UserID =?");
     let parameters = [id] 
     let userById = await connection.executeWithParameters(sql,parameters);
-    console.log("User Returned FROM DB :"+userById);
     return userById;
 }
 
@@ -23,7 +21,6 @@ async function addUser(user) {
         var sql = ("INSERT INTO marketproject.users (FirstName,LastName,UserName,password,Role,City,Street) VALUES (?,?,?,?,'CUSTOMER',?,?)");
         let parameters = [user.FirstName,user.LastName,user.UserName, user.password,user.City,user.Street]
         let addedUser = await connection.executeWithParameters(sql,parameters);
-        console.log("User Created in the DB :"+addedUser)
         return addedUser;
     }catch(e){
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
@@ -35,7 +32,6 @@ async function updateUser(user) {
     var sql = ("UPDATE users SET FirstName=? ,LastName=?,UserName=?,City=?,Street=? WHERE UserID = ?");
     let parameters = [user.FirstName,user.LastName,user.UserName,user.City,user.Street,user.UserID]
     let updatedUser = await connection.executeWithParameters(sql,parameters);
-    console.log("User Created in the DB :"+updatedUser)
     return updatedUser;
 }
 
@@ -43,7 +39,6 @@ async function deleteUser(id) {
     var sql = ("DELETE FROM users WHERE UserID =?");
     let parameters = [id] 
     let deleteduser = await connection.executeWithParameters(sql,parameters);
-    console.log("User Returned FROM DB :"+deleteduser);
 }
 async function login(user) {
     try{
@@ -70,23 +65,8 @@ async function changePassword(userData) {
 async function getAllUsers() {
     var sql = ("SELECT * FROM users"); 
     let users = await connection.execute(sql);
-    console.log(users);
     return users
 }
-
-// let user = {UserName: "omB@gmail.com", FirstName:"Omer",password:"18199", LastName:"Ba", City:"Omer",Street:"Hahursha",UserID: "7"}
-// addUser(user)
-
-
-// deleteUser(7)
-
-// let user = {UserName: "omB@gmail.com", FirstName:"Omer",LastName:"Ba", City:"Omer",Street:"Hahursha",UserID: "7"}
-// updateUser(user)
-// getUser(5)
-// getAllUser()
-// changePassword({userName: "IdoH@gmail.com", password:"123456"})
-// let user = {userName: "IdoH@gmail.com", password: "123456"}
-// login(user);
 
 module.exports = {
 

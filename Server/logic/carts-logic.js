@@ -27,8 +27,6 @@ async function isCart(id) {
         validation.validateId(id)
         let userCart = await cartsDao.isCart(id);
         validation.validateResponse(userCart)
-        console.log("DOWN HERE IS THE Cart =>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        console.log(userCart);
         return userCart;
     }catch{
        console.log("Error !!!!!!!");
@@ -60,11 +58,7 @@ function validateCart(cart) {
 }
 
 
-let cart = { UserID:"8" };
-// getAllCarts();
-// getCart(5);
-// addCart(cart);
-// deleteCart(9)
+
 
 
 

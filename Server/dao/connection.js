@@ -1,4 +1,6 @@
 var mysql = require('mysql2');
+let ServerError = require("./../errors/server-error");
+let ErrorType = require("./../errors/error-type");
 
 var connection = mysql.createConnection({
     host: "localhost",
