@@ -4,6 +4,10 @@ body {font-family: Arial, Helvetica, sans-serif;}
 span{
     color: red;
 }
+#tableDiv{
+    padding-left: 25%;
+    width:60%;
+}
 
 #cardsContainer{
     width: 65%;
@@ -196,7 +200,7 @@ li a:hover:not(.active) {
 }
   
 #main {
-    margin-left: 5%;
+    
     margin-top: 5%;
     display: flex;
     flex-wrap: wrap;
