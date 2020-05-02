@@ -21,14 +21,14 @@ export class ProdUpdateComponent implements OnInit {
   public cartData: CartData[];
   public products: Product[];
   public byName: string;
-  public displayedProduct: Product;
+  public displayedProduct:  Product;
   public updateProductModel : UpdateProductModel;
 
 
   constructor(private productsService: ProductsService, private router: Router, public location: Location) {
     this.products = [];
     this.byName = "";
-    this.displayedProduct;
+    this.displayedProduct = new Product();
     this.isShowEditView =true;
     this.updateProductModel = new UpdateProductModel();
    }
@@ -53,8 +53,8 @@ export class ProdUpdateComponent implements OnInit {
     this.displayedProduct = product;
     this.updateProductModel=product
   
-    document.getElementById("mySidenav").style.width = "450px";
-    document.getElementById("main").style.marginLeft = "450px";
+    document.getElementById("mySidenav").style.width = "400px";
+    document.getElementById("main").style.marginLeft = "400px";
   }
 
   public closeNav() {
