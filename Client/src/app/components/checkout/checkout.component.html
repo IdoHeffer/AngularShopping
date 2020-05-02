@@ -7,7 +7,6 @@
 
 <div class="col-25">
     <div class="container" style="float: right;">
-        <h5>{{cart.CartID}}</h5>
         <h3>My Cart<span class="price" style="color:black"><i class="fa fa-shopping-cart"></i><b>  {{cartData.length}}</b></span></h3>
         <hr>
         <p *ngFor="let currentcartItem of cartData">{{currentcartItem.ProductName}} X {{currentcartItem.Amount}}<span class="price">{{currentcartItem.TotalItemPrice}}₪</span></p>

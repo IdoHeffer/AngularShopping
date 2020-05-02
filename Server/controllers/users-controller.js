@@ -92,6 +92,7 @@ router.post("/login",  async (request,response, next) => {
 
 router.post("/changePassword",  async (request,response,next) => {
     const updateRequest = request.body;
+    console.log("We got to the contro change password Level");
     try {
         await usersLogic.changePassword(updateRequest);
         console.log("We got to the dao change password Level");

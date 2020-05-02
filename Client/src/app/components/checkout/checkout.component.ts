@@ -32,10 +32,10 @@ export class CheckoutComponent implements OnInit {
 
   constructor(private router: Router, private cartsService: CartsService, public location: Location,usersService : UserService, private ordersService : OrdersService) { 
     this.products = [];
-    this.cartData = this.cartsService.CartData;
+    this.cartData = [];
     this.cartsService = cartsService;
-    this.cart =this.cartsService.cart;
-    this.CartPrice =0;
+    this.cart = new Cart();
+    this.CartPrice = 0;
     this.checkOutDetails= new CheckOutDetails ();
     this.usersService = usersService;
   }
@@ -44,7 +44,7 @@ export class CheckoutComponent implements OnInit {
     const observableCart = this.cartsService.getUserCart();
     observableCart.subscribe(userCartFromServer => {
       this.cartData = userCartFromServer;
-      this.cart.CartID = this.cartsService.cart.CartID;
+      this.cart.CartID = this.cartData[0].CartID;
       console.log(this.cartData)
       console.log(userCartFromServer);
       this.totalItemsPrice();

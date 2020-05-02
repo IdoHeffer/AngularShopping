@@ -55,11 +55,16 @@ async function login(user) {
 }
     
 async function changePassword(userData) {
-    var sql = "UPDATE users set password = ? where UserName = ?";
-    let parameters = [ userData.password,userData.userName];
-    await connection.executeWithParameters(sql,parameters);
-    console.log("We got to the dao change password Level");
-    console.log("All good ! ");
+    try{
+        var sql = "UPDATE users set password = ? where UserName = ?";
+        let parameters = [ userData.password,userData.userName];
+        await connection.executeWithParameters(sql,parameters);
+        console.log("We got to the dao change password Level");
+        console.log("All good ! ");
+        return usersLoginResult[0];
+    }catch(e){
+        throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
+    }
 }
 
 async function getAllUsers() {

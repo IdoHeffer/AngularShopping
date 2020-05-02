@@ -35,8 +35,8 @@ export class CustomerComponent implements OnInit {
     this.categories = [];
     this.byName = "";
     this.displayedProduct = new Product();
-this.cart=new Cart()
-    this.cartData = this.cartsService.CartData;
+    this.cart=new Cart()
+    this.cartData = [];
     this.cartsService = cartsService;
     this.CartPrice =0;
   }

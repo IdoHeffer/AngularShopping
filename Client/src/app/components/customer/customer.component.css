@@ -259,5 +259,25 @@ li a:hover:not(.active) {
         display: block;
 
     }
+
+    #cartItemsContainer{
+        margin-top: 60%;
+        padding-top: 10%;
+        /* height:30%; */
+        width: 100%;
+        position: -webkit-sticky; /* Safari */
+        position: sticky;
+        top: 0;
+        border:3px solid lightgray;
+        border-radius: 8px;
+    }
+
+    #cardsContainer{
+        margin-top: 80%;
+    }
+    .table{
+        width: 10%;
+    }
     
 } 
+

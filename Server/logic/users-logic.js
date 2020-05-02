@@ -56,9 +56,9 @@ async function login(userData){
     return usersLoginResult;
 };
 async function changePassword(userData) {
+    userData.password = crypto.createHash("md5").update(saltLeft + userData.password + saltRight).digest("hex");
+    console.log("Hashed password : " + userData.password);
     await usersDao.changePassword(userData)
-    user.password = crypto.createHash("md5").update(saltLeft + user.password + saltRight).digest("hex");
-    console.log("Hashed password : " + user.password);
     console.log("We got to the logic Level");
     return ;
 }
