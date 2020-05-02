@@ -34,7 +34,7 @@ export class ForgotpasswordComponent implements OnInit {
         this.router.navigate(["/Home"]);
       }, serverErrorResponse => { // Reaching here means that the server had failed
                   // serverErrorResponse is the object returned from the ExceptionsHandler
-          alert("Error! Status: " + serverErrorResponse.status + ", Message: " + serverErrorResponse.message);            
+          console.log("Error! Status: " + serverErrorResponse.status + ", Message: " + serverErrorResponse.message);            
       }); 
 
   }

@@ -56,12 +56,13 @@ async function login(user) {
     
 async function changePassword(userData) {
     try{
+        console.log(userData);
         var sql = "UPDATE users set password = ? where UserName = ?";
         let parameters = [ userData.password,userData.userName];
         await connection.executeWithParameters(sql,parameters);
         console.log("We got to the dao change password Level");
         console.log("All good ! ");
-        return usersLoginResult[0];
+        return ;
     }catch(e){
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
     }

@@ -12,7 +12,7 @@ function authenticateJwtRequestToken() {
             // public routes that don't require authentication
             '/Users/login',
             '/Users/register',
-            '/Users/forgotPassword'
+            '/Users/changePassword'
         ]
     });
 }
