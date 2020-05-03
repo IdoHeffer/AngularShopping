@@ -54,8 +54,8 @@ export class UpdateComponent implements OnInit {
     this.displayedProduct = product;
     this.updateProductModel=product
   
-    document.getElementById("mySidenav").style.width = "450px";
-    document.getElementById("main").style.marginLeft = "450px";
+    document.getElementById("mySidenav").style.width = "400px";
+    document.getElementById("main").style.marginLeft = "400px";
   }
 
   public closeNav() {

@@ -17,6 +17,19 @@ router.get("/forAdmin", async (request,response) => {
         response.status(404).send("Error,No existing User" +error);
     }
 })
+router.get("/", async (request,response) => {
+    let token = request.headers.authorization;
+    let id = mapUser.checkMapForUserId(token);
+    try {
+        const user = await usersLogic.getUser(id);
+        console.log(user);
+        response.json(user);
+    }catch (error){
+        console.log(error);
+        response.status(404).send("Error,No existing User" +error);
+    }
+})
+
 
 router.get("/forClient", async (request,response) => {
     let token = request.headers.authorization;

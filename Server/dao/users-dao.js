@@ -29,10 +29,18 @@ async function addUser(user) {
 }
 
 async function updateUser(user) {
-    var sql = ("UPDATE users SET FirstName=? ,LastName=?,UserName=?,City=?,Street=? WHERE UserID = ?");
-    let parameters = [user.FirstName,user.LastName,user.UserName,user.City,user.Street,user.UserID]
-    let updatedUser = await connection.executeWithParameters(sql,parameters);
-    return updatedUser;
+
+    try{
+        var sql = ("UPDATE users SET FirstName=? ,LastName=?,UserName=?,City=?,Street=? WHERE UserID = ?");
+        let parameters = [user.FirstName,user.LastName,user.UserName,user.City,user.Street,user.UserID]
+        let updatedUser = await connection.executeWithParameters(sql,parameters);
+        return updatedUser;
+        
+    }catch(e){
+        throw new ServerError(ErrorType.GENERAL_ERROR, JSON.stringify(user), e);
+    }
+
+   
 }
 
 async function deleteUser(id) {
@@ -69,9 +77,16 @@ async function changePassword(userData) {
 }
 
 async function getAllUsers() {
-    var sql = ("SELECT * FROM users"); 
-    let users = await connection.execute(sql);
-    return users
+    try{
+        var sql = ("SELECT * FROM users"); 
+        let users = await connection.execute(sql);
+        return users
+    }catch(e){
+        throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
+    }
+
+
+   
 }
 
 module.exports = {
