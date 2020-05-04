@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../models/Product';
 import { UpdateProductModel } from '../models/UpdateProductModel';
+import { AdminCreateProductDetails } from '../models/AdminCreateProductDetails';
 
 
 @Injectable({
@@ -24,5 +25,10 @@ export class ProductsService {
 
     public updateProduct(updateProductModel: UpdateProductModel){
         return this.http.put<void>("/api/Products",updateProductModel);
+    }
+
+    public createProduct(adminCreateProductDetails: AdminCreateProductDetails): Observable<void> {        
+        
+        return this.http.post<void>("/api/Products", adminCreateProductDetails);
     }
 }

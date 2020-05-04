@@ -9,7 +9,7 @@ import { UpdateComponent } from '../components/update/update.component';
 import { DeleteComponent } from '../components/delete/delete.component';
 import { FormsModule } from '@angular/forms';
 import { ProdUpdateComponent } from '../components/prod-update/prod-update.component'; 
-
+import { ProdAddComponent } from '../components/prod-add/prod-add.component';
 
 const routes: Routes = [
     { 
@@ -17,7 +17,8 @@ const routes: Routes = [
             { path: "insert", component: InsertComponent },
             { path: "update", component: UpdateComponent },
             { path: "delete", component: DeleteComponent },
-            { path: "productsAdmin", component: ProdUpdateComponent },
+            { path: "Updateproducts", component: ProdUpdateComponent },
+            { path: "CreateProduct", component: ProdAddComponent },
             { path: "", redirectTo: "insert", pathMatch: "full" }
         ]
     }
@@ -28,7 +29,8 @@ const routes: Routes = [
         InsertComponent,
         UpdateComponent,
         DeleteComponent,
-        ProdUpdateComponent],
+        ProdUpdateComponent,
+        ProdAddComponent],
     imports: [
       CommonModule,
       FormsModule,

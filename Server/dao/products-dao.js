@@ -10,8 +10,8 @@ async function getProduct(id) {
     return null;
 }
 async function addProduct(product) {
-   var sql = ("INSERT INTO marketproject.products (ProductName,CategoryID,Price) VALUES (?,?,?)");
-   let parameters = [product.ProductName,product.CategoryID,product.Price]
+   var sql = ("INSERT INTO marketproject.products (ProductName,CategoryID,Price,img) VALUES ( ?,?,?,? )");
+   let parameters = [product.ProductName,product.CategoryID,product.Price,product.img]
    let addedProduct = await connection.executeWithParameters(sql,parameters);
    console.log("Product Created in the DB :"+addedProduct);
    return addedProduct;

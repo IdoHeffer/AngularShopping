@@ -1,0 +1,12 @@
+#addProductMainDiv{
+    width: 100%;
+    align-self: center;
+    text-align: center;
+    margin-top: 10vh;
+
+}
+
+#adminCreateProductDiv{
+    margin: auto;
+    width: 60%;
+}
