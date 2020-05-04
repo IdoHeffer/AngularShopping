@@ -28,6 +28,7 @@ import { CartComponent } from '../components/cart/cart.component';
 import { RefreshComponent } from '../components/refresh/refresh.component';
 import { CheckoutComponent } from '../components/checkout/checkout.component';
 import { ReceiptComponent } from '../components/receipt/receipt.component';
+import { ProdAddComponent } from '../components/prod-add/prod-add.component';
 
 
 
@@ -48,6 +49,7 @@ import { ReceiptComponent } from '../components/receipt/receipt.component';
   RefreshComponent,
   CheckoutComponent,
   ReceiptComponent,
+  ProdAddComponent,
 
  ],
   imports: [

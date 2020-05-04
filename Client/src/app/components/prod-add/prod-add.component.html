@@ -1,0 +1,50 @@
+<!-- לזכור להוסיף [(ngModel)]="AdminCreateUserDetails.gender" -->
+
+<div id="adminCreateUserDiv">
+    <form #CreateUserForm="ngForm" action="/action_page.php">
+      <div class="form-group">
+      <label for="firstname">First Name</label><br>
+      <input type="text" id="firstname" name="firstname"  class="form-control"  placeholder="First Name.."  [(ngModel)]="adminCreateUserDetails.FirstName">
+    </div>
+
+    <div class="form-group">
+      <label for="Lastname">Last Name</label><br>
+      <input type="text" id="Lastname" name="Lastname"  class="form-control"  placeholder="Last Name.."  [(ngModel)]="adminCreateUserDetails.LastName">
+      </div>
+
+
+      <div class="form-group">
+      <label for="UserName">User Name</label><br>
+      <input type="text" id="UserName" name="UserName"  class="form-control"  placeholder="User Name.."  [(ngModel)]="adminCreateUserDetails.UserName">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label><br>
+      <input type="password" id="password" name="password"  class="form-control"  placeholder="Password.."  [(ngModel)]="adminCreateUserDetails.password">
+      </div>
+
+      <div class="form-group">
+      <label for="Role">User Role</label><br>
+      <select id="Role" name="Role"  class="form-control"   [(ngModel)]="adminCreateUserDetails.Role">
+        <option value="CUSTOMER">CUSTOMER</option>
+        <option value="ADMIN">ADMIN</option>
+        <option value="COMPANY">COMPANY</option>
+      </select>
+    </div>
+      <br>
+
+      <div class="form-group">
+      <label for="City">City</label><br>
+      <input type="text" id="City" name="City" placeholder="City.."   class="form-control"  [(ngModel)]="adminCreateUserDetails.City"><br><br>
+    </div>
+
+
+    <div class="form-group">
+      <label for="Street">Street</label><br>
+      <input type="text" id="Street" name="Street"  class="form-control"  placeholder="Street.."  [(ngModel)]="adminCreateUserDetails.Street"><br><br>
+    </div>
+    
+    
+      <button type="button" (click)="register()" class="btn" value="register" style="font-size:15px">Create User</button>
+    </form>
+  </div>
