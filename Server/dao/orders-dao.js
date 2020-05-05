@@ -17,12 +17,13 @@ async function getOrder(id) {
 }
 // sending an object includes UserID;
 async function getOrdersByUserID(id){
-
+    console.log(id);
+    
     try {
-        var sql = ("SELECT * FROM orders WHERE UserID =?") 
+        var sql = ("SELECT * FROM marketproject.orders WHERE UserID = ? ") 
         let parameters = [id];
         let userOrders = await connection.executeWithParameters(sql,parameters);
-        console.log("Order From DB"+userOrders)
+        console.log(userOrders)
         return userOrders;
 
     } catch (e) {

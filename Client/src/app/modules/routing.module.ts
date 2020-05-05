@@ -11,12 +11,15 @@ import { CustomerComponent } from '../components/customer/customer.component';
 import { RefreshComponent } from '../components/refresh/refresh.component';
 import { CheckoutComponent } from '../components/checkout/checkout.component';
 import { ReceiptComponent } from '../components/receipt/receipt.component';
+import { AllordersComponent } from '../components/allorders/allorders.component';
+
 
 const routes: Routes = [
     { path: "Home", component: MainComponent },
     // { path: "products", canActivate: [LoginGuardService], component: ProductsComponent },
     { path: "Receipt",canActivate: [LoginGuardService] ,component: ReceiptComponent },
     { path: "CheckOut",canActivate: [LoginGuardService] ,component: CheckoutComponent },
+    { path: "MyOrders",canActivate: [LoginGuardService] ,component: AllordersComponent },
     { path: "Products", canActivate: [LoginGuardService] ,component: CustomerComponent},
     { path: "ForgotPassword", component: ForgotpasswordComponent },
     { path: "Admin", canActivate: [LoginGuardService] ,loadChildren: "./admin.module" },

@@ -52,6 +52,12 @@ async function getNumberAllOrders(){
 }
 
 
+async function getAllUserOrders(id) {
+    let orders = await ordersDao.getOrdersByUserID(id);
+    validation.validateResponse(orders)
+    return orders;
+}
+
 
 module.exports = {
     getAllOrders,
@@ -59,7 +65,8 @@ module.exports = {
     updateOrder,
     addOrder,
     deleteOrder,
-    getNumberAllOrders
+    getNumberAllOrders,
+    getAllUserOrders
     
 
 

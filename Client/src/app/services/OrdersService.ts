@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { WebsiteDetails } from '../models/WebsiteDetails';
 import { CheckOutDetails } from '../models/CheckOutDetails';
+import { Order } from '../models/Order';
 
 
 
@@ -24,5 +25,9 @@ export class OrdersService {
 
     public placeOrder(checkOutDetails : CheckOutDetails): Observable<void> {
         return this.http.post<void>("/api/Orders", checkOutDetails);
+    }
+
+    public myOrders(): Observable<Order[]> {
+        return this.http.get<Order[]>("/api/Orders/myorders");
     }
 }
