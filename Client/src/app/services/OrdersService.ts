@@ -28,6 +28,6 @@ export class OrdersService {
     }
 
     public myOrders(): Observable<Order[]> {
-        return this.http.get<Order[]>("/api/Orders/myorders");
+        return this.http.get<Order[]>("/api/Orders/myorders/allorders");
     }
 }

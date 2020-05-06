@@ -16,7 +16,7 @@ router.get("/", async (request, response) => {
 });
 
 
-router.get("/myorders", async (request, response) => {
+router.get("/myorders/allorders", async (request, response) => {
     let token = request.headers.authorization;
     let id = mapUser.checkMapForUserId(token);
     console.log(id);
@@ -28,21 +28,6 @@ router.get("/myorders", async (request, response) => {
         response.status(404).send("No orders for user" +error);
     }
 });
-
-
-
-router.get("/:id", async (request, response) => {
-    let id = +request.params.id
-    try {
-        let userOrder = await ordersLogic.getOrder(id);
-        response.json(userOrder);
-
-    } catch (error) {
-        response.status(404).send("No orders for user" +error);
-    }
-});
-
-
 
 
 router.put("/", async (request, response) => {
@@ -102,6 +87,19 @@ router.get("/numberoforders", async (request, response, next) => {
         return next(error);
     }
 });
+
+
+router.get("/:id", async (request, response) => {
+    let id = +request.params.id
+    try {
+        let userOrder = await ordersLogic.getOrder(id);
+        response.json(userOrder);
+
+    } catch (error) {
+        response.status(404).send("No orders for user" +error);
+    }
+});
+
 
 
 module.exports = router;
