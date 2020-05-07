@@ -98,6 +98,22 @@ async function getNumberAllOrders(){
     
 }
 
+async function getClosedOrder(cartID) {
+
+    try{
+        var sql = ("SELECT p.ProductName, p.img, ci.Amount, p.Price, ci.CartItemID, ci.TotalItemPrice, c.CartCreationDate, FROM products p  JOIN cartitems ci ON ci.ProductID=p.ProductID JOIN carts c ON ci.CartID=c.CartID WHERE CartID =?") 
+        let parameters = [cartID];
+        let cartData = await connection.executeWithParameters(sql,parameters);
+        console.log(cartData);
+        console.log(id);
+        return cartData;
+    }catch{
+        cartData = [];
+        return cartData;
+    }
+    
+}
+
 
 // let order = {OrderID:"8",UserID:"5",CartID:"1",FinalPrice:"509",DeliveryCityAddress:"Tel-Aviv",DeliveryStreetAddress:"HASHIKMA19",DeliveryDate:"2020-03-28",LastFourCreditCardDigits:"781"};
 // console.log(order);
@@ -117,5 +133,6 @@ module.exports = {
     deleteOrder,
     getAllOrders,
     getOrdersByUserID,
-    getNumberAllOrders
+    getNumberAllOrders,
+    getClosedOrder
 }

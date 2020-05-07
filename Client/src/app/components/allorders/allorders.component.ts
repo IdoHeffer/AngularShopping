@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from 'src/app/services/OrdersService';
 import { Order } from 'src/app/models/Order';
+import { CartData } from 'src/app/models/CartData';
+import { CartsService } from 'src/app/services/CartsService';
 
 @Component({
   selector: 'app-allorders',
@@ -11,8 +13,9 @@ export class AllordersComponent implements OnInit {
   
   public ordersService: OrdersService;
   public orders : Order[];
+  public itemsInOrders : CartData[];
 
-  constructor(ordersService: OrdersService) { 
+  constructor(ordersService: OrdersService,private cartsService: CartsService) { 
     this.ordersService = ordersService;
     this.orders =[];
   }
@@ -29,4 +32,20 @@ export class AllordersComponent implements OnInit {
     });
   }
 
+  public getItemsInOrder(cartID : number){
+    const observableCart = this.ordersService.closedOrdersItems(cartID);
+
+    observableCart.subscribe(userCartItemsFromServer => {
+      this.itemsInOrders = userCartItemsFromServer;
+      if (this.itemsInOrders ==[]){
+        this.itemsInOrders =[];
+      }
+      console.log(this.itemsInOrders);
+     console.log(userCartItemsFromServer);
+    }, error => {
+      return console.log(error);
+    });
+    
+  }
+  
 }

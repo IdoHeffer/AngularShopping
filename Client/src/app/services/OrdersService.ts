@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { WebsiteDetails } from '../models/WebsiteDetails';
 import { CheckOutDetails } from '../models/CheckOutDetails';
 import { Order } from '../models/Order';
+import { CartData } from '../models/CartData';
 
 
 
@@ -14,6 +15,7 @@ import { Order } from '../models/Order';
 export class OrdersService {
  
     public AmountOfOreders : number;
+    public CartData: CartData[];
 
     // HttpClient injection (a class variable will be automatically created)
     constructor(private http: HttpClient) {
@@ -29,5 +31,10 @@ export class OrdersService {
 
     public myOrders(): Observable<Order[]> {
         return this.http.get<Order[]>("/api/Orders/myorders/allorders");
+    } 
+
+    public closedOrdersItems(cartID) : Observable<CartData[]> {
+        return this.http.get<CartData[]>("/api/Orders/Closedorder/"+cartID);
     }
+
 }

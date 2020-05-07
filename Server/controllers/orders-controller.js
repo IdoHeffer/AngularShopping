@@ -5,6 +5,20 @@ const mapUser = require("../middleware/map")
 let ServerError = require("../errors/server-error");
 let ErrorType = require("../errors/error-type");
 
+
+
+router.get("/Closedorder/:id", async (request, response) => {
+    let cartID= +request.params.id;
+    try {
+        let orders = await ordersLogic.getClosedOrder(cartID);
+        response.json(orders);
+
+    } catch (error) {
+        response.status(404).send("No orders in database" +error);
+    }
+});
+
+
 router.get("/", async (request, response) => {
     try {
         let orders = await ordersLogic.getAllOrders();
@@ -14,7 +28,6 @@ router.get("/", async (request, response) => {
         response.status(404).send("No orders in database" +error);
     }
 });
-
 
 router.get("/myorders/allorders", async (request, response) => {
     let token = request.headers.authorization;

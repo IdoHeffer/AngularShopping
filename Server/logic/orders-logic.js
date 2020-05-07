@@ -58,6 +58,11 @@ async function getAllUserOrders(id) {
     return orders;
 }
 
+async function getClosedOrder(cartID) {
+    let orders = await ordersDao.getClosedOrder(cartID);
+    return orders;
+}
+
 
 module.exports = {
     getAllOrders,
@@ -66,7 +71,8 @@ module.exports = {
     addOrder,
     deleteOrder,
     getNumberAllOrders,
-    getAllUserOrders
+    getAllUserOrders,
+    getClosedOrder
     
 
 
