@@ -4,19 +4,36 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <div class="container">
-  <h2>Collapsible Panel</h2>
-  <p>Click on the collapsible panel to open and close it.</p>
+  <h1>My Orders</h1>
+  <h4>Click on the collapsible panel to open and close your Orders</h4><br><br>
   <div class="panel-group" *ngFor="let currentOrder of orders">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" href="#{{currentOrder.OrderID}}" style="float: right;" (click)="getItemsInOrder(currentOrder.OrderID)">Price:  {{currentOrder.FinalPrice}}₪</a>
-          <a data-toggle="collapse" href="#{{currentOrder.OrderID}}" (click)="getItemsInOrder(currentOrder.OrderID)">Order number #{{currentOrder.OrderID}}</a>
+          <a data-toggle="collapse" href="#{{currentOrder.OrderID}}" style="float: right;" (click)="getItemsInOrder(currentOrder.OrderID)">Total Price:  {{currentOrder.FinalPrice}}₪</a>
+          <a data-toggle="collapse" href="#{{currentOrder.OrderID}}" (click)="getItemsInOrder(currentOrder.CartID)">Order number {{currentOrder.DeliveryDate}}</a>
         </h4>
       </div>
       <div id="{{currentOrder.OrderID}}" class="panel-collapse collapse">
-        <div class="panel-body">Panel Body</div>
-        <div class="panel-footer">Panel Footer</div>
+        <div class="panel-body">Panel Body
+          <div id="cartItemsTable"class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let currentcartItem of itemsInOrders;">
+                        <td><b>{{currentcartItem.ProductName}}</b><br><img id="ProdImgCart" src="{{currentcartItem.img}}" alt="Product Image"></td>
+                        <td>Amount: <b>{{currentcartItem.Amount}}</b><br>Price:<b>{{ currentcartItem.Price }}₪</b><br>Total:<b>{{currentcartItem.TotalItemPrice}}₪</b></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+        <div class="panel-footer"><h3>Total Price:  {{currentOrder.FinalPrice}}₪</h3></div>
       </div>
     </div>
   </div>

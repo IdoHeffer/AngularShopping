@@ -101,11 +101,13 @@ async function getNumberAllOrders(){
 async function getClosedOrder(cartID) {
 
     try{
-        var sql = ("SELECT p.ProductName, p.img, ci.Amount, p.Price, ci.CartItemID, ci.TotalItemPrice, c.CartCreationDate, FROM products p  JOIN cartitems ci ON ci.ProductID=p.ProductID JOIN carts c ON ci.CartID=c.CartID WHERE CartID =?") 
+        var sql = ("SELECT p.ProductName, p.img, ci.Amount, p.Price, ci.CartItemID, ci.TotalItemPrice, c.CartCreationDate FROM products p  JOIN cartitems ci ON ci.ProductID=p.ProductID JOIN carts c ON ci.CartID=c.CartID WHERE c.CartID =?") 
         let parameters = [cartID];
         let cartData = await connection.executeWithParameters(sql,parameters);
         console.log(cartData);
-        console.log(id);
+        console.log("This down here is the ID PROVIDED");
+        
+        console.log(cartID);
         return cartData;
     }catch{
         cartData = [];
