@@ -1,5 +1,10 @@
 const ordersDao = require("../dao/orders-dao")
+const usersDao = require("../dao/users-dao");
+const cartItemsDao = require("../dao/cartItems-dao")
 const Order = require("../models/order")
+const productsDao = require("../dao/products-dao");
+const Product = require("../models/product")
+const fileHandler = require("../hendlers/file-handler");
 const validation = require("../validation/validation")
 let ServerError = require("../errors/server-error");
 let ErrorType = require("../errors/error-type");
@@ -28,6 +33,11 @@ async function deleteOrder(id) {
 async function addOrder(order) {
     // validateOrder(order);
     let addResponse = await ordersDao.addOrder(order);
+    await writeToFile(order.CartID, order.UserID,addResponse.OrderID);
+    console.log("down here is the orderID ");
+
+    
+    console.log(addResponse.OrderID);
     return addResponse;
 }
 
@@ -64,6 +74,29 @@ async function getClosedOrder(cartID) {
 }
 
 
+async function writeToFile(CartID, UserID,OrderID) {
+    //getting the user inpormation for the first and last name
+    let userInformation = await usersDao.getUser(UserID)
+    //getting the user order for the order id and the total sum
+    let userOrder = await ordersDao.getOrder(CartID)
+    console.log("Donw here is the the Order");
+    console.log(userOrder);
+    
+    await fileHandler.writeFile("./data/recipt.txt", "hello " + userInformation[0].FirstName + " " + userInformation[0].LastName + "\n" + "order number: " + OrderID + "\n");
+    //geting all the products in the cart for the recipt
+    let cartItem = await cartItemsDao.getAllCartItems(CartID)
+    console.log("Donw here is the cartItems");
+    console.log(cartItem);
+    
+    for (let index = 0; index < cartItem.length; index++) {
+        let productfromDb = await productsDao.getProduct(cartItem[index].ProductID);
+        await fileHandler.appendFile("./data/recipt.txt", "\n" + (index + 1) + " - " + productfromDb[index].ProductName + " X " + cartItem[index].Amount + " = " + cartItem[index].TotalItemPrice)
+    }
+    await fileHandler.appendFile("./data/recipt.txt", "\n" + "total order: " + userOrder.FinalPrice)
+}
+
+
+
 module.exports = {
     getAllOrders,
     getOrder,
@@ -72,7 +105,8 @@ module.exports = {
     deleteOrder,
     getNumberAllOrders,
     getAllUserOrders,
-    getClosedOrder
+    getClosedOrder,
+    writeToFile
     
 
 

@@ -5,7 +5,17 @@ const mapUser = require("../middleware/map")
 let ServerError = require("../errors/server-error");
 let ErrorType = require("../errors/error-type");
 
+//getting the recipt for the user- needs work and test
+router.get("/recipt/download", async (request, response, next) => {
 
+    try {
+        let recipt = "./data/recipt.txt";
+        response.download(recipt);
+
+    } catch (error) {
+        return next(error);
+    }
+});
 
 router.get("/Closedorder/:id", async (request, response) => {
     let cartID= +request.params.id;
@@ -112,6 +122,10 @@ router.get("/:id", async (request, response) => {
         response.status(404).send("No orders for user" +error);
     }
 });
+
+
+
+
 
 
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, ParamMap } from '@angular/router';
 import { Product } from 'src/app/models/Product';
 import { UserService } from 'src/app/services/UserService';
 import { CartsService } from 'src/app/services/CartsService';
@@ -21,6 +22,7 @@ export class CheckoutComponent implements OnInit {
   public cartItem: CartItem;
   public products: Product[];
   public isShowAllProduct: boolean;
+  public query: string
   public cart : Cart;
   public CartPrice : number;
   public perItemPrice: number;
@@ -93,10 +95,23 @@ export class CheckoutComponent implements OnInit {
     const observable = this.ordersService.placeOrder(this.checkOutDetails);
     observable.subscribe(successfulServerRequestData => {
       console.log(successfulServerRequestData)
-      this.router.navigate["/Receipt"];
+      // this.router.navigate["/Receipt"];
     }, serverErrorResponse => {
      console.log("Error! Status: " + serverErrorResponse.status + ", Message: " + serverErrorResponse.message);
     });
+    this.router.navigate["/Receipt"];
+  }
+
+
+  public highlight(index: number) {
+    //if the search input is empty- show the original query
+    if (!this.query) {
+      return this.cartData[index].ProductName;
+    }
+    //if the search input dirty- repp the query in a span
+    return this.cartData[index].ProductName.replace(new RegExp(this.query, ""), match => {
+      return '<span class="highlightText" >' + match + '</span>';
+    })
   }
 
 }

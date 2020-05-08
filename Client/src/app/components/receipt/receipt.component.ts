@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OrdersService } from 'src/app/services/OrdersService';
 
 @Component({
   selector: 'app-receipt',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReceiptComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ordersService : OrdersService) { }
 
 //   public saveTextAsFile(data, filename) {
 
@@ -44,7 +45,17 @@ export class ReceiptComponent implements OnInit {
 //   var fileName = "newfile001.txt"
 //   this.saveTextAsFile(fileText, fileName);
 // }
-
+public getRecipt() {
+  let observable = this.ordersService.getRecipt();
+  observable.subscribe(recipt => {
+    //the recipt saved in the request url
+    //after succes in the http requst
+    //loading the url - download automaticly the recipt
+    window.open("http://localhost:4200/api/orders/recipt/download");
+  }, error => {
+    console.log('Failed to get recipt ' + JSON.stringify(error.error.error));
+  });
+}
 
 
 

@@ -37,4 +37,8 @@ export class OrdersService {
         return this.http.get<CartData[]>("/api/Orders/Closedorder/"+cartID);
     }
 
+    public getRecipt(): Observable<any> {
+        return this.http.get("/api/orders/recipt/download", { responseType: "blob" })
+    }
+
 }

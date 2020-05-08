@@ -4,12 +4,16 @@
 <h1>We are almost Done !</h1>
 <p>Resize the browser window to see the effect. When the screen is less than 800px wide, make the two columns stack on
     top of each other instead of next to each other.</p>
-
+<div>
+    <input style="width: 35%;" type="text" placeholder="Search Product..." [(ngModel)]="query">
+</div>
 <div class="col-25">
     <div class="container" style="float: right;">
         <h3>My Cart<span class="price" style="color:black"><i class="fa fa-shopping-cart"></i><b>  {{cartData.length}}</b></span></h3>
         <hr>
-        <p *ngFor="let currentcartItem of cartData">{{currentcartItem.ProductName}} X {{currentcartItem.Amount}}<span class="price">{{currentcartItem.TotalItemPrice}}₪</span></p>
+        <div *ngFor="let currentcartItem of cartData let i=index" >
+            <p><a [innerHTML]="highlight(i)"> </a> X {{currentcartItem.Amount}}<span class="price">{{currentcartItem.TotalItemPrice}}₪</span></p>
+        </div>
         <hr>
         <h4><b>Total : </b><span class="price" style="color:black"><b>{{CartPrice}}₪</b></span></h4>
     </div>
@@ -70,7 +74,7 @@
                 <label>
                     <input type="checkbox" checked="checked" name="sameadr" ng-model="checkboxModel.value2"  ng-true-value="fillUserInfo()" ng-false-value="Form.reset()"> Shipping address same as billing
                 </label>
-                <input type="submit" value="Continue to checkout" class="btn" [disabled]="chekoutForm.form.invalid" (click)="placeOrder()">
+                <input type="submit" value="Continue to checkout" class="btn" [disabled]="chekoutForm.form.invalid" routerLink="/Receipt" (click)="placeOrder()">
                 <p style="font-size: 13px;"><i class="fa fa-lock" style="font-size:18px"></i> This website is Not Sercured with SSL standart<br>So...mayby someone is stiling your Info<br>We deeply sorry but didnt learned Https yet. </p>
             </form>
         </div>
