@@ -84,7 +84,7 @@ export class ProdAddComponent implements OnInit {
 
   } 
 
- uploadFile(file) {
+  uploadFile(file) {
    const formData = new FormData();
    formData.append('file', file.data);
    file.inProgress = true;
@@ -93,10 +93,9 @@ export class ProdAddComponent implements OnInit {
        if (typeof (event) === 'object') {
          
         
-       }
-     });
-
- }
+      }
+    });
+  }
 
 
   ngOnInit() {
