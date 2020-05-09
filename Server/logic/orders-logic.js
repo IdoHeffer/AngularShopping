@@ -82,17 +82,16 @@ async function writeToFile(CartID, UserID,OrderID) {
     console.log("Donw here is the the Order");
     console.log(userOrder);
     
-    await fileHandler.writeFile("./data/recipt.txt", "hello " + userInformation[0].FirstName + " " + userInformation[0].LastName + "\n" + "order number: " + OrderID + "\n");
+    await fileHandler.writeFile("./data/recipt.txt", "hello " + userInformation[0].FirstName + " " + userInformation[0].LastName + "\n" + "order number: " + userOrder.OrderID + "\n");
     //geting all the products in the cart for the recipt
-    let cartItem = await cartItemsDao.getAllCartItems(CartID)
-    console.log("Donw here is the cartItems");
-    console.log(cartItem);
-    
+    let cartItem = await cartItemsDao.getAllCartItems(CartID);    
     for (let index = 0; index < cartItem.length; index++) {
         let productfromDb = await productsDao.getProduct(cartItem[index].ProductID);
         await fileHandler.appendFile("./data/recipt.txt", "\n" + (index + 1) + " - " + productfromDb[index].ProductName + " X " + cartItem[index].Amount + " = " + cartItem[index].TotalItemPrice)
     }
-    await fileHandler.appendFile("./data/recipt.txt", "\n" + "total order: " + userOrder.FinalPrice)
+    console.log("Donw here is the cartItems");
+    console.log(cartItem);
+    await fileHandler.appendFile("./data/recipt.txt", "\n" + "total order: " + userOrder.FinalPrice);
 }
 
 

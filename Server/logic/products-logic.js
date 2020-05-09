@@ -36,7 +36,10 @@ async function getAllProducts() {
     return products;
 }
 
-
+//updating the product name after upload
+async function updateProductImageName(fileName){
+    await productsDao.updateProductImageName(fileName)
+}
 
 function validateProduct(product) {
     const errorDetails = Product.validate(product);
@@ -52,5 +55,6 @@ module.exports = {
     addProduct,
     updateProduct,
     deleteProduct,
-    getAllProducts
+    getAllProducts,
+    updateProductImageName
 }

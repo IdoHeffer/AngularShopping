@@ -4,6 +4,9 @@ const jwt = require('jsonwebtoken');
 const config = require("../config.json")
 const mapUser = require("../middleware/map")
 const router = express.Router();
+let ServerError = require("../errors/server-error");
+let ErrorType = require("../errors/error-type");
+
 
 router.get("/forAdmin", async (request,response) => {
     let token = request.headers.authorization;
@@ -13,8 +16,7 @@ router.get("/forAdmin", async (request,response) => {
         console.log(user);
         response.json(user);
     }catch (error){
-        console.log(error);
-        response.status(404).send("Error,No existing User" +error);
+        return next(error);
     }
 })
 router.get("/", async (request,response) => {
@@ -25,8 +27,7 @@ router.get("/", async (request,response) => {
         console.log(user);
         response.json(user);
     }catch (error){
-        console.log(error);
-        response.status(404).send("Error,No existing User" +error);
+        return next(error);
     }
 })
 
@@ -39,8 +40,7 @@ router.get("/forClient", async (request,response) => {
         console.log(user);
         response.json(user);
     }catch (error){
-        console.log(error);
-        response.status(404).send("Error,No existing User" +error);
+        return next(error);
     }
 })
 
@@ -51,8 +51,7 @@ router.post("/register", async (request,response) => {
         console.log(addedUser);
         response.json("User Was Added"+addedUser);
     }catch (error){
-        console.log(error);
-        response.status(404).send("Error,Cannot Add the User" +error);
+        return next(error);
     }
    
 })
@@ -70,8 +69,8 @@ router.delete("/:id", async (request,response) => {
         console.log(deletedUser);
         response.json("User Was Deleted");
     }catch (error){
-        console.log(error);
-        response.status(404).send("Error,Cannot Delete the User" +error);
+        return next(error);
+
     }
     
 })

@@ -9,11 +9,12 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "express-jwt": "^5.3.1",
     "joi": "^14.3.1",
+    "jwt-middleware": "^0.3.0",
     "mysql": "^2.18.1",
     "mysql2": "^2.1.0",
-    "jwt-middleware": "^0.3.0",
-    "express-jwt": "^5.3.1"
+    "uuid": "^8.0.0"
   },
   "devDependencies": {},
   "description": ""

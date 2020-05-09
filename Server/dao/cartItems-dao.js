@@ -3,59 +3,94 @@ let ServerError = require("../errors/server-error");
 let ErrorType = require("../errors/error-type");
 
 async function getOneCartItem(CartItemID) {
-    var sql = ("SELECT * FROM cartitems WHERE CartItemID=?") 
-    let parameters = [CartItemID];
-    let cartitem = connection.executeWithParameters(sql,parameters);
-    // console.log("Cart item From DB"+cartitem)
-    return cartitem;
+    try {
+        var sql = ("SELECT * FROM cartitems WHERE CartItemID=?") 
+        let parameters = [CartItemID];
+        let cartitem = connection.executeWithParameters(sql,parameters);
+        // console.log("Cart item From DB"+cartitem)
+        return cartitem;
+    } catch (e) {
+        throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
+    }
+    
 }
 
 async function getAllCartItems(CartID) {
-    var sql = ("SELECT * FROM cartitems WHERE CartID=?") 
-    let parameters = [CartID];
-    let allcartitems = connection.executeWithParameters(sql,parameters);
-    // console.log("Cart item From DB"+allcartitems)
-    return allcartitems;
+    try {
+        var sql = ("SELECT * FROM cartitems WHERE CartID=?") 
+        let parameters = [CartID];
+        let allcartitems = connection.executeWithParameters(sql,parameters);
+        // console.log("Cart item From DB"+allcartitems)
+        return allcartitems;
+    } catch (e) {
+        throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
+    }
+    
 }
 
 async function addCartItem(cartItem) {
-    let checktwice = await IsProdTwiceINCart(cartItem);
-    if (checktwice==true) {
-        return;
+    try {
+        let checktwice = await IsProdTwiceINCart(cartItem);
+         if (checktwice==true) {
+            return;
+        }
+        var sql = ("INSERT INTO `marketproject`.`cartitems` (`ProductID`, `Amount`, `TotalItemPrice`, `CartID`)  VALUES (?,?,?,?)")
+        let parameters = [cartItem.ProductID,cartItem.Amount,cartItem.TotalItemPrice,cartItem.CartID]
+        let addeCartItem = await connection.executeWithParameters(sql,parameters);
+        console.log("Cart Created in the DB :"+addeCartItem);
+    } catch (e) {
+        throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
     }
-   var sql = ("INSERT INTO `marketproject`.`cartitems` (`ProductID`, `Amount`, `TotalItemPrice`, `CartID`)  VALUES (?,?,?,?)")
-   let parameters = [cartItem.ProductID,cartItem.Amount,cartItem.TotalItemPrice,cartItem.CartID]
-   let addeCartItem = await connection.executeWithParameters(sql,parameters);
-   console.log("Cart Created in the DB :"+addeCartItem);
+    
 }
 async function updateCartItem(cartItem) {
-    var sql = ("UPDATE marketproject.cartitems SET Amount = ?,TotalItemPrice = ?  WHERE CartID= ? and ProductID= ?");
-    let parameters = [cartItem.Amount,cartItem.TotalItemPrice,cartItem.CartID,cartItem.ProductID,]
-    let updatedCart = await connection.executeWithParameters(sql,parameters);
-    console.log(updatedCart)
-    return updatedCart;
+    try {
+        var sql = ("UPDATE marketproject.cartitems SET Amount = ?,TotalItemPrice = ?  WHERE CartID= ? and ProductID= ?");
+        let parameters = [cartItem.Amount,cartItem.TotalItemPrice,cartItem.CartID,cartItem.ProductID,]
+        let updatedCart = await connection.executeWithParameters(sql,parameters);
+        console.log(updatedCart)
+        return updatedCart;
+    } catch (e) {
+        throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
+    }
+    
 }
 
 async function deleteCartItem(id) {
-    var sql = ("DELETE FROM cartitems WHERE CartItemID =?");
-    let parameters = [id] 
-    let deletedCart = await connection.executeWithParameters(sql,parameters);
-    console.log(deletedCart);
+    try {
+        var sql = ("DELETE FROM cartitems WHERE CartItemID =?");
+        let parameters = [id] 
+        let deletedCart = await connection.executeWithParameters(sql,parameters);
+        console.log(deletedCart);
+    }catch (e) {
+        throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
+    }
+   
 }
 
 async function deleteAllCartItems(id) {
-    var sql = ("DELETE FROM cartitems WHERE CartID =?");
-    let parameters = [id] 
-    let deletedCart = await connection.executeWithParameters(sql,parameters);
-    console.log(deletedCart);
+    try {
+        var sql = ("DELETE FROM cartitems WHERE CartID =?");
+        let parameters = [id] 
+        let deletedCart = await connection.executeWithParameters(sql,parameters);
+        console.log(deletedCart);
+    }  catch (e) {
+        throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
+    }
+    
 }
 
 async function getAllCartItems(CartID) {
-    var sql = ("SELECT * FROM cartitems WHERE CartID=?") 
-    let parameters = [CartID] 
-    let cartItems = await connection.executeWithParameters(sql,parameters);
-    console.log(cartItems);
-    return cartItems;
+    try {
+        var sql = ("SELECT * FROM cartitems WHERE CartID=?") 
+        let parameters = [CartID] 
+        let cartItems = await connection.executeWithParameters(sql,parameters);
+        console.log(cartItems);
+        return cartItems;
+    } catch (e) {
+        throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
+    }
+  
 }
 
 // func that check if user is trying to add existing product on cart. 

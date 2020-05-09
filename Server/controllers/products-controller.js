@@ -1,8 +1,8 @@
 const express = require("express")
 const productLogic = require("../logic/products-logic")
 const router = express.Router();
-let ServerError = require("../errors/server-error");
-let ErrorType = require("../errors/error-type");
+const fs = require("fs");
+const uuid = require("uuid");
 
 
 
@@ -58,6 +58,44 @@ router.delete("/:id", async (request, response) => {
         response.status(404).send("cant delete product" +error);
     }
 });
+
+
+router.post("/file", (request, response) => {
+    console.log("1")
+    if (!fs.existsSync("./uploads")) { // Must create "/uploads" folder if not exist.
+    fs.mkdirSync("./uploads");
+    }
+
+    try {      
+
+        // Extract the uploaded image
+        // IMPORTANT - The "image" property is implanted by the "express-fileupload"
+        // middleware
+        const file = request.files.file;
+
+        // Extracting the uploaded file's extension (e.g. yossi.png or yossi.zip)
+        const extension = file.name.substr(file.name.lastIndexOf("."));
+     
+        // Generating a unique identifier in order to prevent conflicts between 
+        // files with the same name - yet different
+        let newUuidFileName = uuid.v4();
+
+        // using mv(), which is a built in command on the file object
+        // we move the file into the uploads directory
+        file.mv("./uploads/" + newUuidFileName + extension); // E.g: "C:\my-project\uploads\204b3caf-9e37-4600-9537-9f7b4cbb181b.jpg"
+        let newImageFullName=newUuidFileName+extension
+        console.log(newImageFullName)
+        // returning the product object
+        response.status(200).json();
+        ////updating the product name after upload
+        productLogic.updateProductImageName(newImageFullName)
+    }
+    catch (err) {
+        response.status(500).send(err.message);
+    }
+});
+
+
 
 
 module.exports = router;
