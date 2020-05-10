@@ -87,7 +87,7 @@ async function getAllOrders() {
 
 async function getNumberAllOrders(){
     try{
-        var sql = ("SELECT COUNT(OrderID) FROM orders")
+        var sql = ("SELECT COUNT(OrderID) as numberoforders FROM orders")
         let numberOfOrders = await connection.execute(sql);
         console.log("Number of orders in Website :"+ numberOfOrders);
         return numberOfOrders;

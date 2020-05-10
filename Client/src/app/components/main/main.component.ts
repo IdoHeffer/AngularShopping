@@ -66,7 +66,7 @@ export class MainComponent implements OnInit {
     ngOnInit() {
         let observable = this.ordersService.getNumberOfAllOrders();
         observable.subscribe(ordersNumber => {
-            this.websiteDetails.AmountOfOrders = ordersNumber.AmountOfOrders ;
+            this.websiteDetails.AmountOfOrders = ordersNumber[0].numberoforders ;
             console.log(1)
             console.log(ordersNumber)
         }, error => {

@@ -51,7 +51,7 @@ export class CustomerComponent implements OnInit {
       console.log(1)
       console.log(productsList)
     }, error => {
-      alert('Failed to get products ' + JSON.stringify(error));
+      console.log("Error! Status: "+error);
     });
 
     this.isShowAllProduct = true;
@@ -61,7 +61,7 @@ export class CustomerComponent implements OnInit {
       console.log(1)
       console.log(CategoriesList)
     }, error => {
-      alert('Failed to get products ' + JSON.stringify(error));
+      console.log("Error! Status: "+error);
     });
 
     const observableidCart = this.cartsService.isCart();
@@ -111,7 +111,7 @@ export class CustomerComponent implements OnInit {
       console.log(successfulCartItemAdd);
       this.quantity = 1;
     }, serverErrorResponse => {
-      alert("Error! Status: " + serverErrorResponse.status + ", Message: " + serverErrorResponse.message);
+      console.log("Error! Status: " + serverErrorResponse.status + ", Message: " + serverErrorResponse.message);
     });
     this.refreshCart();
     
@@ -161,7 +161,7 @@ export class CustomerComponent implements OnInit {
       console.log(1)
       console.log(productsList)
     }, error => {
-      alert('Failed to get products ' + JSON.stringify(error));
+      console.log("Error! Status: "+error);
     });
   }
 
@@ -172,7 +172,7 @@ export class CustomerComponent implements OnInit {
       console.log(1)
       console.log(productsList)
     }, error => {
-      alert('Failed to get products ' + JSON.stringify(error));
+      console.log("Error! Status: "+error);
     });
 
   }
