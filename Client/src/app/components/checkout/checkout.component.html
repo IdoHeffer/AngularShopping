@@ -12,7 +12,7 @@
         <h3>My Cart<span class="price" style="color:black"><i class="fa fa-shopping-cart"></i><b>  {{cartData.length}}</b></span></h3>
         <hr>
         <div *ngFor="let currentcartItem of cartData let i=index" >
-            <p><a [innerHTML]="highlight(i)"> </a> X {{currentcartItem.Amount}}<span class="price">{{currentcartItem.TotalItemPrice}}₪</span></p>
+            <p><a [innerHTML]="highlight(i)"></a> X {{currentcartItem.Amount}}<span class="price">{{currentcartItem.TotalItemPrice}}₪</span></p>
         </div>
         <hr>
         <h4><b>Total : </b><span class="price" style="color:black"><b>{{CartPrice}}₪</b></span></h4>

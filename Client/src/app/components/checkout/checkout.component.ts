@@ -22,7 +22,7 @@ export class CheckoutComponent implements OnInit {
   public cartItem: CartItem;
   public products: Product[];
   public isShowAllProduct: boolean;
-  public query: string
+  public query: string;
   public cart : Cart;
   public CartPrice : number;
   public perItemPrice: number;
