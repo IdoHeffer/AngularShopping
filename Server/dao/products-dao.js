@@ -62,6 +62,14 @@ async function getAllProducts() {
    
 }
 
+async function updateProductImageName(fileName){
+    let sql = "SELECT id from products ORDER BY lastChangeDate DESC LIMIT 1"
+    let id= await connection.execute(sql)
+    let sql2="UPDATE products set picture=? where ProductID=?"
+    let parameters= [fileName , id[0].id]
+    await connection.executeWithParameters(sql2,parameters)
+}
+
 let product = {ProductID:"7",ProductName:"Baguette", CategoryID:"6",Price:"10.00" };
 // updateProduct(product)
 // deleteProduct(12);
@@ -73,5 +81,6 @@ module.exports = {
     addProduct,
     updateProduct,
     deleteProduct,
-    getAllProducts
+    getAllProducts,
+    updateProductImageName
 }

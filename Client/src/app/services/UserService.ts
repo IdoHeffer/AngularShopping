@@ -14,7 +14,7 @@ import { UserForgotPasswordDetails } from '../models/UserForgotPasswordDetails';
 export class UserService {
  
     public userType : string;
-    public userName : string;
+    public FirstName : string;
 
     // HttpClient injection (a class variable will be automatically created)
     constructor(private http: HttpClient) {
@@ -38,11 +38,11 @@ export class UserService {
     }
 
     public setUserName(newuserName : string){
-        this.userName = newuserName;
+        this.FirstName = newuserName;
     }
     
     public getUserName() {
-        return this.userName;
+        return this.FirstName;
     }
 
 

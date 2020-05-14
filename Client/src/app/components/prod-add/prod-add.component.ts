@@ -29,6 +29,7 @@ export class ProdAddComponent implements OnInit {
     this.adminCreateProductDetails = new AdminCreateProductDetails();
       this.productsService = productsService;
       this.categoriesService= categoriesService;
+      this.uploadService = uploadService;
       this.categories = [];
       this.categoryString ="";
       this.fileName=""
@@ -91,6 +92,7 @@ export class ProdAddComponent implements OnInit {
    this.uploadService.upload(formData)
      .subscribe((event: any) => {
        if (typeof (event) === 'object') {
+        console.log(file);
          
         
       }

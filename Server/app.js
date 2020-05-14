@@ -12,11 +12,13 @@ const server = express();
 const fileUpload = require("express-fileupload");
 server.use(express.json());
 
-// Middlewares init
-server.use(loginFilter());
 
 server.use(express.static('uploads'));
 server.use(fileUpload());
+// Middlewares init
+server.use(loginFilter());
+
+
 
 server.use("/Users", usersController);
 server.use("/Products", productsController);

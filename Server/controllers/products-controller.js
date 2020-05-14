@@ -60,7 +60,7 @@ router.delete("/:id", async (request, response) => {
 });
 
 
-router.post("/file", (request, response) => {
+router.post("/file", async (request, response) => {
     console.log("1")
     if (!fs.existsSync("./uploads")) { // Must create "/uploads" folder if not exist.
     fs.mkdirSync("./uploads");
@@ -88,7 +88,7 @@ router.post("/file", (request, response) => {
         // returning the product object
         response.status(200).json();
         ////updating the product name after upload
-        productLogic.updateProductImageName(newImageFullName)
+        await productLogic.updateProductImageName(newImageFullName);
     }
     catch (err) {
         response.status(500).send(err.message);

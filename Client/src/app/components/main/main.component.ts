@@ -43,7 +43,7 @@ export class MainComponent implements OnInit {
             sessionStorage.setItem("isLoggedIn", "true")
             sessionStorage.setItem("userType", JSON.stringify(successfulServerRequestData.userType));
             this.usersService.userType = successfulServerRequestData.userType;
-            this.usersService.userName = successfulServerRequestData.userName;
+            this.usersService.FirstName = successfulServerRequestData.userName;
             
             if (this.usersService.userType == "CUSTOMER") {
                 this.router.navigate(["/Products"]);
@@ -58,7 +58,7 @@ export class MainComponent implements OnInit {
             // }
         }, serverErrorResponse => { // Reaching here means that the server had failed
             // serverErrorResponse is the object returned from the ExceptionsHandler
-            alert("Error! Status: " + serverErrorResponse.status + ", Message: " +JSON.stringify(serverErrorResponse.message));
+            alert("Login Failed ! UserName Or Password are inncorrect");
         });
 
     }

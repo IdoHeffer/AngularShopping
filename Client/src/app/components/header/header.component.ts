@@ -10,10 +10,10 @@ import { SuccessfulLoginServerResponse } from 'src/app/models/SuccessfulLoginSer
 })
 export class HeaderComponent implements OnInit {
   
-  public userName: string;
+  public FirstName: string;
 
   constructor( public userService :UserService,private router: Router) {
-    this.userName = userService.userName;
+    this.FirstName = userService.FirstName;
   }
    
 
@@ -51,7 +51,7 @@ export class HeaderComponent implements OnInit {
   isUserLoggedIn() {
     let token = sessionStorage.getItem("token");
     if(token){
-      this.userName = this.userService.getUserName();
+      this.FirstName = this.userService.getUserName();
       return true;
     }
     return false;

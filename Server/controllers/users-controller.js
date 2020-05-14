@@ -88,7 +88,7 @@ router.post("/login",  async (request,response, next) => {
         let loginResponse = {
             userType: usersLoginResult.Role,
             userID: usersLoginResult.UserID,
-            userName: usersLoginResult.UserName,
+            userName: usersLoginResult.FirstName,
             token: token,
         };
         console.log(loginResponse)
