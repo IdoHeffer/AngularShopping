@@ -10,8 +10,15 @@ async function getUser(id) {
     return userById;
 }
 
-function addUser(user) {
-    return null;
+async function addUser(user) {
+    try{
+        var sql = ("INSERT INTO marketproject.users (FirstName,LastName,UserName,password,Role,City,Street) VALUES (?,?,?,?,?,?,?)");
+        let parameters = [user.FirstName,user.LastName,user.UserName, user.password,user.Role,user.City,user.Street]
+        let addedUser = await connection.executeWithParameters(sql,parameters);
+        return addedUser;
+    }catch(e){
+        throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
+    }
 }
 
 function updateUser(id) {

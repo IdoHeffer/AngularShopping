@@ -22,6 +22,6 @@ export class AdminUserService {
 
     public createUser(userLoginDetails: UserLoginDetails): Observable<void> {        
         
-        return this.http.post<void>("/api/users", userLoginDetails);
+        return this.http.post<void>("/api/Admin", userLoginDetails);
     }
 }

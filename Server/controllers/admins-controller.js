@@ -25,7 +25,7 @@ router.post("/",  async (request,response) => {
         response.json(addedUser);
     }catch (error){
         console.log(error);
-        response.status(404).send("Error,Cannot Add the User" +error);
+        return next(error);
     }
    
 })

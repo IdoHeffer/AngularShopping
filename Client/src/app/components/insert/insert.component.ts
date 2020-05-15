@@ -26,26 +26,13 @@ export class InsertComponent implements OnInit {
   public register(): void{
       // Creating an observable object
       // It looks like an http request had been issued BUT IT DIDN'T
-      const observable = this.adminUserService.login(this.adminCreateUserDetails);
+      const observable = this.adminUserService.createUser(this.adminCreateUserDetails);
 
       // The method subscribe() ussues an http request to the server
       // successfulServerRequestData
       observable.subscribe(successfulServerRequestData => {
           console.log(successfulServerRequestData);                    
           
-          sessionStorage.setItem("token",JSON.stringify(successfulServerRequestData));
-
-          if(successfulServerRequestData.userType == "CUSTOMER"){
-              this.router.navigate(["/Friends"]);
-          }
-
-          if(successfulServerRequestData.userType == "ADMIN"){
-              this.router.navigate(["/Admin"]);
-          }
-
-          if(successfulServerRequestData.userType == "COMPANY"){
-              this.router.navigate(["/Company"]);
-          }
       }, serverErrorResponse => { // Reaching here means that the server had failed
                   // serverErrorResponse is the object returned from the ExceptionsHandler
           alert("Error! Status: " + serverErrorResponse.status + ", Message: " + serverErrorResponse.message);            
