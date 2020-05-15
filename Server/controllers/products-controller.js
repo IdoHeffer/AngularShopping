@@ -14,7 +14,7 @@ router.get("/", async (request, response) => {
         response.json(products);
 
     } catch (error) {
-        response.status(404).send(error);
+        return next(error);
     }
 });
 
@@ -25,7 +25,7 @@ router.get("/:id", async (request, response) => {
         response.json(product);
 
     } catch (error) {
-        response.status(404).send("No products in database" +error);
+        return next(error);
     }
 });
 
@@ -36,7 +36,7 @@ router.put("/", async (request, response) => {
         response.status(200).send("updat succesful")
 
     } catch (error) {
-        response.status(404).send(error);
+        return next(error);
     }
 })
 
@@ -57,7 +57,7 @@ router.delete("/:id", async (request, response) => {
         await productLogic.deleteProduct(id);
         response.status(200).send("product was deleted from database");
     } catch (error) {
-        response.status(404).send("cant delete product" +error);
+        return next(error);
     }
 });
 

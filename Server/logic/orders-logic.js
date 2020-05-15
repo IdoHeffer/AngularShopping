@@ -31,14 +31,19 @@ async function deleteOrder(id) {
 }
 
 async function addOrder(order) {
-    // validateOrder(order);
-    let addResponse = await ordersDao.addOrder(order);
-    await writeToFile(order.CartID, order.UserID,addResponse.OrderID);
-    console.log("down here is the orderID ");
+    try {
+          // validateOrder(order);
+        let addResponse = await ordersDao.addOrder(order);
+        await writeToFile(order.CartID, order.UserID,addResponse.OrderID);
+        console.log("down here is the orderID ");
 
     
-    console.log(addResponse.OrderID);
-    return addResponse;
+        console.log(addResponse.OrderID);
+        return addResponse;
+    } catch (error) {
+        throw new ServerError(ErrorType.GENERAL_ERROR, e)
+    }
+  
 }
 
 async function updateOrder(order) {

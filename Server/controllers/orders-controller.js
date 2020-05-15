@@ -24,7 +24,7 @@ router.get("/Closedorder/:id", async (request, response) => {
         response.json(orders);
 
     } catch (error) {
-        response.status(404).send("No orders in database" +error);
+        return next(error);
     }
 });
 
@@ -35,7 +35,7 @@ router.get("/", async (request, response) => {
         response.json(orders);
 
     } catch (error) {
-        response.status(404).send("No orders in database" +error);
+        return next(error);
     }
 });
 
@@ -48,7 +48,7 @@ router.get("/myorders/allorders", async (request, response) => {
         response.json(userOrders);
 
     } catch (error) {
-        response.status(404).send("No orders for user" +error);
+        return next(error);
     }
 });
 
@@ -60,7 +60,7 @@ router.put("/", async (request, response) => {
         response.status(200).send("update succesfully")
 
     } catch (error) {
-        response.status(404).send("No order in database" +error);
+        return next(error);
     }
 })
 
@@ -81,7 +81,7 @@ router.post("/", async (request, response) => {
         response.status(200).send("order was added")
 
     } catch (error) {
-        response.status(404).send("cant add order" +error);
+        return next(error);
     }
 })
 
@@ -91,7 +91,7 @@ router.delete("/:id", async (request, response) => {
         await ordersLogic.deleteOrder(id);
         response.status(200).send("order was deleted from database");
     } catch (error) {
-        response.status(404).send("cant delete order" +error);
+        return next(error);
     }
 });
 
@@ -119,7 +119,7 @@ router.get("/:id", async (request, response) => {
         response.json(userOrder);
 
     } catch (error) {
-        response.status(404).send("No orders for user" +error);
+        return next(error);
     }
 });
 

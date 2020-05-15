@@ -47,7 +47,8 @@ export class ProdAddComponent implements OnInit {
     observable.subscribe(successfulServerRequestData => {
       console.log("111")
         console.log(successfulServerRequestData);     
-        this.uploadFiles();               
+        this.uploadFiles();    
+        alert("Product was added to the store")           
     }, serverErrorResponse => { // Reaching here means that the server had failed
                 // serverErrorResponse is the object returned from the ExceptionsHandler
                 console.log(serverErrorResponse)
