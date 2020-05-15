@@ -38,6 +38,8 @@ async function getAllProducts() {
 
 //updating the product name after upload
 async function updateProductImageName(fileName){
+    console.log("logic")
+    console.log(fileName)
     await productsDao.updateProductImageName(fileName)
 }
 

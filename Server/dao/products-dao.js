@@ -15,20 +15,23 @@ async function getProduct(id) {
 
 }
 async function addProduct(product) {
+    console.log(product)
     try {
-        var sql = ("INSERT INTO marketproject.products (ProductName,CategoryID,Price,img) VALUES ( ?,?,?,? )");
-        let parameters = [product.ProductName,product.CategoryID,product.Price,product.img]
-        let addedProduct = await connection.executeWithParameters(sql,parameters);
-        console.log("Product Created in the DB :"+addedProduct);
-        return addedProduct;
+        var sql = "INSERT INTO marketproject.products (ProductName,CategoryID,Price) VALUES ( ?,?,?)"
+        let parameters = [product.ProductName,product.CategoryID,product.Price]
+       await connection.executeWithParameters(sql,parameters);
+        console.log("Product Created in the DB");
+    
     } catch (e) {
+       
+
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
     }  
    
 }
 async function updateProduct(product) {
     try {
-        var sql = ("UPDATE marketproject.products SET ProductName=?,CategoryID=?,Price =?, img=? WHERE ProductID = ?");
+        var sql = ("UPDATE marketproject.products SET ProductName=?,CategoryID=?,Price =?, picture=? WHERE ProductID = ?");
         let parameters = [product.ProductName,product.CategoryID,product.Price,product.img, product.ProductID]
         let updatedProduct = await connection.executeWithParameters(sql,parameters);
         console.log("Product Updated in the DB :"+updatedProduct);
@@ -63,10 +66,10 @@ async function getAllProducts() {
 }
 
 async function updateProductImageName(fileName){
-    let sql = "SELECT id from products ORDER BY lastChangeDate DESC LIMIT 1"
+    let sql = "SELECT ProductID from products ORDER BY lastChangeDate DESC LIMIT 1"
     let id= await connection.execute(sql)
     let sql2="UPDATE products set picture=? where ProductID=?"
-    let parameters= [fileName , id[0].id]
+    let parameters= [fileName , id[0].ProductID]
     await connection.executeWithParameters(sql2,parameters)
 }
 

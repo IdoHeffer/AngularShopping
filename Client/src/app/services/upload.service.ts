@@ -10,6 +10,7 @@ export class UploadService {
   constructor(private httpClient: HttpClient) { }
 
   public upload(formData) {
+ 
     return this.httpClient.post<any>("/api/Products/file", formData, {
       reportProgress: true,
       observe: 'events'

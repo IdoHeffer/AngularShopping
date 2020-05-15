@@ -5,7 +5,7 @@ let ErrorType = require("../errors/error-type");
 async function getCart(id) {
 
     try{
-        var sql = ("SELECT p.ProductName, p.img, ci.Amount, p.Price, ci.CartItemID, ci.TotalItemPrice, c.CartCreationDate,  c.CartID FROM products p  JOIN cartitems ci ON ci.ProductID=p.ProductID JOIN carts c ON ci.CartID=c.CartID WHERE UserID =? AND Status='OPEN'") 
+        var sql = ("SELECT p.ProductName, p.picture, ci.Amount, p.Price, ci.CartItemID, ci.TotalItemPrice, c.CartCreationDate,  c.CartID FROM products p  JOIN cartitems ci ON ci.ProductID=p.ProductID JOIN carts c ON ci.CartID=c.CartID WHERE UserID =? AND Status='OPEN'") 
         let parameters = [id];
         let cartData = await connection.executeWithParameters(sql,parameters);
         console.log(cartData);

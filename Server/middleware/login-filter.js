@@ -12,7 +12,8 @@ function authenticateJwtRequestToken() {
             // public routes that don't require authentication
             '/Users/login',
             '/Users/register',
-            '/Users/changePassword'
+            '/Users/changePassword',
+            '/orders/recipt/download'
         ]
     });
 }

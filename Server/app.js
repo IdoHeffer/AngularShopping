@@ -9,11 +9,13 @@ const cartItemsController= require("./controllers/cartitems-controller");
 const loginFilter = require('./middleware/login-filter');
 const errorHandler = require("./errors/error-handler");
 const server = express();
+
+
+server.use(express.static('uploads'));
 const fileUpload = require("express-fileupload");
 server.use(express.json());
 
 
-server.use(express.static('uploads'));
 server.use(fileUpload());
 // Middlewares init
 server.use(loginFilter());

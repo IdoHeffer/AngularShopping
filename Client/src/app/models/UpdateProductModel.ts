@@ -4,7 +4,7 @@ export class UpdateProductModel{
         public ProductName?:string,
         public CategoryID?:number,
         public Price?:number,
-        public img?:string,
+        public picture?:string,
         public Amount?:number
     ){}
 

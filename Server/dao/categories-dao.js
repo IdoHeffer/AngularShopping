@@ -70,7 +70,7 @@ async function deleteCategory(id) {
 //get  the products name from a singal categoryand the category name
 async function getAllProductsInCategory(id) {
     try {
-        let sql = "select p.ProductName, p.ProductID,p.CategoryID,p.Price,p.img ,c.CategoryName from categories c join products p on p.CategoryID=c.CategoryID where c.CategoryID=?"
+        let sql = "select p.ProductName, p.ProductID,p.CategoryID,p.Price,p.picture ,c.CategoryName from categories c join products p on p.CategoryID=c.CategoryID where c.CategoryID=?"
         let parameters = [id];
         let products = await connection.executeWithParameters(sql, parameters);
         console.log(products)

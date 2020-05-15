@@ -45,11 +45,13 @@ export class ProdAddComponent implements OnInit {
     // The method subscribe() ussues an http request to the server
     // successfulServerRequestData
     observable.subscribe(successfulServerRequestData => {
+      console.log("111")
         console.log(successfulServerRequestData);     
         this.uploadFiles();               
     }, serverErrorResponse => { // Reaching here means that the server had failed
                 // serverErrorResponse is the object returned from the ExceptionsHandler
-        alert("Error! Status: " + serverErrorResponse.status + ", Message: " + serverErrorResponse.message);            
+                console.log(serverErrorResponse)
+        // alert("Error! Status: " + serverErrorResponse.status);            
     }); 
 
   }
@@ -75,6 +77,7 @@ export class ProdAddComponent implements OnInit {
  }
  
   private uploadFiles() {
+    console.log("111")
     this.fileUpload.nativeElement.value = '';
     //chacking that the user add a file to update
     if(this.files.length!==0){
@@ -91,6 +94,7 @@ export class ProdAddComponent implements OnInit {
    file.inProgress = true;
    this.uploadService.upload(formData)
      .subscribe((event: any) => {
+       console.log("123")
        if (typeof (event) === 'object') {
         console.log(file);
          

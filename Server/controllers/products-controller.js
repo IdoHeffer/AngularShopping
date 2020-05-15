@@ -3,6 +3,8 @@ const productLogic = require("../logic/products-logic")
 const router = express.Router();
 const fs = require("fs");
 const uuid = require("uuid");
+let ServerError = require("../errors/server-error");
+let ErrorType = require("../errors/error-type");
 
 
 
@@ -42,10 +44,10 @@ router.post("/", async (request, response) => {
     let product = request.body;
     try {
         await productLogic.addProduct(product)
-        response.status(200).send("product was added")
+        response.status(200).json("good")
 
     } catch (error) {
-        response.status(404).send("cant add product" +error);
+        return next(error);
     }
 })
 
@@ -61,7 +63,6 @@ router.delete("/:id", async (request, response) => {
 
 
 router.post("/file", async (request, response) => {
-    console.log("1")
     if (!fs.existsSync("./uploads")) { // Must create "/uploads" folder if not exist.
     fs.mkdirSync("./uploads");
     }

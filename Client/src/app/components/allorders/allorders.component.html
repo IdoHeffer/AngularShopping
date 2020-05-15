@@ -26,7 +26,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let currentcartItem of itemsInOrders;">
-                        <td><b>{{currentcartItem.ProductName}}</b><br><img id="ProdImgCart" src="{{currentcartItem.img}}" alt="Product Image"></td>
+                        <td><b>{{currentcartItem.ProductName}}</b><br><img id="ProdImgCart" src="http://localhost:3000/{{currentcartItem.picture}}" alt="Product Image"></td>
                         <td>Amount: <b>{{currentcartItem.Amount}}</b><br>Price:<b>{{ currentcartItem.Price }}₪</b><br>Total:<b>{{currentcartItem.TotalItemPrice}}₪</b></td>
                     </tr>
                 </tbody>

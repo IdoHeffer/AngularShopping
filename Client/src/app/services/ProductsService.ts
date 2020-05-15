@@ -27,8 +27,8 @@ export class ProductsService {
         return this.http.put<void>("/api/Products",updateProductModel);
     }
 
-    public createProduct(adminCreateProductDetails: AdminCreateProductDetails): Observable<void> {        
+    public createProduct(adminCreateProductDetails: AdminCreateProductDetails): Observable<any> {        
         
-        return this.http.post<void>("/api/Products", adminCreateProductDetails);
+        return this.http.post<any>("/api/Products", adminCreateProductDetails);
     }
 }

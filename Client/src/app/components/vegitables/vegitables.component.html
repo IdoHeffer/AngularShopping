@@ -5,7 +5,7 @@
 <div id="cardsContainer" *ngIf="isShowAllProduct">
     <div class="card col-xs-11 col-sm-5 col-md-5 col-lg-2" *ngFor="let currentProduct of products|ByNamePipe :byName"
         (click)=[(showProduct(currentProduct))] data-toggle="modal" data-target="#myModal">
-        <img class="card-img-top" src="{{currentProduct.img}}" alt="Card image cap">
+        <img class="card-img-top" src="{{currentProduct.picture}}" alt="Card image cap">
         <h3>{{currentProduct.ProductName}}</h3>
         <p class="category">Category: {{currentProduct.CategoryID}}</p>
         <p class="price">{{ currentProduct.Price }}₪</p>
@@ -26,7 +26,7 @@
                     <h1 class="modal-title">{{displayedProduct.ProductName}}</h1>
                 </div>
                 <div class="modal-body">
-                    <img class="card-img-top" src="{{displayedProduct.img}}" alt="Card image cap"
+                    <img class="card-img-top" src="{{displayedProduct.picture}}" alt="Card image cap"
                         style="height:200px; width: 250px;">
                 </div>
                 <div class="modal-footer">

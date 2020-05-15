@@ -44,7 +44,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let currentcartItem of cartData;">
-                            <td><img id="ProdImgCart" src="{{currentcartItem.img}}" alt="Product Image"></td>
+                            <td><img id="ProdImgCart" src="http://localhost:3000/{{currentcartItem.picture}}" alt="Product Image"></td>
                             <td><b>{{currentcartItem.ProductName}}</b><br>Amount: <b>{{currentcartItem.Amount}}</b><br>Price:<b>{{ currentcartItem.Price }}₪</b><br>Total:<b>{{currentcartItem.TotalItemPrice}}₪</b></td>
                             <td><button class="btn btn-danger" (click)=[(removeCartItem(currentcartItem.CartItemID))]>X</button></td>
                         </tr>
@@ -64,7 +64,7 @@
             <div class="card col-xs-10 col-sm-5 col-md-5 col-lg-2"
                 *ngFor="let currentProduct of products|ByNamePipe :byName">
                 <div class="card-body" (click)=[(showProduct(currentProduct))] data-toggle="modal" data-target="#myModal">
-                <img class="card-img-top" src="{{currentProduct.img}}" alt="Card image cap">
+                <img class="card-img-top" src="http://localhost:3000/{{currentProduct.picture}}" alt="Card image cap">
                 <h3 (click)=[(showProduct(currentProduct))]
                 data-toggle="modal" data-target="#myModal">{{currentProduct.ProductName}}</h3>
                 <p class="price">{{ currentProduct.Price }}₪</p>
@@ -87,7 +87,7 @@
                             <h1 class="modal-title">{{displayedProduct.ProductName}}</h1>
                         </div>
                         <div class="modal-body">
-                            <img class="card-img-top" src="{{displayedProduct.img}}" alt="Card image cap"
+                            <img class="card-img-top" src="http://localhost:3000/{{displayedProduct.picture}}" alt="Card image cap"
                                 style="height:200px; width: 250px;">
                         </div>
                         <div class="modal-footer">
