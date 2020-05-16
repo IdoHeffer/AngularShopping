@@ -17,6 +17,7 @@ async function addProduct(product) {
 }
 
 async function updateProduct(product) {
+    console.log("got in the catch controller to update prod")
     validateProduct(product);
     await productsDao.updateProduct(product)
 }
@@ -46,7 +47,10 @@ async function updateProductImageName(fileName){
 function validateProduct(product) {
     const errorDetails = Product.validate(product);
     if (errorDetails) {
+        console.log("invalid product");
+        console.log(errorDetails);
         throw new Error("invalid product"+errorDetails)
+
     }
 }
 

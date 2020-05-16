@@ -29,14 +29,14 @@ router.get("/:id", async (request, response,next) => {
     }
 });
 
-router.put("/", async (request, response,next) => {
+router.put("/", async (request, response) => {
     let product = request.body;
     try {
         await productLogic.updateProduct(product)
         response.status(200).send("updat succesful")
 
     } catch (error) {
-        return next(error);
+        response.status(500).json("failed t update")
     }
 })
 

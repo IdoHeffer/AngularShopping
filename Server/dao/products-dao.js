@@ -31,8 +31,8 @@ async function addProduct(product) {
 }
 async function updateProduct(product) {
     try {
-        var sql = ("UPDATE marketproject.products SET ProductName=?,CategoryID=?,Price =?, picture=? WHERE ProductID = ?");
-        let parameters = [product.ProductName,product.CategoryID,product.Price,product.img, product.ProductID]
+        var sql = ("UPDATE marketproject.products SET ProductName=?,CategoryID=?,Price =?, picture=? WHERE ProductID = ? ");
+        let parameters = [product.ProductName,product.CategoryID,product.Price,product.picture, product.ProductID]
         let updatedProduct = await connection.executeWithParameters(sql,parameters);
         console.log("Product Updated in the DB :"+updatedProduct);
         return updatedProduct;

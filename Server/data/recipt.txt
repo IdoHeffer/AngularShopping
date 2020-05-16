@@ -1,8 +1,6 @@
-hello Asaf Kendel
-order number: 55
+hello Maor Shiri 
+order number: 56
 
-1) bread X 1 = 8
-2) entrecote X 5 = 450
-3) milk X 1 = 9
-4) hamburger X 3 = 120
-total order: 587
+1) cheese X 1 = 15
+2) entrecote X 1 = 90
+total order: 285

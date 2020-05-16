@@ -1,11 +1,13 @@
 const Joi = require("joi");
 
 class Product {
-    constructor(ProductName, Price, CategoryID, img) {
+    constructor(ProductName, Price, CategoryID, picture,img,lastChangeDate) {
         this.ProductName = ProductName
         this.Price = Price
         this.CategoryID = CategoryID
-        this.img = img
+        this.picture = picture
+        this.lastChangeDate = lastChangeDate
+        this.img =img
 
     }
 
@@ -15,9 +17,10 @@ class Product {
             ProductName: Joi.string().required(),
             Price: Joi.number().required(),
             CategoryID: Joi.number().required(),
+            picture: Joi.string().optional(),
             img: Joi.string().optional(),
-            ProductID: Joi.number().optional()
-
+            ProductID: Joi.number().optional(),
+            lastChangeDate: Joi.date().optional()
         };
 
         const error = Joi.validate(
