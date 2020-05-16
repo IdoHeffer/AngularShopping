@@ -11,10 +11,32 @@ async function getOrder(id) {
         return order;
 
     } catch (e) {
+        console.log(e)
+        throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
+    }
+  
+    
+}
+
+async function getOrderByCartId(id) {
+    try {
+        var sql = ("SELECT * FROM orders WHERE CartID =?") 
+        let parameters = [id];
+        let order = connection.executeWithParameters(sql,parameters);
+        console.log("Order From DB"+order)
+        return order;
+
+    } catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
     }
   
 }
+
+
+
+
+
 // sending an object includes UserID;
 async function getOrdersByUserID(id){
     console.log(id);
@@ -27,6 +49,7 @@ async function getOrdersByUserID(id){
         return userOrders;
 
     } catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
     }
   
@@ -44,6 +67,7 @@ async function addOrder(order) {
         console.log(addeOrder);
         return addeOrder;
     } catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
     }
    
@@ -57,6 +81,7 @@ async function updateOrder(order) {
         console.log("Order Updated in the DB :"+updatedOrder)
         return updatedOrder;
     } catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
     }
     
@@ -68,6 +93,7 @@ async function deleteOrder(id) {
         await connection.executeWithParameters(sql,parameters);
         console.log("Order Deleted FROM DB");
     } catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
     }
     
@@ -80,6 +106,7 @@ async function getAllOrders() {
         console.log("All Orders:"+orders);
         return orders;
     }catch(e){
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
     }
     
@@ -93,6 +120,7 @@ async function getNumberAllOrders(){
         return numberOfOrders;
 
     }catch(e){
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
     }
     
@@ -110,6 +138,7 @@ async function getClosedOrder(cartID) {
         console.log(cartID);
         return cartData;
     }catch{
+        console.log(e)
         cartData = [];
         return cartData;
     }
@@ -136,5 +165,6 @@ module.exports = {
     getAllOrders,
     getOrdersByUserID,
     getNumberAllOrders,
-    getClosedOrder
+    getClosedOrder,
+    getOrderByCartId
 }

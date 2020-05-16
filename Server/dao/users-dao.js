@@ -23,6 +23,7 @@ async function addUser(user) {
         let addedUser = await connection.executeWithParameters(sql,parameters);
         return addedUser;
     }catch(e){
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
     }
     
@@ -37,6 +38,7 @@ async function updateUser(user) {
         return updatedUser;
         
     }catch(e){
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, JSON.stringify(user), e);
     }
 
@@ -58,6 +60,7 @@ async function login(user) {
         }
         return usersLoginResult[0];
     }catch(e){
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, JSON.stringify(user), e);
     }
 }
@@ -72,6 +75,7 @@ async function changePassword(userData) {
         console.log("All good ! ");
         return ;
     }catch(e){
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
     }
 }
@@ -82,6 +86,7 @@ async function getAllUsers() {
         let users = await connection.execute(sql);
         return users
     }catch(e){
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
     }
 

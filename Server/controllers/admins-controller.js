@@ -13,11 +13,11 @@ router.get("/:id", async (request,response) => {
         response.json(user);
     }catch (error){
         console.log(error);
-        response.status(404).send("Error,No existing User" +error);
+        response.status(500).send("Error,No existing User" +error);
     }
 })
 
-router.post("/",  async (request,response) => {
+router.post("/",  async (request,response,next) => {
     const userToAdd = request.body;
     try {
         const addedUser = await usersLogic.addUser(userToAdd);

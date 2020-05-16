@@ -11,7 +11,8 @@ async function getCart(id) {
         console.log(cartData);
         console.log(id);
         return cartData;
-    }catch{
+    }catch(e){
+        console.log(e)
         cartData = [];
         return cartData;
     }
@@ -36,7 +37,8 @@ async function isCart(id) {
 
         }
         
-    }catch{
+    }catch(e){
+        console.log(e)
         await this.addCart(id);
         console.log("We Are IN Dao Catch");
         this.isCart(id);
@@ -59,6 +61,7 @@ async function addCart(UserID) {
         console.log("Cart Created in the DB :"+addeCart);
         return addeCart;
     } catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
     }
   
@@ -71,6 +74,7 @@ async function updateCart(cart) {
         console.log("Cart Created in the DB :"+updatedCart)
         return updatedCart;
     } catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
     }
     
@@ -92,6 +96,7 @@ async function deleteCart(id) {
         console.log("Cart Returned FROM DB :"+deletedCart);
         return deletedCart;  
     } catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
     }
 }
@@ -103,6 +108,7 @@ async function getAllCarts() {
         console.log(carts);
         return carts;   
     } catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
     }
    
@@ -116,6 +122,7 @@ async function getAllUserCart(id){
         console.log(allUserCarts);
         return allUserCarts;  
     } catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
     }
    

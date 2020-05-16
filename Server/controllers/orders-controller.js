@@ -13,11 +13,12 @@ router.get("/recipt/download", async (request, response, next) => {
         response.download(recipt);
 
     } catch (error) {
+        console.log(error)
         return next(error);
     }
 });
 
-router.get("/Closedorder/:id", async (request, response) => {
+router.get("/Closedorder/:id", async (request, response,next) => {
     let cartID= +request.params.id;
     try {
         let orders = await ordersLogic.getClosedOrder(cartID);
@@ -29,7 +30,7 @@ router.get("/Closedorder/:id", async (request, response) => {
 });
 
 
-router.get("/", async (request, response) => {
+router.get("/", async (request, response,next) => {
     try {
         let orders = await ordersLogic.getAllOrders();
         response.json(orders);
@@ -39,7 +40,7 @@ router.get("/", async (request, response) => {
     }
 });
 
-router.get("/myorders/allorders", async (request, response) => {
+router.get("/myorders/allorders", async (request, response,next) => {
     let token = request.headers.authorization;
     let id = mapUser.checkMapForUserId(token);
     console.log(id);
@@ -53,7 +54,7 @@ router.get("/myorders/allorders", async (request, response) => {
 });
 
 
-router.put("/", async (request, response) => {
+router.put("/", async (request, response,next) => {
     let order = request.body;
     try {
         await ordersLogic.updateOrder(order)
@@ -64,7 +65,7 @@ router.put("/", async (request, response) => {
     }
 })
 
-router.post("/", async (request, response) => {
+router.post("/", async (request, response,next) => {
     let token = request.headers.authorization;
     let id = mapUser.checkMapForUserId(token);
     let order ={
@@ -85,7 +86,7 @@ router.post("/", async (request, response) => {
     }
 })
 
-router.delete("/:id", async (request, response) => {
+router.delete("/:id", async (request, response,next) => {
     let id = +request.params.id
     try {
         await ordersLogic.deleteOrder(id);
@@ -112,7 +113,7 @@ router.get("/numberoforders", async (request, response, next) => {
 });
 
 
-router.get("/:id", async (request, response) => {
+router.get("/:id", async (request, response,next) => {
     let id = +request.params.id
     try {
         let userOrder = await ordersLogic.getOrder(id);

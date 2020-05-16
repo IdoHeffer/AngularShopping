@@ -8,7 +8,7 @@ let ServerError = require("../errors/server-error");
 let ErrorType = require("../errors/error-type");
 
 
-router.get("/forAdmin", async (request,response) => {
+router.get("/forAdmin", async (request,response,next) => {
     let token = request.headers.authorization;
     let id = mapUser.checkMapForUserId(token);
     try {
@@ -19,7 +19,7 @@ router.get("/forAdmin", async (request,response) => {
         return next(error);
     }
 })
-router.get("/", async (request,response) => {
+router.get("/", async (request,response,next) => {
     let token = request.headers.authorization;
     let id = mapUser.checkMapForUserId(token);
     try {
@@ -32,7 +32,7 @@ router.get("/", async (request,response) => {
 })
 
 
-router.get("/forClient", async (request,response) => {
+router.get("/forClient", async (request,response,next) => {
     let token = request.headers.authorization;
     let id = mapUser.checkMapForUserId(token);
     try {
@@ -44,7 +44,7 @@ router.get("/forClient", async (request,response) => {
     }
 })
 
-router.post("/register", async (request,response) => {
+router.post("/register", async (request,response,next) => {
     const userToAdd = request.body;
     try {
         const addedUser = await usersLogic.addUser(userToAdd);
@@ -56,13 +56,13 @@ router.post("/register", async (request,response) => {
    
 })
 
-router.put("/:id",(request,response) => {
+router.put("/:id",(request,response,next) => {
     const id = +request.params.id
     usersLogic.updateUser(id);
     
 })
 
-router.delete("/:id", async (request,response) => {
+router.delete("/:id", async (request,response,next) => {
     const id = +request.params.id
     try {
         const deletedUser = await usersLogic.deleteUser(id);

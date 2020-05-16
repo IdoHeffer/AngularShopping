@@ -20,6 +20,7 @@ async function deleteAllCartItems(id) {
         // validation.validatId(id)
         await cartItemsDao.deleteAllCartItems(id)
     } catch (error) {
+        console.log(e)
         throw new Error("no rows was delete");
     }
 }

@@ -15,7 +15,7 @@ router.get("/usercart", async (request, response) => {
         response.json(userCart);
 
     } catch (error) {
-        response.status(404).send("No cart for user in database" + error);
+        response.status(500).send("No cart for user in database" + error);
     }
 });
 
@@ -23,14 +23,17 @@ router.get("/iscart", async (request, response) => {
     let token = request.headers.authorization;
     let id = mapUser.checkMapForUserId(token)
     try {
+        if (id ==null || id ==undefined) {
+            throw new ServerError(ErrorType.NO_Data_PROVIDED)
+        }
         let userCart = await cartsLogic.isCart(id);
         console.log(userCart);
         response.json(userCart);
 
     } catch (error) {
-        let userCart = await cartsLogic.isCart(id);
-        console.log(userCart);
-        response.status(404).send("No cart for user in database" + error);
+        // let userCart = await cartsLogic.isCart(id);
+        // console.log(userCart);
+        response.status(603).send("No cart for user in database" + error);
     }
 });
 
@@ -40,7 +43,7 @@ router.get("/", async (request, response) => {
         response.json(carts);
 
     } catch (error) {
-        response.status(404).send("No carts in database" +error);
+        response.status(500).send("No carts in database" +error);
     }
 });
 
@@ -51,7 +54,7 @@ router.get("/:id", async (request, response) => {
         response.json(userCart);
 
     } catch (error) {
-        response.status(404).send("No cart for user in database" + error);
+        response.status(500).send("No cart for user in database" + error);
     }
 });
 
@@ -63,7 +66,7 @@ router.post("/", async (request, response) => {
         response.status(200).send("cart was added")
 
     } catch (error) {
-        response.status(404).send("cant add cart" +error);
+        response.status(500).send("cant add cart" +error);
     }
 })
 
@@ -73,7 +76,7 @@ router.delete("/:id", async (request, response) => {
         await cartsLogic.deleteCart(id);
         response.status(200).send("cart was deleted from database");
     } catch (error) {
-        response.status(404).send("cant delete cart" +error);
+        response.status(500).send("cant delete cart" +error);
     }
 });
 

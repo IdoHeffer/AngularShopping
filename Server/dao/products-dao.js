@@ -6,11 +6,11 @@ async function getProduct(id) {
   try {
     var sql = ("SELECT * FROM products WHERE ProductID =?")
     let parameters =  [id]; 
-    connection.executeWithParameters(sql,parameters);
-    console.log("connected");
-    return null;
+    let product = await connection.executeWithParameters(sql,parameters);
+    return product;
     } catch (e) {
-    throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
+        console.log(e)
+        throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
     }  
 
 }
@@ -23,7 +23,7 @@ async function addProduct(product) {
         console.log("Product Created in the DB");
     
     } catch (e) {
-       
+        console.log(e)
 
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
     }  
@@ -37,6 +37,7 @@ async function updateProduct(product) {
         console.log("Product Updated in the DB :"+updatedProduct);
         return updatedProduct;
     } catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
     }  
     
@@ -49,6 +50,7 @@ async function deleteProduct(id) {
         console.log("Product Deleted from the DB :"+deletedProduct);
         return deletedProduct;
     } catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
     }  
   
@@ -60,6 +62,7 @@ async function getAllProducts() {
         console.log(products);
         return products;
     } catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
     }  
    

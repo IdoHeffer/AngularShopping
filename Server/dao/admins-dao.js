@@ -17,6 +17,7 @@ async function addUser(user) {
         let addedUser = await connection.executeWithParameters(sql,parameters);
         return addedUser;
     }catch(e){
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
     }
 }

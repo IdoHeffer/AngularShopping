@@ -10,7 +10,7 @@ router.get("/", async (request, response) => {
         response.json(categories);
 
     } catch (error) {
-        response.status(404).send("No products in database" +error);
+        response.status(500).send("No products in database" +error);
     }
 });
 
@@ -21,7 +21,7 @@ router.get("/:id", async (request, response) => {
         response.json(productsOfCategory);
 
     } catch (error) {
-        response.status(404).send("No products in database in this category" +error);
+        response.status(500).send("No products in database in this category" +error);
     }
 });
 
@@ -33,7 +33,7 @@ router.put("/", async (request, response) => {
         response.status(200).send("update succesful")
 
     } catch (error) {
-        response.status(404).send("No category in database" +error);
+        response.status(500).send("No category in database" +error);
     }
 })
 
@@ -44,7 +44,7 @@ router.post("/", async (request, response) => {
         response.status(200).send("category was added");
 
     } catch (error) {
-        response.status(404).send("cant add category" +error);
+        response.status(500).send("cant add category" +error);
     }
 })
 
@@ -55,7 +55,7 @@ router.delete("/:id", async (request, response) => {
         await categoriesLogic.deleteCategory(id);
         response.status(200).send("category was deleted from database");
     } catch (error) {
-        response.status(404).send("cant delete category" +error);
+        response.status(500).send("cant delete category" +error);
     }
 });
 

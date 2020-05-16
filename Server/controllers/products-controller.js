@@ -8,7 +8,7 @@ let ErrorType = require("../errors/error-type");
 
 
 
-router.get("/", async (request, response) => {
+router.get("/", async (request, response,next) => {
     try {
         let products = await productLogic.getAllProducts();
         response.json(products);
@@ -18,7 +18,7 @@ router.get("/", async (request, response) => {
     }
 });
 
-router.get("/:id", async (request, response) => {
+router.get("/:id", async (request, response,next) => {
     let id = +request.params.id
     try {
         let product = await productLogic.getProduct(id);
@@ -29,7 +29,7 @@ router.get("/:id", async (request, response) => {
     }
 });
 
-router.put("/", async (request, response) => {
+router.put("/", async (request, response,next) => {
     let product = request.body;
     try {
         await productLogic.updateProduct(product)
@@ -40,7 +40,7 @@ router.put("/", async (request, response) => {
     }
 })
 
-router.post("/", async (request, response) => {
+router.post("/", async (request, response,next) => {
     let product = request.body;
     try {
         await productLogic.addProduct(product)
@@ -51,7 +51,7 @@ router.post("/", async (request, response) => {
     }
 })
 
-router.delete("/:id", async (request, response) => {
+router.delete("/:id", async (request, response,next) => {
     let id = +request.params.id
     try {
         await productLogic.deleteProduct(id);

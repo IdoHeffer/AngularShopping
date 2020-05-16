@@ -32,35 +32,36 @@ async function deleteOrder(id) {
 
 async function addOrder(order) {
     try {
-          // validateOrder(order);
+        // validateOrder(order);
         let addResponse = await ordersDao.addOrder(order);
-        await writeToFile(order.CartID, order.UserID,addResponse.OrderID);
+        await writeToFile(order.CartID, order.UserID, addResponse.OrderID);
         console.log("down here is the orderID ");
 
-    
+
         console.log(addResponse.OrderID);
         return addResponse;
     } catch (error) {
-        throw new ServerError(ErrorType.GENERAL_ERROR, e)
+        console.log(error)
+        throw new ServerError(ErrorType.GENERAL_ERROR, error)
     }
-  
+
 }
 
 async function updateOrder(order) {
     validateOrder(order)
     let updatedOrder = await ordersDao.updateOrder(order)
-    console.log("Updated order"+updatedOrder);
+    console.log("Updated order" + updatedOrder);
 }
 
 
 function validateOrder(order) {
     const errorDetails = Order.validate(order);
     if (errorDetails) {
-        throw new Error("invalid order information"+errorDetails)
+        throw new Error("invalid order information" + errorDetails)
     }
 }
 
-async function getNumberAllOrders(){
+async function getNumberAllOrders() {
     let numberOfOrders = await ordersDao.getNumberAllOrders();
     // validation.validateResponse(numberOfOrders)
     return numberOfOrders;
@@ -79,24 +80,34 @@ async function getClosedOrder(cartID) {
 }
 
 
-async function writeToFile(CartID, UserID,OrderID) {
-    //getting the user inpormation for the first and last name
-    let userInformation = await usersDao.getUser(UserID)
-    //getting the user order for the order id and the total sum
-    let userOrder = await ordersDao.getOrder(CartID)
-    console.log("Donw here is the the Order");
-    console.log(userOrder);
-    
-    await fileHandler.writeFile("./data/recipt.txt", "hello " + userInformation[0].FirstName + " " + userInformation[0].LastName + "\n" + "order number: " + userOrder.OrderID + "\n");
-    //geting all the products in the cart for the recipt
-    let cartItem = await cartItemsDao.getAllCartItems(CartID);    
-    for (let index = 0; index < cartItem.length; index++) {
-        let productfromDb = await productsDao.getProduct(cartItem[index].ProductID);
-        await fileHandler.appendFile("./data/recipt.txt", "\n" + (index + 1) + " - " + productfromDb[index].ProductName + " X " + cartItem[index].Amount + " = " + cartItem[index].TotalItemPrice)
+async function writeToFile(CartID, UserID, OrderID) {
+    try {
+        //getting the user inpormation for the first and last name
+        let userInformation = await usersDao.getUser(UserID)
+        //getting the user order for the order id and the total sum
+        let userOrder = await ordersDao.getOrderByCartId(CartID)
+        console.log("Donw here is the the Order");
+        console.log(userOrder);
+
+        await fileHandler.writeFile("./data/recipt.txt", "hello " + userInformation[0].FirstName + " " + userInformation[0].LastName + "\n" + "order number: " + userOrder[0].OrderID + "\n");
+        //geting all the products in the cart for the recipt
+        let cartItem = await cartItemsDao.getAllCartItems(CartID);
+        console.log(cartItem)
+        for (let index = 0; index < cartItem.length; index++) {
+            let productfromDb = await productsDao.getProduct(cartItem[index].ProductID);
+            console.log(productfromDb)
+            await fileHandler.appendFile("./data/recipt.txt", "\n" + (index+1) + ") " + productfromDb[0].ProductName + " X " + cartItem[index].Amount + " = " + cartItem[index].TotalItemPrice)
+        }
+        console.log("Donw here is the cartItems");
+        console.log(cartItem);
+        await fileHandler.appendFile("./data/recipt.txt", "\n" + "total order: " + userOrder[0].FinalPrice);
+
+    } catch (error) {
+        console.log(error)
+        throw new ServerError(ErrorType.GENERAL_ERROR, error)
     }
-    console.log("Donw here is the cartItems");
-    console.log(cartItem);
-    await fileHandler.appendFile("./data/recipt.txt", "\n" + "total order: " + userOrder.FinalPrice);
+
+
 }
 
 
@@ -111,7 +122,7 @@ module.exports = {
     getAllUserOrders,
     getClosedOrder,
     writeToFile
-    
+
 
 
 }

@@ -10,6 +10,7 @@ async function getOneCartItem(CartItemID) {
         // console.log("Cart item From DB"+cartitem)
         return cartitem;
     } catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
     }
     
@@ -23,6 +24,7 @@ async function getAllCartItems(CartID) {
         // console.log("Cart item From DB"+allcartitems)
         return allcartitems;
     } catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
     }
     
@@ -39,6 +41,7 @@ async function addCartItem(cartItem) {
         let addeCartItem = await connection.executeWithParameters(sql,parameters);
         console.log("Cart Created in the DB :"+addeCartItem);
     } catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
     }
     
@@ -51,6 +54,7 @@ async function updateCartItem(cartItem) {
         console.log(updatedCart)
         return updatedCart;
     } catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
     }
     
@@ -63,6 +67,7 @@ async function deleteCartItem(id) {
         let deletedCart = await connection.executeWithParameters(sql,parameters);
         console.log(deletedCart);
     }catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
     }
    
@@ -75,6 +80,7 @@ async function deleteAllCartItems(id) {
         let deletedCart = await connection.executeWithParameters(sql,parameters);
         console.log(deletedCart);
     }  catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
     }
     
@@ -88,6 +94,7 @@ async function getAllCartItems(CartID) {
         console.log(cartItems);
         return cartItems;
     } catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
     }
   

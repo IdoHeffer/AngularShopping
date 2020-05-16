@@ -9,6 +9,7 @@ async function getAllCategories() {
         let categories = await connection.execute(sql);
         return categories
     } catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
     }
     
@@ -23,6 +24,7 @@ async function addCategory(category) {
         console.log(addedCategory);
 
     } catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
     }
    
@@ -36,6 +38,7 @@ async function updateCategory(category) {
         await connection.executeWithParameters(sql, parameters);
 
     } catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
     }
     
@@ -61,6 +64,7 @@ async function deleteCategory(id) {
 
 
     } catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
     }
     
@@ -77,6 +81,7 @@ async function getAllProductsInCategory(id) {
         return products
 
     } catch (e) {
+        console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e)
     }
     
