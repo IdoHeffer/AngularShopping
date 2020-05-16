@@ -28,7 +28,7 @@ async function isCart(id) {
         let userCart = await cartsDao.isCart(id);
         validation.validateResponse(userCart)
         return userCart;
-    }catch{
+    }catch (err){
        console.log("Error !!!!!!!");
        console.log(err);
        this.isCart(id);

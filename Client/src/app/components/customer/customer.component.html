@@ -4,7 +4,8 @@
             <div id="categoriesHeaderDivPanel">
                 <button type="button" class="btn btn-warning" (click)="isShowCartSideBar()" style="top:0; float:right; right:0;"><span class="glyphicon glyphicon-shopping-cart"></span> <span class="glyphicon glyphicon-arrow-right"></span></button>
                 <h1><b>Categories Panel</b></h1><br>
-                <ul>
+                <p style="font-size: larger;display: inline;">Search by name : </p><input type="text" class="form-control" style="width: 30%;display: inline-block;" placeholder="Search..." [(ngModel)]="byName"><br><br>
+                <ul style="margin-bottom: 6% ;">
                     <li id="first"><a (click)="getAllProducts()"  routerLinkActive="the-chosen-one"
                             style="font-size:20px" class="fa"> All Products </a></li>
                     <li id="first"><a value=6 (click)="categoryProducts(6)" routerLinkActive="the-chosen-one"
@@ -22,7 +23,6 @@
                 </ul>
 
             </div><br><br>
-            <b>Search By Name: </b><input type="text" [(ngModel)]="byName">
         </nav>
     </header>
 
@@ -43,10 +43,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let currentcartItem of cartData;">
+                        <tr *ngFor="let currentcartItem of cartData; let i=index">
                             <td><img id="ProdImgCart" src="http://localhost:3000/{{currentcartItem.picture}}" alt="Product Image"></td>
                             <td><b>{{currentcartItem.ProductName}}</b><br>Amount: <b>{{currentcartItem.Amount}}</b><br>Price:<b>{{ currentcartItem.Price }}₪</b><br>Total:<b>{{currentcartItem.TotalItemPrice}}₪</b></td>
-                            <td><button class="btn btn-danger" (click)=[(removeCartItem(currentcartItem.CartItemID))]>X</button></td>
+                            <td><button class="btn btn-danger" (click)=[(removeCartItem(i,currentcartItem.CartItemID,currentcartItem.Price))]>X</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -65,10 +65,10 @@
                 *ngFor="let currentProduct of products|ByNamePipe :byName">
                 <div class="card-body" (click)=[(showProduct(currentProduct))] data-toggle="modal" data-target="#myModal">
                 <img class="card-img-top" src="http://localhost:3000/{{currentProduct.picture}}" alt="Card image cap">
-                <h3 (click)=[(showProduct(currentProduct))]
-                data-toggle="modal" data-target="#myModal">{{currentProduct.ProductName}}</h3>
+                <h4 class="cardProdHeader" (click)=[(showProduct(currentProduct))]
+                data-toggle="modal" data-target="#myModal">{{currentProduct.ProductName}}</h4>
                 <p class="price">{{ currentProduct.Price }}₪</p>
-                <p>Some text about the jeans.jeansum.</p>
+                <p>Description of the product.</p>
                 </div>
                 
                 <p><button (click)=[(purchaseProduct(currentProduct))] style="bottom:0">Add to Cart</button></p>

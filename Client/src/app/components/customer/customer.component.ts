@@ -106,6 +106,7 @@ export class CustomerComponent implements OnInit {
     this.cartItem = new CartItem(this.cart.CartID, product.ProductID, this.quantity || 1, this.ToalItemPrice || product.Price);
     console.log(this.cartItem);
     this.isShowAllProduct = true;
+    this
     const observableCartItem = this.cartsService.purchaseProduct(this.cartItem);
     observableCartItem.subscribe(successfulCartItemAdd => {
       console.log(successfulCartItemAdd);
@@ -125,33 +126,42 @@ export class CustomerComponent implements OnInit {
     });
   }
 
-  public removeCartItem(itemID: number) {
+  public removeCartItem(index:number,itemID: number,ItemPrice :number) {
+    this.cartData.splice(index, 1);
+    console.log(this.cartData)
     const observableCart = this.cartsService.deleteCartItem(itemID);
     observableCart.subscribe(userCartFromServer => {
-      const observableCart = this.cartsService.getUserCart();
-      observableCart.subscribe(userCartFromServer => {
-        this.cartData = userCartFromServer;
-        console.log(this.cartData)
-        console.log(userCartFromServer);
-      });
-      console.log(userCartFromServer);
+      
+      // const observableCart = this.cartsService.getUserCart();
+      // observableCart.subscribe(userCartFromServer => {
+      //   this.cartData = userCartFromServer;
+      //   console.log(this.cartData)
+      //   console.log(userCartFromServer);
+      // });
+      // console.log(userCartFromServer);
+      // this.totalItemsPrice(this.cartData);
     })
-    this.refreshCart();
+    this.CartPrice= this.CartPrice -ItemPrice;
+    // this.refreshCart();
+   
   }
 
 
   public deleteAllCartItems(cartID:number){
+    this.cartData.splice(0,this.cartData.length)
+
     const observableCart = this.cartsService.deleteAllCartItems(cartID);
     observableCart.subscribe(userCartFromServer => {
-      const observableCart = this.cartsService.getUserCart();
-      observableCart.subscribe(userCartFromServer => {
-        this.cartData = userCartFromServer;
-        console.log(this.cartData)
-        console.log(userCartFromServer);
-      });
-      console.log(userCartFromServer);
+      // const observableCart = this.cartsService.getUserCart();
+      // observableCart.subscribe(userCartFromServer => {
+      //   this.cartData = userCartFromServer;
+      //   console.log(this.cartData)
+      //   console.log(userCartFromServer);
+      // });
+      // console.log(userCartFromServer);
     })
-    this.refreshCart();
+    this.CartPrice=0;
+    // this.refreshCart();
   }
 
   public categoryProducts(value) {
@@ -201,7 +211,8 @@ export class CustomerComponent implements OnInit {
     }
   }
 
-  public totalItemsPrice(){
+  public totalItemsPrice(cartData? ){
+    this.cartData = this.cartData;
     for (let i = 0; i < this.cartData.length; i++) {
       this.CartPrice = this.CartPrice + this.cartData[i].TotalItemPrice;
     }

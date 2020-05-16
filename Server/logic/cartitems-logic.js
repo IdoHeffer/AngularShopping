@@ -5,18 +5,21 @@ let ServerError = require("../errors/server-error");
 let ErrorType = require("../errors/error-type");
 
 async function deleteCartItem(id) {
-    // validation.validatId(id)
-    let deleteResponse = await cartItemsDao.deleteCartItem(id)
-    if (deleteResponse.affectedRows == 0) {
+    try {
+        // validation.validatId(id)
+        await cartItemsDao.deleteCartItem(id)
+    } catch (error) {
         throw new Error("no rows was delete");
     }
 }
+        
 
 
 async function deleteAllCartItems(id) {
-    // validation.validatId(id)
-    let deleteResponse = await cartItemsDao.deleteAllCartItems(id)
-    if (deleteResponse.affectedRows == 0) {
+    try {
+        // validation.validatId(id)
+        await cartItemsDao.deleteAllCartItems(id)
+    } catch (error) {
         throw new Error("no rows was delete");
     }
 }

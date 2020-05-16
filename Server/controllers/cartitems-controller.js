@@ -1,4 +1,4 @@
-const cartItemsLogic = require("../logic/cartItems-logic")
+const cartItemsLogic = require("../logic/cartItems-logic");
 const express = require("express")
 const router = express.Router();
 let ServerError = require("../errors/server-error");
@@ -13,7 +13,7 @@ router.get("/:id", async (request, response) => {
         response.json(cartitems);
 
     } catch (error) {
-        response.status(404).send("cant get cart item" +error);
+        response.status(500).send("cant get cart item" +error);
     }
 });
 
@@ -26,7 +26,7 @@ router.put("/", async (request, response) => {
         response.status(200).send("updat succesful");
 
     } catch (error) {
-        response.status(404).send("No item in database  "+error);
+        response.status(500).send("No item in database  "+error);
     }
 })
 
@@ -37,7 +37,7 @@ router.post("/", async (request, response) => {
         response.status(200);
 
     } catch (error) {
-        response.status(404).send("cant add item" +error);
+        response.status(500).send("cant add item" +error);
     }
 })
 
@@ -47,7 +47,7 @@ router.delete("/:id", async (request, response) => {
         await cartItemsLogic.deleteCartItem(id);
         response.status(200).send("item was deleted from database");
     } catch (error) {
-        response.status(404).send("cant delete item" +error);
+        response.status(500).send("cant delete item" +error);
     }
 });
 
@@ -57,7 +57,7 @@ router.delete("/deleteAll/:id", async (request, response) => {
         await cartItemsLogic.deleteAllCartItems(id);
         response.status(200).send("item was deleted from database");
     } catch (error) {
-        response.status(404).send("cant delete item" +error);
+        response.status(500).send("cant delete item" +error);
     }
 });
 
