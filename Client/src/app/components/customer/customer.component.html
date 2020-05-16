@@ -46,7 +46,7 @@
                         <tr *ngFor="let currentcartItem of cartData; let i=index">
                             <td><img id="ProdImgCart" src="http://localhost:3000/{{currentcartItem.picture}}" alt="Product Image"></td>
                             <td><b>{{currentcartItem.ProductName}}</b><br>Amount: <b>{{currentcartItem.Amount}}</b><br>Price:<b>{{ currentcartItem.Price }}₪</b><br>Total:<b>{{currentcartItem.TotalItemPrice}}₪</b></td>
-                            <td><button class="btn btn-danger" (click)=[(removeCartItem(i,currentcartItem.CartItemID,currentcartItem.Price))]>X</button></td>
+                            <td><button class="btn btn-danger" (click)=[(removeCartItem(i,currentcartItem.CartItemID,currentcartItem.TotalItemPrice))]>X</button></td>
                         </tr>
                     </tbody>
                 </table>
