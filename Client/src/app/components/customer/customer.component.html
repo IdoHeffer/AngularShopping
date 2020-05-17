@@ -62,7 +62,7 @@
     <main id="main" >
         <div id="cardsContainer" *ngIf="isShowAllProduct">
             <div class="card col-xs-10 col-sm-5 col-md-5 col-lg-2"
-                *ngFor="let currentProduct of products|ByNamePipe :byName">
+                *ngFor="let currentProduct of products |ByNamePipe :byName">
                 <div class="card-body" (click)=[(showProduct(currentProduct))] data-toggle="modal" data-target="#myModal">
                 <img class="card-img-top" src="http://localhost:3000/{{currentProduct.picture}}" alt="Card image cap">
                 <h4 class="cardProdHeader" (click)=[(showProduct(currentProduct))]

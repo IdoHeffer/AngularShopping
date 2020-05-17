@@ -9,6 +9,7 @@ import { CartData } from 'src/app/models/CartData';
 import { Router } from '@angular/router';
 import { CartItem } from 'src/app/models/CartItem';
 import { Location } from '@angular/common'
+import { ProductsPipeByName} from 'src/app/pipes/ProductsPipeByName'
 
 
 @Component({

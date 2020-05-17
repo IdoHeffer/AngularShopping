@@ -15,6 +15,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthenticationInterceptor } from '../interceptors/AuthenticationInterceptor';
 import { ProductsService } from '../services/ProductsService';
 import { ProductsPipeByMinPrice } from '../pipes/ProductsPipeByMinPrice';
+import { ProductsPipeByName } from '../pipes/ProductsPipeByName';
 import { FriendsComponent } from '../components/friends/friends.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminModule } from './admin.module';
@@ -22,14 +23,14 @@ import { RegisterComponent } from '../components/register/register.component';
 import { AdminUserService } from '../services/AdminUsersService';
 import { FriendsService } from '../services/FriendsService';
 import { ForgotpasswordComponent } from '../components/forgotpassword/forgotpassword.component';
-import { ProductsModule } from './products.module';
 import { ConfirmEqualValidator } from '../ValidationsFiles/confirm-equal-validatorts';
 import { CartComponent } from '../components/cart/cart.component';
 import { RefreshComponent } from '../components/refresh/refresh.component';
 import { CheckoutComponent } from '../components/checkout/checkout.component';
 import { ReceiptComponent } from '../components/receipt/receipt.component';
 import { AllordersComponent } from '../components/allorders/allorders.component';
-
+import { CustomerComponent } from 'src/app/components/customer/customer.component'
+ 
 
 
 
@@ -40,6 +41,7 @@ import { AllordersComponent } from '../components/allorders/allorders.component'
   MenuComponent,
   MainComponent,
   HeaderComponent,
+  CustomerComponent,
   FooterComponent,
   FriendsComponent,
   RegisterComponent,
@@ -50,6 +52,7 @@ import { AllordersComponent } from '../components/allorders/allorders.component'
   CheckoutComponent,
   ReceiptComponent,
   AllordersComponent,
+  ProductsPipeByName,
 
  ],
   imports: [
@@ -59,7 +62,6 @@ import { AllordersComponent } from '../components/allorders/allorders.component'
     RouterModule, RoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ProductsModule
   ],
   providers: [UserService
     , ProductsService,AdminUserService,FriendsService

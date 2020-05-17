@@ -3,7 +3,6 @@ import { Product } from 'src/app/models/Product';
 import { ProductsService } from 'src/app/services/ProductsService';
 import { LoginGuardService } from 'src/app/login.guard';
 import { Router } from '@angular/router';
-import { ProductsModule } from 'src/app/modules/products.module'
 import { CartsService } from 'src/app/services/CartsService';
 import { Cart } from 'src/app/models/Cart';
 
