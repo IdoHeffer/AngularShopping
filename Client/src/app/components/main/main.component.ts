@@ -76,16 +76,6 @@ export class MainComponent implements OnInit {
         }, error => {
             console.log('Failed to get Number of Orders ' + JSON.stringify(error));
         });
-
-        let observableProd = this.productsService.getNumberofProducts();
-        observableProd.subscribe(productsNumber => {
-            this.numberOfproducts = productsNumber[0].numberofproducts ;
-            console.log(1)
-            console.log(productsNumber)
-        }, error => {
-            console.log('Failed to get Number of Products ' + JSON.stringify(error));
-        });
-
     }
 
 }
