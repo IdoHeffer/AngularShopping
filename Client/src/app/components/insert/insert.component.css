@@ -39,7 +39,9 @@ input[type=text]:focus{
    
     color: #232f3e;
 }
-  
+label{
+    font-size: large;
+}
   
 .btn {
     margin-top: 4%;

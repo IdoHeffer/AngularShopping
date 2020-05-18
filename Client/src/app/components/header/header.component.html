@@ -31,11 +31,10 @@
             <li><a routerLink="/Products/Wines & Beers">Wines & Beers</a></li>
           </ul>
         </li>
-        <li *ngIf="isUserAdmin"><a routerLink="/Admin"><i class="fa fa-user-secret"
+        <li *ngIf="isUserLoggedIn()"><a routerLink="/Admin"><i class="fa fa-user-secret"
           style="font-size:18px"></i> Admin</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
         <li class="dropdown"  *ngIf="isUserLoggedIn()">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
             aria-expanded="false">Hello, {{userService.FirstName}}   <span class="caret"></span></a>

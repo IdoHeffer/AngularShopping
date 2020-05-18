@@ -26,33 +26,8 @@
   </form>
 </div>
 
-
-
-
-
-<!-- <div class="loginContainer  col-xs-11 col-sm-6 col-md-6  col-lg-offset-1 col-lg-4">
-    <form #loginForm="ngForm" action="/action_page.php"  style="margin-top:10%;">
-        <h1>Sign-In</h1><br>
-        <div class="input-container">
-          <i class="fa fa-user icon"  style="font-size:20px"></i>
-          <input #userNameInput="ngModel" class="input-field"  required  type="text" placeholder="Username"  [(ngModel)]="userLoginDetails.userName" name="username"><br>
-        </div>    
-        <span  class="validationErr" *ngIf="userNameInput.errors?.required && userNameInput.touched">Missing - username !</span><br>
-        <div class="input-container">
-          <i class="fa fa-key icon" style="font-size:20px"></i>
-          <input  #passwordInput="ngModel"  required class="input-field" type="password" placeholder="Password" [(ngModel)]="userLoginDetails.password" name="password">
-        </div>
-        <span class="validationErr" *ngIf="passwordInput.errors?.required && passwordInput.touched">Missing - password !</span>
-        <button type="button" [disabled]="loginForm.form.invalid" (click)="login()" class="btn" value="Login" style="font-size:15px">Login</button><br><br>
-
-        <p id="notRegisterPassword">Not Registerd ? sign-up right here <i class="fa fa-arrow-circle-down"></i></p> <p id="forgotpassword" routerLink="/ForgotPassword" routerLinkActive="the-chosen-one" >|   Forgot your password ? </p><br><br>
-        
-        <button routerLink="/Register" routerLinkActive="the-chosen-one" type="button" id="RegisterBtn" class="btn">Register</button>
-    </form>
-</div> -->
-
  <div class="col-xs-11 col-sm-6 col-md-6" style="margin-left:7%; margin-top: 3%;">
-    <h4><b>We are a new OnlineShop Made just for you !</b><br>So you won't need to come out from your House.<br>We will deliver it all to You in 24/7 Delivery Services System<br>We've reached Over {{websiteDetails.AmountOfOrders}} orders !!</h4>
+    <h4><b>We are a new OnlineShop Made just for you !</b><br>So you won't need to come out from your House.<br>We will deliver it all to You in 24/7 Delivery Services System<br><br>   <b>We've reached Over {{websiteDetails.AmountOfOrders}} orders !!</b><br> A Big collecten of {{numberOfproducts}} products</h4>
       <img id="logo" src="../../../assets/PhoneTheme.jpg" alt="Theme Image">
   </div>
 

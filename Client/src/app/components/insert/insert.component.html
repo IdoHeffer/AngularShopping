@@ -1,6 +1,7 @@
 <!-- לזכור להוסיף [(ngModel)]="AdminCreateUserDetails.gender" -->
 
 <div id="adminCreateUserDiv">
+  <h1> Create new user </h1>
   <form #CreateUserForm="ngForm" action="/action_page.php">
     <!-- /////// left side of form -->
     <div id="leftForm">
@@ -54,7 +55,8 @@
           [(ngModel)]="adminCreateUserDetails.Street"><br><br>
       </div>
     </div>
-
-    <button type="button" (click)="register()" class="btn" value="register" style="font-size:15px;">Create User</button>
   </form>
+  <div style="display:block; float: left;width: 100%;">
+    <button type="button" (click)="register()" class="btn" value="register" style="font-size:15px;">Create User</button>
+  </div>
 </div>

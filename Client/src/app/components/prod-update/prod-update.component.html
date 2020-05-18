@@ -43,10 +43,10 @@
         <button type="submit" class="btn btn-warning" style="font-size: x-large;" (click)="updateProduct()">Update <i class="fa fa-save"></i></button>
       </form>
 </div>
-<div style="display:block;" >
+<!-- <div style="display:block;" >
     <span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776; open</span>
     <span style="font-size:30px;cursor:pointer" (click)="closeNav()">&#9776; close</span>
-</div>
+</div> -->
 <div id="main" *ngIf="isShowAllProduct">
    
     <div class="card col-xs-10 col-sm-5 col-md-5 col-lg-2" *ngFor="let currentProduct of products">

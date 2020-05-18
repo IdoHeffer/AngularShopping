@@ -21,23 +21,24 @@
                             <div class="col-50">
                                 <label for="firstname">First Name</label>
                                 <input #checkoutFirstNameInput="ngModel" type="text" id="firstname" name="firstname" required placeholder="First Name..." [(ngModel)]="firstName">
-                                <span *ngIf="checkoutFirstNameInput.errors?.required && checkoutFirstNameInput.touched">Missing - First Name</span><br>
+                                <small class="text-danger" *ngIf="checkoutFirstNameInput.errors?.required && checkoutFirstNameInput.touched">Missing - First Name</small>
                             </div>
                             <div class="col-50">
                                 <label for="lastname">Last Name</label>
                                 <input #checkoutLastNameInput="ngModel" type="text" id="lastname" name="lastname" required placeholder="Last Name..." [(ngModel)]="lastName">
-                                <span *ngIf="checkoutLastNameInput.errors?.required && checkoutLastNameInput.touched">Missing - Last Name</span><br>
+                                <small  class="text-danger" *ngIf="checkoutLastNameInput.errors?.required && checkoutLastNameInput.touched">Missing - Last Name</small>
                             </div>
                         </div>
                         <label for="email"><i class="fa fa-envelope"></i> UserName / Email</label>
-                        <input  #checkoutUserNameInput="ngModel" type="text" id="email" name="email" required placeholder="john@example.com" [(ngModel)]="userName">
-                        <span *ngIf="checkoutUserNameInput.errors?.required && checkoutUserNameInput.touched">Missing - UserName / Email</span><br>
+                        <input  #checkoutUserNameInput="ngModel" type="text" id="email" name="email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="john@example.com" [(ngModel)]="userName">
+                        <small  class="text-danger" *ngIf="checkoutUserNameInput.errors?.required && checkoutUserNameInput.touched">Missing - UserName / Email</small><br>
+                        <small class="text-danger" *ngIf="checkoutUserNameInput.errors?.pattern">Please provide a valid email address</small>
                         <label for="adr"><i class="fa fa-address-card-o"></i>Delivery Address</label>
                         <input #checkoutstreetInput="ngModel" type="text" id="adr" name="address" required placeholder="542 W. 15th Street"  required [(ngModel)]="checkOutDetails.DeliveryStreetAddress">
-                        <span *ngIf="checkoutstreetInput.errors?.required && checkoutstreetInput.touched">Missing - Street</span><br>
+                        <small class="text-danger" *ngIf="checkoutstreetInput.errors?.required && checkoutstreetInput.touched">Missing - Street</small><br>
                         <label for="city"><i class="fa fa-institution"></i>Delivery City</label>
                         <input #checkoutCityInput="ngModel" required type="text" id="city" name="city" required placeholder="New York" [(ngModel)]="checkOutDetails.DeliveryCityAddress">
-                        <span *ngIf="checkoutCityInput.errors?.required && checkoutCityInput.touched">Missing - City</span><br>
+                        <small class="text-danger" *ngIf="checkoutCityInput.errors?.required && checkoutCityInput.touched">Missing - City</small><br>
                     </div>
 
                     <div class="col-50">
@@ -51,13 +52,13 @@
                         </div>
                         <label for="cname">Name on Card</label>
                         <input #checkoutCardNameInput required  type="text" id="cname" name="cardname" placeholder="John More Doe">
-                        <span *ngIf="checkoutCardNameInput.errors?.required && checkoutCardNameInput.touched">Missing - Card Holder Name</span><br>
+                        <small class="text-danger" *ngIf="checkoutCardNameInput.errors?.required && checkoutCardNameInput.touched">Missing - Card Holder Name</small><br>
                         <label for="ccnum">Credit card number</label>
-                        <input #creditCardInput required type="text" id="ccnum" name="cardnumber" required="(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$" [(ngModel)]="checkOutDetails.CreditCardDigits" placeholder="1111-2222-3333-4444">
-                        <span *ngIf="creditCardInput.errors?.required && creditCardInput.touched">Missing - Credit Card Number</span><br>
+                        <input #creditCardInput required type="text" id="ccnum" name="cardnumber" required  [(ngModel)]="checkOutDetails.CreditCardDigits" placeholder="1111-2222-3333-4444">
+                        <small class="text-danger" *ngIf="creditCardInput.errors?.required && creditCardInput.touched">Missing - Credit Card Number</small><br>
                         <label for="DeliveryDate"><i class="fa fa-calendar"></i> DeliveryDate</label>
                         <input #checkoutDateInput="ngModel" type="date" id="city" name="DeliveryDate" placeholder="Date" required [(ngModel)]="checkOutDetails.DeliveryDate">
-                        <span *ngIf="checkoutDateInput.errors?.required && checkoutDateInput.touched">Missing - Delivery Date</span><br>
+                        <small class="text-danger" *ngIf="checkoutDateInput.errors?.required && checkoutDateInput.touched">Missing - Delivery Date</small><br>
                     </div>
 
                 </div>

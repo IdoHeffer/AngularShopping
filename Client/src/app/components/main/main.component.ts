@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { OrdersService } from 'src/app/services/OrdersService'
 import { WebsiteDetails } from 'src/app/models/WebsiteDetails';
+import { ProductsService } from 'src/app/services/ProductsService';
 
 @Component({
     selector: 'app-main',
@@ -16,16 +17,19 @@ export class MainComponent implements OnInit {
     public userLoginDetails: UserLoginDetails;
     private usersService: UserService;
     public ordersService: OrdersService;
+    public productsService : ProductsService;
+    public numberOfproducts: number;
 
     // The router parameter is an example to a short writing of a member + it's assignment
     // private router: Router EQUIVALENT TO the following 3: 
     // 1. Member definition
     // 2. Parameter definition
     // 3. this.router = router
-    constructor(usersService: UserService, private router: Router, ordersService: OrdersService) {
+    constructor(usersService: UserService, private router: Router, ordersService: OrdersService,productsService : ProductsService) {
         this.userLoginDetails = new UserLoginDetails();
         this.usersService = usersService;
         this.ordersService = ordersService;
+        this.productsService = productsService;
         this.websiteDetails = new WebsiteDetails(15);
     }
 
@@ -73,6 +77,14 @@ export class MainComponent implements OnInit {
             console.log('Failed to get Number of Orders ' + JSON.stringify(error));
         });
 
+        let observableProd = this.productsService.getNumberofProducts();
+        observableProd.subscribe(productsNumber => {
+            this.numberOfproducts = productsNumber[0].numberofproducts ;
+            console.log(1)
+            console.log(productsNumber)
+        }, error => {
+            console.log('Failed to get Number of Products ' + JSON.stringify(error));
+        });
 
     }
 
