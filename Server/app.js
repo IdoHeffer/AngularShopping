@@ -11,6 +11,7 @@ const errorHandler = require("./errors/error-handler");
 const server = express();
 
 
+server.use(express.static('dist/client'));
 server.use(express.static('uploads'));
 const fileUpload = require("express-fileupload");
 server.use(express.json());
@@ -30,6 +31,10 @@ server.use("/Categories", categoriesController);
 server.use("/Carts", cartsController);
 server.use("/CartItems", cartItemsController);
 server.use(errorHandler);
+
+server.get('/*', (req, res) => {
+    res.sendFile('dist/client' + '/index.html');
+  })
 
 
 server.listen(3000, () => {
