@@ -1,4 +1,4 @@
-const cartItemsLogic = require("../logic/cartItems-logic");
+const cartItemsLogic = require("../logic/cartitems-logic");
 const express = require("express")
 const router = express.Router();
 let ServerError = require("../errors/server-error");

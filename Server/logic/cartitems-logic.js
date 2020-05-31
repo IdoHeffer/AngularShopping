@@ -1,5 +1,5 @@
 const cartItemsDao = require("../dao/cartItems-dao")
-const CartItem = require("../models/cartitem")
+const CartItem = require("../models/cartItem")
 const validation = require("../validation/validation")
 let ServerError = require("../errors/server-error");
 let ErrorType = require("../errors/error-type");
