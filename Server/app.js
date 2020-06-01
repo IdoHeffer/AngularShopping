@@ -11,7 +11,7 @@ const errorHandler = require("./errors/error-handler");
 const server = express();
 
 
-server.use(express.static('dist/client'));
+server.use(express.static('dist/Coupons'));
 server.use(express.static('uploads'));
 const fileUpload = require("express-fileupload");
 server.use(express.json());
