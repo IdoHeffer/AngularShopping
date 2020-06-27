@@ -1,44 +1,72 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div></div>
-<button type="button" id="backToProd" class="btn btn-warning" routerLink="/Products" >Back</button><br>
+<button type="button" id="backToProd" class="btn btn-warning" routerLink="/Products">Back</button><br>
 <h1>We are almost Done !</h1>
 <p>Resize the browser window to see the effect. When the screen is less than 800px wide, make the two columns stack on
     top of each other instead of next to each other.</p>
 <div>
-    <input style="width: 35%;" type="text" placeholder="Search Product..." [(ngModel)]="query">
+    <!-- <input style="width: 35%;" type="text" placeholder="Search Product..." [(ngModel)]="query"> -->
 </div>
 
-
-<div style="float: left;" >
-    <div style="float: left;" >
+<div class="container" id="listDiv">
+    <h3>My Cart<span class="price" style="color:black"><i class="fa fa-shopping-cart"></i><b>
+                {{cartData.length}}</b></span></h3>
+    <hr>
+    <div *ngFor="let currentcartItem of cartData let i=index">
+        <p><a [innerHTML]="highlight(i)"></a> X {{currentcartItem.Amount}}<span
+                class="price">{{currentcartItem.TotalItemPrice}}₪</span></p>
+    </div>
+    <hr>
+    <h4><b>Total : </b><span class="price" style="color:black"><b>{{CartPrice}}₪</b></span></h4>
+</div>
+<div style="float: left;" id="formDiv">
+    <div style="float: left;">
         <div class="container" style="float: left;">
             <form #chekoutForm="ngForm" action="/action_page.php">
 
                 <div class="row">
-                    <div >
+                    <div>
                         <h3>Billing Address</h3>
                         <div class="row">
                             <div class="col-50">
                                 <label for="firstname">First Name</label>
-                                <input #checkoutFirstNameInput="ngModel" type="text" id="firstname" name="firstname" required placeholder="First Name..." [(ngModel)]="firstName">
-                                <small class="text-danger" *ngIf="checkoutFirstNameInput.errors?.required && checkoutFirstNameInput.touched">Missing - First Name</small>
+                                <input #checkoutFirstNameInput="ngModel" type="text" id="firstname" name="firstname"
+                                    required placeholder="First Name..." [(ngModel)]="firstName">
+                                <small class="text-danger"
+                                    *ngIf="checkoutFirstNameInput.errors?.required && checkoutFirstNameInput.touched">Missing
+                                    - First Name</small>
                             </div>
                             <div class="col-50">
                                 <label for="lastname">Last Name</label>
-                                <input #checkoutLastNameInput="ngModel" type="text" id="lastname" name="lastname" required placeholder="Last Name..." [(ngModel)]="lastName">
-                                <small  class="text-danger" *ngIf="checkoutLastNameInput.errors?.required && checkoutLastNameInput.touched">Missing - Last Name</small>
+                                <input #checkoutLastNameInput="ngModel" type="text" id="lastname" name="lastname"
+                                    required placeholder="Last Name..." [(ngModel)]="lastName">
+                                <small class="text-danger"
+                                    *ngIf="checkoutLastNameInput.errors?.required && checkoutLastNameInput.touched">Missing
+                                    - Last Name</small>
                             </div>
                         </div>
                         <label for="email"><i class="fa fa-envelope"></i> UserName / Email</label>
-                        <input  #checkoutUserNameInput="ngModel" type="text" id="email" name="email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="john@example.com" [(ngModel)]="userName">
-                        <small  class="text-danger" *ngIf="checkoutUserNameInput.errors?.required && checkoutUserNameInput.touched">Missing - UserName / Email</small><br>
-                        <small class="text-danger" *ngIf="checkoutUserNameInput.errors?.pattern">Please provide a valid email address</small>
+                        <input #checkoutUserNameInput="ngModel" type="text" id="email" name="email" required
+                            pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="john@example.com"
+                            [(ngModel)]="userName">
+                        <small class="text-danger"
+                            *ngIf="checkoutUserNameInput.errors?.required && checkoutUserNameInput.touched">Missing -
+                            UserName / Email</small><br>
+                        <small class="text-danger" *ngIf="checkoutUserNameInput.errors?.pattern">Please provide a valid
+                            email address</small>
                         <label for="adr"><i class="fa fa-address-card-o"></i>Delivery Address</label>
-                        <input #checkoutstreetInput="ngModel" type="text" id="adr" name="address" required placeholder="542 W. 15th Street"  required [(ngModel)]="checkOutDetails.DeliveryStreetAddress">
-                        <small class="text-danger" *ngIf="checkoutstreetInput.errors?.required && checkoutstreetInput.touched">Missing - Street</small><br>
+                        <input #checkoutstreetInput="ngModel" type="text" id="adr" name="address" required
+                            placeholder="542 W. 15th Street" required
+                            [(ngModel)]="checkOutDetails.DeliveryStreetAddress">
+                        <small class="text-danger"
+                            *ngIf="checkoutstreetInput.errors?.required && checkoutstreetInput.touched">Missing -
+                            Street</small><br>
                         <label for="city"><i class="fa fa-institution"></i>Delivery City</label>
-                        <input #checkoutCityInput="ngModel" required type="text" id="city" name="city" required placeholder="New York" [(ngModel)]="checkOutDetails.DeliveryCityAddress">
-                        <small class="text-danger" *ngIf="checkoutCityInput.errors?.required && checkoutCityInput.touched">Missing - City</small><br>
+                        <input #checkoutCityInput="ngModel" required type="text" id="city" name="city" required
+                            placeholder="New York" [(ngModel)]="checkOutDetails.DeliveryCityAddress">
+                        <small class="text-danger"
+                            *ngIf="checkoutCityInput.errors?.required && checkoutCityInput.touched">Missing -
+                            City</small><br>
                     </div>
 
                     <div class="col-50">
@@ -51,34 +79,38 @@
                             <i class="fa fa-cc-discover" style="color:orange;"></i>
                         </div>
                         <label for="cname">Name on Card</label>
-                        <input #checkoutCardNameInput required  type="text" id="cname" name="cardname" placeholder="John More Doe">
-                        <small class="text-danger" *ngIf="checkoutCardNameInput.errors?.required && checkoutCardNameInput.touched">Missing - Card Holder Name</small><br>
+                        <input #checkoutCardNameInput required type="text" id="cname" name="cardname"
+                            placeholder="John More Doe">
+                        <small class="text-danger"
+                            *ngIf="checkoutCardNameInput.errors?.required && checkoutCardNameInput.touched">Missing -
+                            Card Holder Name</small><br>
                         <label for="ccnum">Credit card number</label>
-                        <input #creditCardInput required type="text" id="ccnum" name="cardnumber" required  [(ngModel)]="checkOutDetails.CreditCardDigits" placeholder="1111-2222-3333-4444">
-                        <small class="text-danger" *ngIf="creditCardInput.errors?.required && creditCardInput.touched">Missing - Credit Card Number</small><br>
+                        <input #creditCardInput required type="text" id="ccnum" name="cardnumber" required
+                            [(ngModel)]="checkOutDetails.CreditCardDigits" placeholder="1111-2222-3333-4444">
+                        <small class="text-danger"
+                            *ngIf="creditCardInput.errors?.required && creditCardInput.touched">Missing - Credit Card
+                            Number</small><br>
                         <label for="DeliveryDate"><i class="fa fa-calendar"></i> DeliveryDate</label>
-                        <input #checkoutDateInput="ngModel" type="date" id="city" name="DeliveryDate" placeholder="Date" required [(ngModel)]="checkOutDetails.DeliveryDate">
-                        <small class="text-danger" *ngIf="checkoutDateInput.errors?.required && checkoutDateInput.touched">Missing - Delivery Date</small><br>
+                        <input #checkoutDateInput="ngModel" type="date" id="city" name="DeliveryDate" placeholder="Date"
+                            required [(ngModel)]="checkOutDetails.DeliveryDate">
+                        <small class="text-danger"
+                            *ngIf="checkoutDateInput.errors?.required && checkoutDateInput.touched">Missing - Delivery
+                            Date</small><br>
                     </div>
 
                 </div>
                 <label>
-                    <input type="checkbox" checked="checked" name="sameadr" ng-model="checkboxModel.value2"  ng-true-value="fillUserInfo()" ng-false-value="Form.reset()"> Shipping address same as billing
+                    <input type="checkbox" checked="checked" name="sameadr" ng-model="checkboxModel.value2"
+                        ng-true-value="fillUserInfo()" ng-false-value="Form.reset()"> Shipping address same as billing
                 </label>
-                <input type="submit" value="Continue to checkout" class="btn" [disabled]="chekoutForm.form.invalid" routerLink="/Receipt" (click)="placeOrder()">
-                <p style="font-size: 13px;"><i class="fa fa-lock" style="font-size:18px"></i> This website is Not Sercured with SSL standart<br>So...mayby someone is stiling your Info<br>We deeply sorry but didnt learned Https yet. </p>
+                <input type="submit" value="Continue to checkout" class="btn" [disabled]="chekoutForm.form.invalid"
+                    routerLink="/Receipt" (click)="placeOrder()">
+                <p style="font-size: 13px;"><i class="fa fa-lock" style="font-size:18px"></i> This website is Not
+                    Sercured with SSL standart<br>So...mayby someone is stiling your Info<br>We deeply sorry but didnt
+                    learned Https yet. </p>
             </form>
         </div>
     </div>
 </div>
-<div >
-    <div class="container"  style="float: right; width:30%;">
-        <h3>My Cart<span class="price" style="color:black"><i class="fa fa-shopping-cart"></i><b>  {{cartData.length}}</b></span></h3>
-        <hr>
-        <div *ngFor="let currentcartItem of cartData let i=index" >
-            <p><a [innerHTML]="highlight(i)"></a> X {{currentcartItem.Amount}}<span class="price">{{currentcartItem.TotalItemPrice}}₪</span></p>
-        </div>
-        <hr>
-        <h4><b>Total : </b><span class="price" style="color:black"><b>{{CartPrice}}₪</b></span></h4>
-    </div>
+<div>
 </div>

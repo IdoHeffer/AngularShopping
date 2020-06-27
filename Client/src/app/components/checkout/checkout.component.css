@@ -8,6 +8,23 @@ body {
   box-sizing: border-box;
 }
 
+#listDiv{
+  width: 30%;
+  float: right;
+}
+
+@media (max-width : 1600px){
+  #formDiv{
+    width: 50%;
+  }
+
+  #listDiv{
+    display: inline;
+
+  }
+}
+
+
 .row {
   display: -ms-flexbox; /* IE10 */
   display: flex;

@@ -239,8 +239,8 @@ export class CustomerComponent implements OnInit {
     }
   }
 
-  public hideCartSideBar() {
-    this.isShowCartView = false;
+  // public hideCartSideBar() {
+  //   this.isShowCartView = false;
     
-  }
+  // }
 }

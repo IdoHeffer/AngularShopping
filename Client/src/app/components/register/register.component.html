@@ -36,10 +36,10 @@
       <span class="validationErr" *ngIf="streetInput.errors?.required && streetInput.touched">Missing - Street</span><br>
     </div>
     <div class="form-group">
-      <label for="UserName" style="font-size:20px">User Name</label><br>
+      <label for="UserName" style="font-size:20px">E-mail</label><br>
       <input #userNameInput="ngModel" class="form-control" type="text" required id="UserName" name="UserName" placeholder="User Name.."
         [(ngModel)]="userRegisterDetails.UserName">
-      <span class="validationErr" *ngIf="userNameInput.errors?.required && userNameInput.touched">Missing - username</span><br>
+      <span class="validationErr" *ngIf="userNameInput.errors?.required && userNameInput.touched">Missing - E-mail</span><br>
     </div>
      
     <div class="form-group">
