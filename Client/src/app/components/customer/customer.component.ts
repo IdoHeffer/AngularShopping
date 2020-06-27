@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { Product } from 'src/app/models/Product';
 import { Category } from 'src/app/models/Category';
 import { CategoriesService } from 'src/app/services/CategoriesService';
@@ -17,9 +17,9 @@ import { ProductsPipeByName} from 'src/app/pipes/ProductsPipeByName'
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.css']
 })
-export class CustomerComponent implements OnInit {
+export class CustomerComponent implements OnInit ,OnChanges {
   public isShowCartView: boolean
-  public cartData: CartData[];
+  @Input() cartData: CartData[];
   public cartItem: CartItem;
   public products: Product[];
   public isShowAllProduct: boolean;
@@ -30,7 +30,6 @@ export class CustomerComponent implements OnInit {
   public cart : Cart;
   public CartPrice : number;
 
-  //   constructor(private userService:UserService) { }
   constructor(private productsService: ProductsService, private categoriesService: CategoriesService, private router: Router, private cartsService: CartsService, public location: Location) {
     this.products = [];
     this.categories = [];
@@ -41,11 +40,19 @@ export class CustomerComponent implements OnInit {
     this.cartsService = cartsService;
     this.CartPrice =0;
   }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+    
+  }
 
   ngOnInit() {
-  
+    
+    // boolean for the cart on the side of the page. initial true.
     this.isShowCartView = true;
+    // boolean value that changes when the modal dialog pops over. to hide the products int the background.
     this.isShowAllProduct = true;
+
+    // getting all the products from server.
     let observable = this.productsService.getAllProducts();
     observable.subscribe(productsList => {
       this.products = productsList;
@@ -55,7 +62,7 @@ export class CustomerComponent implements OnInit {
       console.log("Error! Status: "+error);
     });
 
-    this.isShowAllProduct = true;
+    // getting categorie from server .
     let observableCategories = this.categoriesService.getAllCategories();
     observableCategories.subscribe(CategoriesList => {
       this.categories = CategoriesList;
@@ -65,6 +72,9 @@ export class CustomerComponent implements OnInit {
       console.log("Error! Status: "+error);
     });
 
+    // function that automatically checks for the user if he/she has a current open cart from last time they loggedIn
+    //  OR 
+    // generating a new cart if they dont have an open one.
     const observableidCart = this.cartsService.isCart();
     observableidCart.subscribe(userCartDetailServer => {
       console.log(userCartDetailServer)
@@ -87,6 +97,7 @@ export class CustomerComponent implements OnInit {
         this.refreshCart()
   });}
 
+  // open modal function and filling in the needed values 
   public showProduct(product: Product) {
     // Debugging using printing the object value in the browser's console
     console.log(product);
@@ -96,6 +107,7 @@ export class CustomerComponent implements OnInit {
     this.calcToalItemPrice(this.quantity, this.displayedProduct.Price);
   }
 
+  // reseting the calculations functions + showing the product again.
   public showProducts() {
     this.isShowAllProduct = true;
     this.quantity = 1;
@@ -103,15 +115,24 @@ export class CustomerComponent implements OnInit {
 
   }
 
+  // purchase a product. sending it to the server and requesting the cart value to recreate the cart. need to be fixed.
   public purchaseProduct(product: Product) {
     this.cartItem = new CartItem(this.cart.CartID, product.ProductID, this.quantity || 1, this.ToalItemPrice || product.Price);
     console.log(this.cartItem);
     this.isShowAllProduct = true;
-    this
     const observableCartItem = this.cartsService.purchaseProduct(this.cartItem);
     observableCartItem.subscribe(successfulCartItemAdd => {
       console.log(successfulCartItemAdd);
+      
+      let productToadd = new CartData(this.cart.CartID,product.ProductID,product.picture,product.ProductName,this.quantity,this.ToalItemPrice || product.Price);
+
+      this.cartData.push(productToadd);
       this.quantity = 1;
+
+
+
+
+
     }, serverErrorResponse => {
       console.log("Error! Status: " + serverErrorResponse.status + ", Message: " + serverErrorResponse.message);
     });
@@ -119,6 +140,10 @@ export class CustomerComponent implements OnInit {
     
   }
 
+
+  // temporary func to overcome the recreating cart issue 
+  // so we navigate to dummypage and going back to the original (no ducomentation in the browser history for the page changing)
+  // and then it automatically draw the cart with right values.
   public refreshCart(): void {
 
     this.router.navigateByUrl("/Refresh", { skipLocationChange: true }).then(() => {
@@ -127,6 +152,8 @@ export class CustomerComponent implements OnInit {
     });
   }
 
+
+  // removing item from cart and removing it from the view without refreshing the page.
   public removeCartItem(index:number,itemID: number,ItemPrice :number) {
     this.cartData.splice(index, 1);
     console.log(this.cartData)
@@ -148,6 +175,7 @@ export class CustomerComponent implements OnInit {
   }
 
 
+  // clear cart funtion to delete all cart content.
   public deleteAllCartItems(cartID:number){
     this.cartData.splice(0,this.cartData.length)
 
@@ -165,6 +193,7 @@ export class CustomerComponent implements OnInit {
     // this.refreshCart();
   }
 
+  // the functiong that filter the product categories in the navbar and disply them on page.
   public categoryProducts(value) {
     let observable = this.productsService.getAllCategoriesProducts(value);
     observable.subscribe(productsList => {

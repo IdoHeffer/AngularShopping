@@ -43,6 +43,10 @@ export class MainComponent implements OnInit {
         observable.subscribe(successfulServerRequestData => {
             console.log(successfulServerRequestData);
 
+
+            // after successful login response we sava the token generated from the server in the sessionStorage. 
+            // we change the isLoogedIn property to true and handling the usertype that was looged in to the right page.
+             
             sessionStorage.setItem("token", JSON.stringify(successfulServerRequestData.token));
             sessionStorage.setItem("isLoggedIn", "true")
             sessionStorage.setItem("userType", JSON.stringify(successfulServerRequestData.userType));

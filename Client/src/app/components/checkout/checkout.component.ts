@@ -43,6 +43,8 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit() {  
+
+    // getting the user's current open cart and display it on the list of products. 
     const observableCart = this.cartsService.getUserCart();
     observableCart.subscribe(userCartFromServer => {
       this.cartData = userCartFromServer;
@@ -53,11 +55,12 @@ export class CheckoutComponent implements OnInit {
     }, error => {
       console.log(error);
     });
-
+    // injecting the total price and the cartID in the object that is being send to the server to close the order.
     this.checkOutDetails.FinalPrice = this.CartPrice;
     this.checkOutDetails.CartID = this.cartsService.cart.CartID;
   }
 
+  // calculating the total items price by going through the products array.
   public totalItemsPrice(){
     for (let i = 0; i < this.cartData.length; i++) {
       this.CartPrice = this.CartPrice + this.cartData[i].TotalItemPrice;
@@ -65,13 +68,15 @@ export class CheckoutComponent implements OnInit {
     return this.CartPrice;
   }
 
-
+  // calculating per item total price. 
   public calcToalItemPrice(num1: number, num2: number) {
     this.perItemPrice = num1 * num2;
     console.log(num1, num2);
     return this.perItemPrice;
   }
 
+
+  // not working yet
   public fillUserInfo(){
     
     let observable = this.usersService.getUserInfo();
@@ -89,6 +94,7 @@ export class CheckoutComponent implements OnInit {
 
   }
 
+  // ,ain function that sending the order to the server and closing the order.
   public placeOrder (){
     this.checkOutDetails.FinalPrice = this.CartPrice;
     this.checkOutDetails.CartID = this.cartsService.cart.CartID;
@@ -103,6 +109,7 @@ export class CheckoutComponent implements OnInit {
   }
 
 
+  //  not working test to highlight input text.
   public highlight(index: number) {
     //if the search input is empty- show the original query
     if (!this.query) {

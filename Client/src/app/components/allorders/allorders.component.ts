@@ -22,6 +22,7 @@ export class AllordersComponent implements OnInit {
 
 
   ngOnInit() {
+    // on load getting the user's history of orders.
     let observable = this.ordersService.myOrders();
     observable.subscribe(ordersList => {
       this.orders = ordersList;
@@ -32,6 +33,7 @@ export class AllordersComponent implements OnInit {
     });
   }
 
+  // function that is being called after clicking one of the orders to see the order content.
   public getItemsInOrder(cartID : number){
     const observableCart = this.ordersService.closedOrdersItems(cartID);
 
