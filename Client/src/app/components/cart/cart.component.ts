@@ -29,6 +29,8 @@ export class CartComponent implements OnInit {
     //   console.log(userCartFromServer);
     // })
 
+
+    
     const cartItemsobservable = this.cartsService.getAllCartItems(this.cart.CartID);
     cartItemsobservable.subscribe(cartItemsFromServer => {
       this.cartItems = cartItemsFromServer;
