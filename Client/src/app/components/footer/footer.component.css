@@ -162,3 +162,9 @@
     font-weight:600
   }
 }
+
+
+.github:hover{
+  background-color: purple;
+  color: purple;
+}

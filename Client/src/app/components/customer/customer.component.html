@@ -3,8 +3,8 @@
         <nav>
             <div id="categoriesHeaderDivPanel">
                 <button type="button" class="btn btn-warning" (click)="isShowCartSideBar()" style="top:0; float:right; right:0;"><span class="glyphicon glyphicon-shopping-cart"></span> <span class="glyphicon glyphicon-arrow-right"></span></button>
-                <h1><b>Products</b></h1><br>
-                <p style="font-size: larger;display: inline;">Search by name : </p><input type="text" class="form-control" style="width: 30%;display: inline-block;" placeholder="Search..." [(ngModel)]="byName"><br><br>
+                <!-- <h1><b>Products</b></h1><br> -->
+                <p style="font-size: larger;display: inline; font-weight: 600;">Search Product : </p><input type="text" class="form-control" style="width: 50%;display: inline-block;" placeholder="Search..." [(ngModel)]="byName"><br><br>
                 <ul style="margin-bottom: 6% ;">
                     <li id="first"><a (click)="getAllProducts()"  routerLinkActive="the-chosen-one"
                             style="font-size:20px" class="fa"> All Products </a></li>
@@ -84,7 +84,7 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"
                                 (click)=[(showProducts())]>&times;</button>
-                            <h1 class="modal-title">{{displayedProduct.ProductName}}</h1>
+                            <h1 class="modal-title">{{displayedProduct.ProductName || null}}</h1>
                         </div>
                         <div class="modal-body">
                             <img class="card-img-top" src="http://localhost:3000/{{displayedProduct.picture}}" alt="Card image cap"
