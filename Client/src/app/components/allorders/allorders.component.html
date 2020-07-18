@@ -11,7 +11,7 @@
       <div class="panel-heading">
         <h4 class="panel-title">
           <a data-toggle="collapse" href="#{{currentOrder.OrderID}}" style="float: right;" (click)="getItemsInOrder(currentOrder.OrderID)">Total Price:  {{currentOrder.FinalPrice}}₪</a>
-          <a data-toggle="collapse" href="#{{currentOrder.OrderID}}" (click)="getItemsInOrder(currentOrder.CartID)">Order number {{currentOrder.DeliveryDate}}</a>
+          <a data-toggle="collapse" href="#{{currentOrder.OrderID}}" (click)="getItemsInOrder(currentOrder.CartID)" >Order number {{currentOrder.DeliveryDate | date : 'dd/MM/yyyy'}}</a>
         </h4>
       </div>
       <div id="{{currentOrder.OrderID}}" class="panel-collapse collapse">
