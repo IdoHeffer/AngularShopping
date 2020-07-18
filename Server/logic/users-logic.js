@@ -37,15 +37,16 @@ async function addUser(user) {
     return addedUser;
 }
 
-async function updateUser(id) {
-    validateUser(user)
-    usersDao.updateUser(id)
+async function updateUser(userUpdar) {
+    validateUser(userUpdar)
+    usersDao.updateUser(userUpdar)
 }
 
 async function deleteUser(id) {
     validation.validateId(id);
     usersDao.deleteUser(id)
 }
+
 async function login(userData){
     // console.log(userData)
     userData.password = crypto.createHash("md5").update(saltLeft + userData.password + saltRight).digest("hex");
@@ -55,6 +56,7 @@ async function login(userData){
     // console.log("We got to the logic Level");
     return usersLoginResult;
 };
+
 async function changePassword(userData) {
     userData.password = crypto.createHash("md5").update(saltLeft + userData.password + saltRight).digest("hex");
     console.log("Hashed password : " + userData.password);
@@ -63,6 +65,7 @@ async function changePassword(userData) {
     console.log("We got to the logic Level");
     return ;
 }
+
 function validateUser(user) {
     // Validate the user object:
     const errorDetails = User.validate(user);

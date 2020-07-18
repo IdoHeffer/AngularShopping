@@ -45,7 +45,7 @@ label{
   
 .btn {
     margin-top: 4%;
-    background-color: #f90;
+    background-color: #286da8;
     color: white;
     /* padding: 15px 20px;
     border: none;
@@ -56,8 +56,9 @@ label{
     /* box-shadow: grey 5px 5px; */
 }
   
-button :hover {
-    background-color: #45a049;
+.btn:hover {
+    background-color: #4992d3;
+    color: white;
 }
   
 div {
