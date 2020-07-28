@@ -5,7 +5,7 @@ let ErrorType = require("../errors/error-type");
 
 const router = express.Router();
 
-router.get("/:id", async (request,response) => {
+router.get("/:id", async (request,response,next) => {
     const id = +request.params.id;
     try {
         const user = await usersLogic.getUser(id);
@@ -13,7 +13,7 @@ router.get("/:id", async (request,response) => {
         response.json(user);
     }catch (error){
         console.log(error);
-        response.status(500).send("Error,No existing User" +error);
+        return next(error);
     }
 })
 
@@ -31,9 +31,13 @@ router.post("/",  async (request,response,next) => {
 })
 
 router.put("/:id",(request,response) => {
-    const id = +request.params.id
-    usersLogic.updateUser(id);
-    
+    try {
+        const id = +request.params.id
+        usersLogic.updateUser(id);    
+    } catch (error) {
+        console.log(error);
+        return next(error)
+    }
 })
 
 router.delete("/:id",(request,response) => {

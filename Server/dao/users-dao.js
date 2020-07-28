@@ -41,8 +41,6 @@ async function updateUser(user) {
         console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, JSON.stringify(user), e);
     }
-
-   
 }
 
 async function deleteUser(id) {
@@ -84,16 +82,13 @@ async function getAllUsers() {
     try{
         var sql = ("SELECT * FROM users"); 
         let users = await connection.execute(sql);
+        console.log(users);
         return users
     }catch(e){
         console.log(e)
         throw new ServerError(ErrorType.GENERAL_ERROR, sql, e);
-    }
-
-
-   
+    }   
 }
-
 module.exports = {
 
     getUser,

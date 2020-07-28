@@ -12,9 +12,9 @@ const saltLeft = "+-sdvcx@fd#g!$";
 async function getAllUsers() {
     let users = await usersDao.getAllUsers();
     validation.validateResponse(users)
+    console.log(users);
     return users;
 }
-
 async function getUser(id) {
     validation.validateId(id);
     let user = await usersDao.getUser(id);
@@ -37,9 +37,10 @@ async function addUser(user) {
     return addedUser;
 }
 
-async function updateUser(userUpdar) {
-    validateUser(userUpdar)
-    usersDao.updateUser(userUpdar)
+async function updateUser(userDetails) {
+    validateUser(userDetails)
+    await usersDao.updateUser(userDetails)
+    return 1
 }
 
 async function deleteUser(id) {

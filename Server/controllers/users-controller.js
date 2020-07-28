@@ -8,6 +8,21 @@ let ServerError = require("../errors/server-error");
 let ErrorType = require("../errors/error-type");
 
 
+
+
+router.get("/allUsers", async (request,response) => {
+    let token = request.headers.authorization;
+    let id = mapUser.checkMapForUserId(token);
+    try {
+        const users = await usersLogic.getAllUsers();
+        console.log(users);
+        response.json(users);
+    }catch (error){
+        console.log(error);
+       response.send("Error Could not GET users")
+    }
+})
+
 router.get("/forAdmin", async (request,response,next) => {
     let token = request.headers.authorization;
     let id = mapUser.checkMapForUserId(token);
@@ -16,21 +31,10 @@ router.get("/forAdmin", async (request,response,next) => {
         console.log(user);
         response.json(user);
     }catch (error){
+        console.log(error);
         return next(error);
     }
 })
-router.get("/", async (request,response,next) => {
-    let token = request.headers.authorization;
-    let id = mapUser.checkMapForUserId(token);
-    try {
-        const user = await usersLogic.getUser(id);
-        console.log(user);
-        response.json(user);
-    }catch (error){
-        return next(error);
-    }
-})
-
 
 router.get("/forClient", async (request,response,next) => {
     let token = request.headers.authorization;
@@ -40,6 +44,21 @@ router.get("/forClient", async (request,response,next) => {
         console.log(user);
         response.json(user);
     }catch (error){
+        console.log(error);
+        return next(error);
+    }
+})
+
+
+router.get("/", async (request,response,next) => {
+    let token = request.headers.authorization;
+    let id = mapUser.checkMapForUserId(token);
+    try {
+        const user = await usersLogic.getUser(id);
+        console.log(user);
+        response.json(user);
+    }catch (error){
+        console.log(error);
         return next(error);
     }
 })
@@ -51,15 +70,21 @@ router.post("/register", async (request,response,next) => {
         console.log(addedUser);
         response.json("User Was Added"+addedUser);
     }catch (error){
+        console.log(error);
         return next(error);
     }
    
 })
 
-router.put("/:id",(request,response,next) => {
-    const id = +request.params.id
-    usersLogic.updateUser(id);
-    
+router.put("/", async(request,response,next) => {
+    try {
+        const userDetails = request.body
+        const updatedUser = await usersLogic.updateUser(userDetails);
+        response.json("User Was Updated"+updatedUser);
+    } catch (error) {
+        console.log(error);
+        return next(error);
+    }
 })
 
 router.delete("/:id", async (request,response,next) => {
@@ -69,6 +94,7 @@ router.delete("/:id", async (request,response,next) => {
         console.log(deletedUser);
         response.json("User Was Deleted");
     }catch (error){
+        console.log(error);
         return next(error);
 
     }
@@ -84,7 +110,6 @@ router.post("/login",  async (request,response, next) => {
     const token = jwt.sign({ sub: user }, config.secret);
     try {
         let usersLoginResult = await usersLogic.login(user);
-        // console.log(usersLoginResult);
         let loginResponse = {
             userType: usersLoginResult.Role,
             userID: usersLoginResult.UserID,
@@ -92,11 +117,10 @@ router.post("/login",  async (request,response, next) => {
             token: token,
         };
         console.log(loginResponse)
-        // console.log("Welcome Back Succesfull Login"+JSON.stringify(loginResponse.userType));
-        // response.send({token:token, userType:usersLoginResult.Role, userID: usersLoginResult.UserID});
         response.json(loginResponse);
         mapUser.saveUserInfo(token, usersLoginResult);
     }catch (error){
+        console.log(error);
         return next(error);
     }
     
