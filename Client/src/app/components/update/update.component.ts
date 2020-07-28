@@ -20,7 +20,6 @@ import { User } from 'src/app/models/User';
 export class UpdateComponent implements OnInit {
 
   public isShowAllProduct: boolean;
-  public isShowEditView: boolean;
   public cartData: CartData[];
   public users: User[];
   public byName: string;
@@ -32,7 +31,6 @@ export class UpdateComponent implements OnInit {
     this.users = [];
     this.byName = "";
     this.displayedUser;
-    this.isShowEditView =true;
     this.updateUserModel = new User();
    }
 
@@ -46,10 +44,6 @@ export class UpdateComponent implements OnInit {
     }, error => {
       console.log('Failed to get products ' + JSON.stringify(error));
     });
-  }
-
-  public isShowEditViewPanerl() {
-    return this.isShowEditView =true;
   }
 
   public openNav( user? :User ) {
