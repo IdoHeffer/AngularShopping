@@ -11,15 +11,15 @@ let ErrorType = require("../errors/error-type");
 
 
 router.get("/allUsers", async (request,response) => {
-    let token = request.headers.authorization;
-    let id = mapUser.checkMapForUserId(token);
+    // let token = request.headers.authorization;
+    // let id = mapUser.checkMapForUserId(token);
     try {
         const users = await usersLogic.getAllUsers();
         console.log(users);
         response.json(users);
     }catch (error){
         console.log(error);
-       response.send("Error Could not GET users")
+        return next(error);
     }
 })
 

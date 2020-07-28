@@ -1,12 +1,12 @@
 function validateResponse(object) {
     if (object.length == 0) {
-        throw new Error("error");
+        throw new ServerError(ErrorType.INVALID_DATA, e)
     }
 }
 
 function validateId(id) {
     if (id == 0) {
-        throw new Error("invalid id")
+        throw new ServerError(ErrorType.INVALID_DATA, e)
     }
 }
 

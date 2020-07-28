@@ -5,6 +5,7 @@ import { SuccessfulLoginServerResponse } from '../models/SuccessfulLoginServerRe
 import { UserLoginDetails } from '../models/UserLoginDetails';
 import { UserRegisterDetails } from '../models/UserRegisteDetails';
 import { UserForgotPasswordDetails } from '../models/UserForgotPasswordDetails';
+import { User } from '../models/User';
 
 
 @Injectable({
@@ -49,4 +50,11 @@ export class UserService {
     public getUserInfo(): Observable<UserRegisterDetails> {
         return this.http.get<UserRegisterDetails>("/api/Users/forClient");
     }
-}
+
+    public getAllUsers(): Observable<UserRegisterDetails[]> {
+        return this.http.get<UserRegisterDetails[]>("/api/Users/allUsers");
+    }
+    public updateUser(updateUserDetails: User){
+        return this.http.put<void>("/api/Users",updateUserDetails);
+    }
+}   

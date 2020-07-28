@@ -5,8 +5,11 @@ span{
     color: red;
 }
 #tableDiv{
-    padding-left: 20%;
+    margin: auto;
     width:60%;
+}
+tr{
+    cursor: pointer;
 }
 
 #cardsContainer{

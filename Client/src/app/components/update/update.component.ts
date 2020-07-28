@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Product } from 'src/app/models/Product';
-import { ProductsService } from 'src/app/services/ProductsService';
 import { CartData } from 'src/app/models/CartData';
 import { Router } from '@angular/router';
 import { CartItem } from 'src/app/models/CartItem';
 import { Location } from '@angular/common'
 import { NgModule } from '@angular/core';
+import { UserService } from 'src/app/services/UserService';
 import { UpdateProductModel } from 'src/app/models/UpdateProductModel'
+import { UserRegisterDetails } from 'src/app/models/UserRegisteDetails';
+import { User } from 'src/app/models/User';
 
 
 @Component({
@@ -20,25 +22,25 @@ export class UpdateComponent implements OnInit {
   public isShowAllProduct: boolean;
   public isShowEditView: boolean;
   public cartData: CartData[];
-  public products: Product[];
+  public users: User[];
   public byName: string;
-  public displayedProduct: Product;
-  public updateProductModel : UpdateProductModel;
+  public displayedUser: User;
+  public updateUserModel : User;
 
 
-  constructor(private productsService: ProductsService, private router: Router, public location: Location) {
-    this.products = [];
+  constructor(private userService: UserService, private router: Router, public location: Location) {
+    this.users = [];
     this.byName = "";
-    this.displayedProduct;
+    this.displayedUser;
     this.isShowEditView =true;
-    this.updateProductModel = new UpdateProductModel();
+    this.updateUserModel = new User();
    }
 
   ngOnInit() {
     this.isShowAllProduct = true;
-    let observable = this.productsService.getAllProducts();
+    let observable = this.userService.getAllUsers();
     observable.subscribe(productsList => {
-      this.products = productsList;
+      this.users = productsList;
       console.log(1)
       console.log(productsList)
     }, error => {
@@ -50,12 +52,12 @@ export class UpdateComponent implements OnInit {
     return this.isShowEditView =true;
   }
 
-  public openNav( product? :Product ) {
-    this.displayedProduct = product;
-    this.updateProductModel=product
+  public openNav( user? :User ) {
+    this.displayedUser = user;
+    this.updateUserModel=user
   
-    document.getElementById("mySidenav").style.width = "400px";
-    document.getElementById("main").style.marginLeft = "400px";
+    document.getElementById("mySidenav").style.width = "370px";
+    document.getElementById("main").style.marginLeft = "250px";
   }
 
   public closeNav() {
@@ -63,14 +65,14 @@ export class UpdateComponent implements OnInit {
     document.getElementById("main").style.marginLeft = "0";
   }
 
-  public updateProduct(){
+  public updateUser(){
 
-    console.log(this.updateProductModel)
-    let observable = this.productsService.updateProduct(this.updateProductModel);
+    console.log(this.updateUserModel)
+    let observable = this.userService.updateUser(this.updateUserModel);
     observable.subscribe(updateResponse => {
       console.log(updateResponse);
     }, error => {
-     console.log('Failed to get products ' + JSON.stringify(error));
+     console.log('Failed to Update User ' + JSON.stringify(error));
     });
   }
 

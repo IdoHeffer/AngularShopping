@@ -10,56 +10,53 @@
 
   <button style="bottom:0" style="float: right; margin-right: 1.5%;" class="btn btn-danger"
     (click)="closeNav()">&times;</button><br>
-  <h2>{{displayedProduct.ProductName}}</h2>
+  <h2>{{displayedUser.UserName}}</h2>
   <form #UpdateProd="ngForm">
-    <img src="{{displayedProduct.picture}}" style="height: 180px;width: 180px;"><br><br>
+    <img src="../../../assets/user-profile.png" style="height: 180px;width: 180px;"><br><br>
     <div class="form-group">
-      <label for="ProductPicture">Product Picture</label>
-      <input type="text" class="form-control" id="ProductPicture" [(ngModel)]="updateProductModel.picture"
-        value="{{displayedProduct.picture}}" placeholder="Product Picture" name="picture">
+      <label for="ProductPicture">UserName/Email</label>
+      <input type="text" class="form-control" id="ProductPicture" [(ngModel)]="updateUserModel.UserName"
+        value="{{displayedUser.UserName}}" placeholder="Product Picture" name="picture">
       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
     <div class="form-group">
-      <label for="ProductName">Product Name</label>
-      <input type="text" class="form-control" id="ProductName" [(ngModel)]="updateProductModel.ProductName"
-        value="{{displayedProduct.ProductName}}" placeholder="ProductName" name="name">
+      <label for="ProductName">Product First Name</label>
+      <input type="text" class="form-control" id="ProductName" [(ngModel)]="updateUserModel.FirstName"
+        value="{{displayedUser.FirstName}}" placeholder="ProductName" name="name">
       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
     <div class="form-group">
-      <label for="ProductID">Product ID</label>
-      <input type="number" class="form-control" id="ProductID" [(ngModel)]="updateProductModel.ProductID"
-        value="{{displayedProduct.ProductID}}" placeholder="ProductID" name="id">
+      <label for="ProductID">User Last Name</label>
+      <input type="text" class="form-control" id="ProductID" [(ngModel)]="updateUserModel.LastName"
+        value="{{displayedUser.LastName}}" placeholder="ProductID" name="id">
     </div>
     <div class="form-group">
-      <label for="ProductPrice">Product Price ₪</label>
-      <input type="number" class="form-control" id="ProductPrice" [(ngModel)]="updateProductModel.Price"
-        value="{{displayedProduct.Price}}" placeholder="ProductPrice" name="price">
+      <label for="ProductPrice">User City</label>
+      <input type="text" class="form-control" id="ProductPrice" [(ngModel)]="updateUserModel.City"
+        value="{{displayedUser.City}}" placeholder="ProductPrice" name="price">
       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
     <div class="form-group">
-      <label for="ProductCategory">Product Category</label>
-      <input type="number" class="form-control" id="ProductCategory" [(ngModel)]="updateProductModel.CategoryID"
-        value="{{displayedProduct.CategoryID}}" placeholder="Product Category" name="categoryId">
+      <label for="ProductCategory">User Street</label>
+      <input type="text" class="form-control" id="ProductCategory" [(ngModel)]="updateUserModel.Street"
+        value="{{displayedUser.Street}}" placeholder="Product Category" name="categoryId">
       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
     <!-- <div class="form-group form-check">
           <input type="checkbox" class="form-check-input" id="exampleCheck1">
           <label class="form-check-label" for="exampleCheck1">Check me out</label>
         </div> -->
-    <button type="submit" class="btn btn-warning" style="font-size: x-large;" (click)="updateProduct()">Update <i
+    <button type="submit" class="btn btn-warning" style="font-size: x-large;" (click)="updateUser()">Update <i
         class="fa fa-save"></i></button>
   </form>
 </div>
-<div style="display:block;">
-  <span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776; open</span>
-  <span style="font-size:30px;cursor:pointer" (click)="closeNav()">&#9776; close</span>
-</div>
+
 <div id="main" *ngIf="isShowAllProduct">
   <div id="tableDiv">
     <table class="table table-hover table-fixed">
       <thead class="thead-dark">
         <tr>
-          <th scope="col">#</th>
+          <th scope="col">#UserID</th>
           <th scope="col">UserName</th>
           <th scope="col">FirstName</th>
           <th scope="col">LastName</th>
@@ -69,23 +66,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
+        <tr  *ngFor="let currentUser of users" (click)="openNav(currentUser)">
+          <th scope="row">{{currentUser.UserID}}</th>
+          <td>{{currentUser.UserName}}</td>
+          <td>{{currentUser.FirstName}}</td>
+          <td>{{currentUser.LastName}}</td>
+          <td>{{currentUser.Role}}</td>
+          <td>{{currentUser.City || null}}</td>
+          <td>{{currentUser.Street || null}}</td>
         </tr>
       </tbody>
     </table>
