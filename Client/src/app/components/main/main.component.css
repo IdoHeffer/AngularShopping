@@ -13,17 +13,34 @@ body {
   
 }
 
+#loginForm{
+  margin: auto;
+}
+.loginContainer{
+  margin-top: 3%;
+  padding:50px;
+  box-shadow: grey 3px 3px 3px 3px;
+  width:fit-content;
+  float: left;
+  margin-left: 12%;
+  background-color: rgba(243, 243, 243, 0.918);
+}
 
-.input-container {
+.welcomeDiv{
+  width: 45%;
+  float: right;
+}
+
+
+
+/* .input-container {
   display: -ms-flexbox; 
   display: flex;
   width: 100%;
-  /* margin-bottom: 15px; */
 }
 
 .icon {
   padding: 10px;
-  /* background:  #232f3e; */
   color:  #232f3e;
   border-radius: 30px;
   min-width: 50px;
@@ -31,7 +48,7 @@ body {
 }
 
 
-/* .input-field {
+.input-field {
   width: 100%;
   background-color:white ;
   padding:10px 10px 10px 5px;
@@ -101,4 +118,160 @@ border-bottom:1px solid #757575; */
   margin-top: 50px;
   width: 65%;
   height: 100%;
+}
+
+
+
+/* //////////////////////////////////////////////      Input CSS ////////////////////////////////////////////////////// */
+
+.group 			  { 
+  position:relative; 
+  margin-bottom:45px; 
+  margin-left: 10%;
+}
+input 				{
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:300px;
+  border:none;
+  border-bottom:1px solid #757575;
+}
+input:focus 		{ outline:none; }
+
+/* LABEL ======================================= */
+label 				 {
+  color:#999; 
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+/* active state */
+input:focus ~ label, input:valid ~ label 		{
+  top:-20px;
+  font-size:14px;
+  color:#286DA8;
+}
+
+/* BOTTOM BARS ================================= */
+.bar 	{ position:relative; display:block; width:300px; }
+.bar:before, .bar:after 	{
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background:#286DA8; 
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+
+/* active state */
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+  width:50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+  position:absolute;
+  height:60%; 
+  width:100px; 
+  top:25%; 
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}
+
+/* active state */
+input:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+
+
+
+
+/* /////////////////////////////////////      RESPONSIVE CSS    ///////////////////////////////////////// */
+@media (max-width : 960px){
+  .loginContainer{
+    width: 100%;
+    display: block;
+    margin-left: 0;
+  }
+  .welcomeDiv{
+    width: 100%;
+    display: block;
+  }
+  .group 			  { 
+    position:relative; 
+    margin-bottom:45px; 
+    margin-left: 20%;
+  }
+  input 				{
+    font-size:18px;
+    padding:10px 10px 10px 5px;
+    display:block;
+    width:80%;
+    border:none;
+    border-bottom:1px solid #757575;
+  }
+}
+
+
+
+
+@media (max-width : 600px){
+  .loginContainer{
+    width: 80%;
+    margin:auto;
+    display: block;
+    margin-left: 8%;
+  }
+  .welcomeDiv{
+    width: 100%;
+    display: block;
+  }
+
+  .group 			  { 
+    position:relative; 
+    margin-bottom:45px; 
+    margin-left: 0%;
+  }
+  input 				{
+    font-size:18px;
+    padding:10px 10px 10px 5px;
+    display:block;
+    width:100%;
+    border:none;
+    border-bottom:1px solid #757575;
+  }
 }

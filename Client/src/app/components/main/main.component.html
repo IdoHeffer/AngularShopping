@@ -5,10 +5,26 @@
 
 
 
-<div class="loginContainer  col-xs-11 col-sm-6 col-md-6  col-lg-5" style="padding-left: 5%;">
+<div class="loginContainer  ">
   <h2>Sign-In</h2><br>
-  <form #loginForm="ngForm" > 
-      <div class="form-group">
+  <form #loginForm="ngForm" id="loginForm" > 
+    <div class="group">      
+      <input #userNameInput="ngModel" type="text" required  name="username"  [(ngModel)]="userLoginDetails.userName">
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Email / UserName</label>
+      <span class="validationErr" *ngIf="userNameInput.errors?.required && userNameInput.touched">Missing - username </span><br>
+    </div>
+      
+    <div class="group">      
+      <input  #passwordInput="ngModel" type="password" required name="password" [(ngModel)]="userLoginDetails.password">
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Password</label>
+      <span class="validationErr" *ngIf="passwordInput.invalid && passwordInput.touched">password is missing</span><br>
+    </div>
+
+      <!-- <div class="form-group">
         <label for="exampleInputEmail1">Email address / UserName</label>
         <input #userNameInput="ngModel" type="text" class="form-control"  required placeholder="User name"  name="username" [(ngModel)]="userLoginDetails.userName">
         <span class="validationErr" *ngIf="userNameInput.errors?.required && userNameInput.touched">Missing - username </span><br>
@@ -17,16 +33,16 @@
         <label for="exampleInputPassword1">Password</label>
         <input  #passwordInput="ngModel" type="password" class="form-control"  required placeholder="Password" name="password" [(ngModel)]="userLoginDetails.password">
         <span class="validationErr" *ngIf="passwordInput.invalid && passwordInput.touched">password is missing</span><br>
-      </div>
+      </div> -->
       <button type="button" style="background-color:#f90; color: white; width: 50%;" [disabled]="loginForm.form.invalid" (click)="login()" value="Login"  class="btn btn-info btn-lg">Login</button><br><br>
 
-      <p id="notRegisterPassword">Not Registerd ? sign-up right here <i class="fa fa-arrow-circle-down"></i></p> <p id="forgotpassword" routerLink="/ForgotPassword" routerLinkActive="the-chosen-one" >|   Forgot your password ? </p><br><br>
+      <p id="notRegisterPassword">Not Registerd? sign-up right here <i class="fa fa-arrow-circle-down"></i></p><p id="forgotpassword" routerLink="/ForgotPassword" routerLinkActive="the-chosen-one" >| Forgot your password ? </p><br><br>
 
       <button type="button" style="background-color:rgba(40, 108, 168, 0.856); color: white; width: 50%;" routerLink="/Register" class="btn btn-default btn-lg">Register</button>
   </form>
 </div>
 
- <div class="col-xs-11 col-sm-6 col-md-6" style="margin-left:7%; margin-top: 3%;">
+ <div class="welcomeDiv col-xs-11 col-sm-6 col-md-6" style="margin-left:7%; margin-top: 3%;">
     <h4><b>We are a new OnlineShop Made just for you !</b><br>So you won't need to come out from your House.<br>We will deliver it all to You in 24/7 Delivery Services System<br><br>   <b>We've reached Over 80 orders !!</b><br> A Big collecten of 50 products</h4>
       <img id="logo" src="../../../assets/PhoneTheme.jpg" alt="Theme Image">
   </div>

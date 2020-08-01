@@ -42,9 +42,7 @@ router.put("/:id",(request,response) => {
 
 router.delete("/:id",(request,response) => {
     const id = +request.params.id
-    usersLogic.deleteUser(id);
-   
-    
+    usersLogic.deleteUser(id); 
 })
 
 module.exports = router 
