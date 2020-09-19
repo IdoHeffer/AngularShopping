@@ -195,15 +195,14 @@ h2{
     color: black;
 }
 #cartItemsContainer{
-    /* margin-top: 20%;
-    padding-top: 10%; */
     height: 100vh -100px;
     width: 100%;
-    position: -webkit-sticky; /* Safari */
     position: sticky;
+    position: -webkit-sticky; /* Safari */
     top: 0;
     border:3px solid lightgray;
     border-radius: 8px;
+    box-shadow: 0px 0px 5px 5px gray;
 }
 #cartItemsTable{
     height: 550px;
@@ -223,14 +222,6 @@ h2{
     display: inline-block;
     vertical-align: middle;
           
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    color: #286DA8;
 }
   
 li {

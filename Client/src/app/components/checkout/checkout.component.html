@@ -83,7 +83,7 @@
                             *ngIf="checkoutCardNameInput.errors?.required && checkoutCardNameInput.touched">Missing -
                             Card Holder Name</small><br>
                         <label for="ccnum">Credit card number</label>
-                        <input #creditCardInput required type="text" id="ccnum" name="cardnumber" required
+                        <input #creditCardInput required type="text" id="ccnum" name="cardnumber" required minlength="16" maxlength="16"
                             [(ngModel)]="checkOutDetails.CreditCardDigits" placeholder="1111-2222-3333-4444">
                         <small class="text-danger"
                             *ngIf="creditCardInput.errors?.required && creditCardInput.touched">Missing - Credit Card
