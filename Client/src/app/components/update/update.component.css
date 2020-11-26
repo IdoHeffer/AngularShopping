@@ -1,12 +1,16 @@
 body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box;}
  
+#main{
+    background-color: lightgray;
+}
 span{
     color: red;
 }
 #tableDiv{
     margin: auto;
     width:60%;
+    background-color: white;
 }
 tr{
     cursor: pointer;
