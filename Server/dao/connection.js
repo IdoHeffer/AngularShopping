@@ -48,7 +48,7 @@ function executeWithParameters(sql,parameters) {
             resolve(result);
         });
     });
- }
+}
 
 
 function isCartForUSer(sql,parameters) {

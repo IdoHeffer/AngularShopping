@@ -1,6 +1,12 @@
-hello Maor Shiri 
-order number: 56
+hello Ido Heffer
+order number: 57
 
-1) cheese X 1 = 15
-2) entrecote X 1 = 90
-total order: 285
+1) danone yogurt  pro X 8 = 32
+2) milk X 2 = 20
+3) cheese X 1 = 15
+4) chicken sausages X 1 = 12
+5) corona beer X 1 = 5
+6) cottege X 3 = 12
+7) weihenstephaner beer X 2 = 54
+8) cookies X 1 = 12
+total order: 162
