@@ -10,7 +10,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-fileupload": "^1.1.7-alpha.3",
-    "express-jwt": "^5.3.1",
+    "express-jwt": "^8.2.0",
     "fileupload": "^1.0.0",
     "joi": "^14.3.1",
     "jwt-middleware": "^0.3.0",
